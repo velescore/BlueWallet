@@ -140,7 +140,7 @@ export default class TransactionsDetails extends Component {
                 <BlueText style={{ marginBottom: 8, color: 'grey' }}>{this.state.tx.txid}</BlueText>
                 <TouchableOpacity
                   onPress={() => {
-                    const url = `http://explorer.bitcoinvault.global/tx/${this.state.tx.txid}`;
+                    const url = `http://explorer.veles.network/tx/${this.state.tx.txid}`;
                     Linking.canOpenURL(url).then(supported => {
                       if (supported) {
                         Linking.openURL(url);

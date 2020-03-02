@@ -160,7 +160,7 @@ export default class TransactionsStatus extends Component {
         <Handoff
           title={`Bitcoin Vault Transaction ${this.state.tx.txid}`}
           type="io.goldwallet.wallet"
-          url={`http://explorer.bitcoinvault.global/tx/${this.state.tx.txid}`}
+          url={`http://explorer.veles.network/tx/${this.state.tx.txid}`}
         />
         <View style={{ flex: 1, justifyContent: 'space-between' }}>
           <BlueCard>
