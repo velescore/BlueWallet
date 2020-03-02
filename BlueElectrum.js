@@ -6,10 +6,9 @@ let reverse = require('buffer-reverse');
 let BigNumber = require('bignumber.js');
 
 const storageKey = 'ELECTRUM_PEERS';
-const defaultPeer = { host: '188.166.204.85', tcp: '50001' };
+const defaultPeer = { host: 'electrum.veles.network', tcp: '50001' };
 const hardcodedPeers = [
-   { host: '188.166.204.85', tcp: '50001' },
-   { host: '157.245.20.66', tcp: '50001' },
+   { host: 'electrum.veles.network', tcp: '50001' },
 ];
 
 let mainClient = false;
