@@ -1,6 +1,6 @@
-# BlueWallet - A Bitcoin Vault mobile wallet
+# BlueWallet - A Veles mobile wallet
 
-The first ever Bitcoin Vault wallet.
+The first ever Veles wallet.
 
 [![Playstore](https://bluewallet.io/img/play-store-badge.svg)](https://play.google.com/store/apps/details?id=io.goldwallet.wallet)
 
