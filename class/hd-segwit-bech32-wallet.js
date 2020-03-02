@@ -84,7 +84,7 @@ export class HDSegwitBech32Wallet extends AbstractHDWallet {
     const mnemonic = this.secret;
     const seed = bip39.mnemonicToSeed(mnemonic);
     const root = HDNode.fromSeed(seed);
-    const path = `m/84'/440'/0'/0/${index}`;
+    const path = `m/84'/0'/0'/0/${index}`;
     const child = root.derivePath(path);
 
     return child.toWIF();
@@ -142,7 +142,7 @@ export class HDSegwitBech32Wallet extends AbstractHDWallet {
     const seed = bip39.mnemonicToSeed(mnemonic);
     const root = HDNode.fromSeed(seed);
 
-    const path = "m/84'/440'/0'";
+    const path = "m/84'/0'/0'";
     const child = root.derivePath(path).neutered();
     const xpub = child.toBase58();
 
@@ -156,7 +156,7 @@ export class HDSegwitBech32Wallet extends AbstractHDWallet {
   }
 
   _getDerivationPathByAddress(address) {
-    const path = "m/84'/440'/0'/0/";
+    const path = "m/84'/0'/0'/0/";
     let index =  this._address.indexOf(address);
     if (index === -1) return false;
     return path + index;
