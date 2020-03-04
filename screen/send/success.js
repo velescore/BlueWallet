@@ -37,7 +37,7 @@ export default class Success extends Component {
           <View style={{ flexDirection: 'row', justifyContent: 'center', paddingTop: 76, paddingBottom: 16 }}>
             <Text
               style={{
-                color: '#0f5cc0',
+                color: '#f19b7e',
                 fontSize: 36,
                 fontWeight: '600',
               }}
@@ -46,7 +46,7 @@ export default class Success extends Component {
             </Text>
             <Text
               style={{
-                color: '#0f5cc0',
+                color: '#f19b7e',
                 fontSize: 16,
                 marginHorizontal: 4,
                 paddingBottom: 6,
@@ -89,7 +89,7 @@ export default class Success extends Component {
         </BlueCard>
         <View
           style={{
-            backgroundColor: '#ccddf9',
+            backgroundColor: BluaApp.settings.buttonBackgroundColor,
             width: 120,
             height: 120,
             borderRadius: 60,
@@ -99,7 +99,7 @@ export default class Success extends Component {
             marginBottom: 53,
           }}
         >
-          <Icon name="check" size={50} type="font-awesome" color="#0f5cc0" />
+          <Icon name="check" size={50} type="font-awesome" color="#e4b99c" />
         </View>
         <BlueCard>
           <BlueButton

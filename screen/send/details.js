@@ -71,7 +71,7 @@ export default class SendDetails extends Component {
     const wallets = BlueApp.getWallets();
 
     if (wallets.length === 0) {
-      alert('Before creating a transaction, you must first add a Bitcoin wallet.');
+      alert('Before creating a transaction, you must first add a Veles wallet.');
       return props.navigation.goBack(null);
     } else {
       if (!fromWallet && wallets.length > 0) {
@@ -128,8 +128,8 @@ export default class SendDetails extends Component {
         });
       } else {
         let recipients = this.state.addresses;
-        const dataWithoutSchema = data.replace('bitcoin:', '');
-        if (btcAddressRx.test(dataWithoutSchema) || (dataWithoutSchema.indexOf('royale1') === 0 && dataWithoutSchema.indexOf('?') === -1)) {
+        const dataWithoutSchema = data.replace('veles:', '');
+        if (btcAddressRx.test(dataWithoutSchema) || (dataWithoutSchema.indexOf('veles1') === 0 && dataWithoutSchema.indexOf('?') === -1)) {
           recipients[[this.state.recipientsScrollIndex]].address = dataWithoutSchema;
           this.setState({
             address: recipients,
@@ -140,8 +140,8 @@ export default class SendDetails extends Component {
           let address = '';
           let options;
           try {
-            if (!data.toLowerCase().startsWith('bitcoin:')) {
-              data = `bitcoin:${data}`;
+            if (!data.toLowerCase().startsWith('veles:')) {
+              data = `veles:${data}`;
             }
             const decoded = bip21.decode(data);
             address = decoded.address;
@@ -155,7 +155,7 @@ export default class SendDetails extends Component {
             this.setState({ isLoading: false });
           }
           console.log(options);
-          if (btcAddressRx.test(address) || address.indexOf('royale1') === 0) {
+          if (btcAddressRx.test(address) || address.indexOf('veles1') === 0) {
             recipients[[this.state.recipientsScrollIndex]].address = address;
             recipients[[this.state.recipientsScrollIndex]].amount = options.amount;
             this.setState({
@@ -196,7 +196,7 @@ export default class SendDetails extends Component {
           this.setState({ addresses, memo: initialMemo, isLoading: false });
         } catch (error) {
           console.log(error);
-          alert('Error: Unable to decode Bitcoin address');
+          alert('Error: Unable to decode Veles address');
         }
       }
     } else if (this.props.navigation.state.params.address) {
@@ -239,7 +239,7 @@ export default class SendDetails extends Component {
             } catch (error) {
               console.log(error);
               this.setState({ isLoading: false });
-              alert('Error: Unable to decode Bitcoin address');
+              alert('Error: Unable to decode Veles address');
             }
           }
         }
@@ -576,7 +576,7 @@ export default class SendDetails extends Component {
       ReactNativeHapticFeedback.trigger('notificationWarning');
       Alert.alert(
         'Wallet Selection',
-        `The selected wallet does not support sending Bitcoin to multiple recipients. Are you sure to want to select this wallet?`,
+        `The selected wallet does not support sending Veles to multiple recipients. Are you sure to want to select this wallet?`,
         [
           {
             text: loc._.ok,
@@ -770,7 +770,7 @@ export default class SendDetails extends Component {
 
   renderCreateButton = () => {
     return (
-      <View style={{ marginHorizontal: 56, marginVertical: 16, alignContent: 'center', backgroundColor: '#FFFFFF', minHeight: 44 }}>
+      <View style={{ marginHorizontal: 56, marginVertical: 16, alignContent: 'center', backgroundColor: BlueApp.settings.buttonBackgroundColor, minHeight: 44 }}>
         {this.state.isLoading ? <ActivityIndicator /> : <BlueButton onPress={() => this.createTransaction()} title={'Next'} />}
       </View>
     );
@@ -798,7 +798,7 @@ export default class SendDetails extends Component {
               this.props.navigation.navigate('SelectWallet', { onWalletSelect: this.onWalletSelect, chainType: Chain.ONCHAIN })
             }
           >
-            <Text style={{ color: '#0c2550', fontSize: 14 }}>{this.state.fromWallet.getLabel()}</Text>
+            <Text style={{ color: BlueApp.settings.buttonLinkUrlColor, fontSize: 14 }}>{this.state.fromWallet.getLabel()}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -830,7 +830,7 @@ export default class SendDetails extends Component {
     let rows = [];
     for (let [index, item] of this.state.addresses.entries()) {
       rows.push(
-        <View style={{ minWidth: width, maxWidth: width, width: width }}>
+        <View style={{ minWidth: width, maxWidth: width, width: width, backgroundColor: BlueApp.settings.brandingColor }}>
           <BlueBitcoinAmount
             isLoading={this.state.isLoading}
             amount={item.amount ? item.amount.toString() : null}
@@ -916,7 +916,7 @@ export default class SendDetails extends Component {
     }
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <View style={{ flex: 1, justifyContent: 'space-between' }}>
+        <View style={{ flex: 1, justifyContent: 'space-between', backgroundColor: BlueApp.settings.brandingColor }}>
           <View>
             <KeyboardAvoidingView behavior="position">
               <ScrollView
@@ -936,12 +936,12 @@ export default class SendDetails extends Component {
                 hide={!this.state.showMemoRow}
                 style={{
                   flexDirection: 'row',
-                  borderColor: '#d2d2d2',
-                  borderBottomColor: '#d2d2d2',
+                  borderColor: BlueApp.settings.inputBorderColor,
                   borderWidth: 1.0,
                   borderBottomWidth: 0.5,
-                  backgroundColor: '#f5f5f5',
+                  backgroundColor: BlueApp.settings.inputBackgroundColor,
                   minHeight: 44,
+                  color: '#ffffff',
                   height: 44,
                   marginHorizontal: 20,
                   alignItems: 'center',
@@ -951,10 +951,11 @@ export default class SendDetails extends Component {
               >
                 <TextInput
                   onChangeText={text => this.setState({ memo: text })}
-                  placeholder={loc.send.details.note_placeholder}
+                  placeholder={loc.send.details.note_placeholder.slice(0,1).toUpperCase() + loc.send.details.note_placeholder.slice(1, loc.send.details.note_placeholder.length)}
+                  placeholderTextColor={BlueApp.settings.alternativeTextColor}
                   value={this.state.memo}
                   numberOfLines={1}
-                  style={{ flex: 1, marginHorizontal: 8, minHeight: 33 }}
+                  style={{ color: BlueApp.settings.foregroundColor, flex: 1, marginHorizontal: 8, minHeight: 33 }}
                   editable={!this.state.isLoading}
                   onSubmitEditing={Keyboard.dismiss}
                   inputAccessoryViewID={BlueDismissKeyboardInputAccessory.InputAccessoryViewID}
@@ -1004,7 +1005,7 @@ export default class SendDetails extends Component {
 
 const styles = StyleSheet.create({
   modalContent: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: BlueApp.settings.brandingColor,
     padding: 22,
     justifyContent: 'center',
     alignItems: 'center',
@@ -1015,7 +1016,7 @@ const styles = StyleSheet.create({
     height: 200,
   },
   advancedTransactionOptionsModalContent: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: BlueApp.settings.brandingColor,
     padding: 22,
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,

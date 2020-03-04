@@ -8,6 +8,7 @@ import {
   Alert,
   TouchableOpacity,
   Keyboard,
+  KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Switch,
 } from 'react-native';
@@ -18,6 +19,7 @@ import { HDSegwitP2SHWallet } from '../../class/hd-segwit-p2sh-wallet';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 import Biometric from '../../class/biometrics';
 import { HDSegwitBech32Wallet, WatchOnlyWallet } from '../../class';
+import { ScrollView } from 'react-native-gesture-handler';
 let EV = require('../../events');
 let prompt = require('../../prompt');
 /** @type {AppStorage} */
@@ -38,7 +40,7 @@ export default class WalletDetails extends Component {
           }
         }}
       >
-        <Text style={{ color: '#0c2550' }}>{loc.wallets.details.save}</Text>
+        <Text style={{ color: '#ffffff' }}>{loc.wallets.details.save}</Text>
       </TouchableOpacity>
     ),
   });
@@ -120,54 +122,55 @@ export default class WalletDetails extends Component {
     return (
       <SafeBlueArea style={{ flex: 1 }}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-          <View style={{ flex: 1 }}>
-            <BlueCard style={{ alignItems: 'center', flex: 1 }}>
-              {(() => {
-                if (this.state.wallet.getAddress()) {
-                  return (
-                    <React.Fragment>
-                      <Text style={{ color: '#0c2550', fontWeight: '500', fontSize: 14, marginVertical: 12 }}>
-                        {loc.wallets.details.address.toLowerCase()}
-                      </Text>
-                      <Text style={{ color: '#81868e', fontWeight: '500', fontSize: 14 }}>{this.state.wallet.getAddress()}</Text>
-                    </React.Fragment>
-                  );
-                }
-              })()}
-              <Text style={{ color: '#0c2550', fontWeight: '500', fontSize: 14, marginVertical: 16 }}>
-                {loc.wallets.add.wallet_name.toLowerCase()}
-              </Text>
+          <KeyboardAvoidingView behavior="position">
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+              <BlueCard style={{ alignItems: 'center', flex: 1 }}>
+                {(() => {
+                  if (this.state.wallet.getAddress()) {
+                    return (
+                      <React.Fragment>
+                        <Text style={{ color: '#ffffff', fontWeight: '500', fontSize: 14, marginVertical: 12 }}>
+                          {loc.wallets.details.address}
+                        </Text>
+                        <Text style={{ color: '#81868e', fontWeight: '500', fontSize: 14 }}>{this.state.wallet.getAddress()}</Text>
+                      </React.Fragment>
+                    );
+                  }
+                })()}
+                <Text style={{ color: '#ffffff', fontWeight: '500', fontSize: 14, marginVertical: 12 }}>
+                  {loc.wallets.add.wallet_name.slice(0,1).toUpperCase() + loc.wallets.add.wallet_name.slice(1, loc.wallets.add.wallet_name.length)}
+                </Text>
 
-              <View
-                style={{
-                  flexDirection: 'row',
-                  borderColor: '#d2d2d2',
-                  borderBottomColor: '#d2d2d2',
-                  borderWidth: 1.0,
-                  borderBottomWidth: 0.5,
-                  backgroundColor: '#f5f5f5',
-                  minHeight: 44,
-                  height: 44,
-                  alignItems: 'center',
-                  borderRadius: 4,
-                }}
-              >
-                <TextInput
-                  placeholder={loc.send.details.note_placeholder}
-                  value={this.state.walletName}
-                  onChangeText={text => this.setState({ walletName: text })}
-                  numberOfLines={1}
-                  style={{ flex: 1, marginHorizontal: 8, minHeight: 33 }}
-                  editable={!this.state.isLoading}
-                  underlineColorAndroid="transparent"
-                />
-              </View>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    borderColor: BlueApp.settings.inputBorderColor,
+                    borderWidth: 1.0,
+                    borderBottomWidth: 0.5,
+                    backgroundColor: BlueApp.settings.inputBackgroundColor,
+                    minHeight: 44,
+                    height: 44,
+                    alignItems: 'center',
+                    borderRadius: 4,
+                  }}
+                >
+                  <TextInput
+                    placeholder={loc.send.details.note_placeholder}
+                    placeholderTextColor={BlueApp.settings.alternativeTextColor}
+                    value={this.state.walletName}
+                    onChangeText={text => this.setState({ walletName: text })}
+                    numberOfLines={1}
+                    style={{ flex: 1, marginHorizontal: 8, minHeight: 33, color: BlueApp.settings.foregroundColor }}
+                    editable={!this.state.isLoading}
+                    underlineColorAndroid="transparent"
+                  />
+                </View>
 
-              <Text style={{ color: '#0c2550', fontWeight: '500', fontSize: 14, marginVertical: 12 }}>
-                {loc.wallets.details.type.toLowerCase()}
-              </Text>
-              <Text style={{ color: '#81868e', fontWeight: '500', fontSize: 14 }}>{this.state.wallet.typeReadable}</Text>
-              <View>
+                <Text style={{ color: '#ffffff', fontWeight: '500', fontSize: 14, marginVertical: 12 }}>
+                  {loc.wallets.details.type}
+                </Text>
+                <Text style={{ color: '#81868e', fontWeight: '500', fontSize: 14 }}>{this.state.wallet.typeReadable}</Text>
+                
                 <BlueSpacing20 />
 
                 {this.state.wallet.type === WatchOnlyWallet.type && this.state.wallet.getSecret().startsWith('zpub') && (
@@ -209,26 +212,7 @@ export default class WalletDetails extends Component {
                   </React.Fragment>
                 )}
 
-                {(
-                  <BlueButton
-                    icon={{
-                      name: 'shopping-cart',
-                      type: 'font-awesome',
-                      color: BlueApp.settings.buttonTextColor,
-                    }}
-                    onPress={() =>
-                      this.props.navigation.navigate('BuyBitcoin', {
-                        address: this.state.wallet.getAddress(),
-                        secret: this.state.wallet.getSecret(),
-                      })
-                    }
-                    title={loc.wallets.details.buy_bitcoin}
-                  />
-                )}
-                <BlueSpacing20 />
-
-                <TouchableOpacity
-                  style={{ alignItems: 'center' }}
+                <BlueButton
                   onPress={() => {
                     ReactNativeHapticFeedback.trigger('notificationWarning', { ignoreAndroidSystemSettings: false });
                     Alert.alert(
@@ -266,12 +250,12 @@ export default class WalletDetails extends Component {
                       { cancelable: false },
                     );
                   }}
-                >
-                  <Text style={{ color: '#d0021b', fontSize: 15, fontWeight: '500' }}>{loc.wallets.details.delete}</Text>
-                </TouchableOpacity>
-              </View>
-            </BlueCard>
-          </View>
+                  title={loc.wallets.details.delete}
+                />
+              </BlueCard>
+            </ScrollView>
+          </KeyboardAvoidingView>
+
         </TouchableWithoutFeedback>
       </SafeBlueArea>
     );

@@ -89,11 +89,11 @@ const WalletsStackNavigator = createStackNavigator(
       path: 'Settings',
       navigationOptions: {
         headerStyle: {
-          backgroundColor: '#FFFFFF',
+          backgroundColor: '#000000',
           borderBottomWidth: 0,
           elevation: 0,
         },
-        headerTintColor: '#0c2550',
+        headerTintColor: '#ffffff',
       },
     },
     SelectWallet: {
@@ -151,10 +151,10 @@ const CreateTransactionStackNavigator = createStackNavigator({
     screen: sendCreate,
     navigationOptions: {
       headerStyle: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#000000',
         borderBottomWidth: 0,
       },
-      headerTintColor: '#0c2550',
+      headerTintColor: '#ffffff',
     },
   },
   Success: {

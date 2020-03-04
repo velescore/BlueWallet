@@ -66,7 +66,7 @@ export class BlueButton extends Component {
           minHeight: 45,
           height: 45,
           maxHeight: 45,
-          borderRadius: 25,
+          borderRadius: 0,
           minWidth: buttonWidth,
           justifyContent: 'center',
           alignItems: 'center',
@@ -279,6 +279,39 @@ export class BlueWalletNavigationHeader extends Component {
 
 export class BlueButtonLink extends Component {
   render() {
+    let backgroundColor = this.props.backgroundColor ? this.props.backgroundColor : BlueApp.settings.buttonBackgroundColor;
+    let fontColor = BlueApp.settings.buttonTextColor;
+    let buttonWidth = width / 1.5;
+    if (this.props.hasOwnProperty('noMinWidth')) {
+      buttonWidth = 0;
+    }
+    return (
+      <TouchableOpacity
+        style={{
+          flex: 1,
+          borderWidth: 0.7,
+          borderColor: 'transparent',
+          backgroundColor: BlueApp.settings.buttonBackgroundColor,
+          minHeight: 45,
+          height: 45,
+          maxHeight: 45,
+          borderRadius: 0,
+          minWidth: buttonWidth,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+        {...this.props}
+      >
+        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+          {this.props.title && <Text style={{ marginHorizontal: 8, fontSize: 16, color: fontColor }}>{this.props.title}</Text>}
+        </View>
+      </TouchableOpacity>
+    );
+  }
+}
+
+export class BlueButtonLinkUrl extends Component {
+  render() {
     return (
       <TouchableOpacity
         style={{
@@ -289,7 +322,7 @@ export class BlueButtonLink extends Component {
         }}
         {...this.props}
       >
-        <Text style={{ color: BlueApp.settings.foregroundColor, textAlign: 'center', fontSize: 16 }}>{this.props.title}</Text>
+        <Text style={{ color: BlueApp.settings.buttonLinkUrlColor, textAlign: 'center', fontSize: 16 }}>{this.props.title}</Text>
       </TouchableOpacity>
     );
   }
@@ -297,7 +330,7 @@ export class BlueButtonLink extends Component {
 
 export const BlueNavigationStyle = (navigation, withNavigationCloseButton = false, customCloseButtonFunction = undefined) => ({
   headerStyle: {
-    backgroundColor: BlueApp.settings.brandingColor,
+    backgroundColor: BlueApp.settings.navbarColor,
     borderBottomWidth: 0,
     elevation: 0,
   },
@@ -326,7 +359,7 @@ export const BlueNavigationStyle = (navigation, withNavigationCloseButton = fals
 
 export const BlueCreateTxNavigationStyle = (navigation, withAdvancedOptionsMenuButton = false, advancedOptionsMenuButtonAction) => ({
   headerStyle: {
-    backgroundColor: BlueApp.settings.brandingColor,
+    backgroundColor: BlueApp.settings.navbarColor,
     borderBottomWidth: 0,
     elevation: 0,
   },
@@ -374,7 +407,7 @@ export const BluePrivateBalance = () => {
 export const BlueCopyToClipboardButton = ({ stringToCopy, displayText = false }) => {
   return (
     <TouchableOpacity {...this.props} onPress={() => Clipboard.setString(stringToCopy)}>
-      <Text style={{ fontSize: 13, fontWeight: '400', color: '#68bbe1' }}>{displayText || loc.transactions.details.copy}</Text>
+      <Text style={{ fontSize: 13, fontWeight: '400', color: BlueApp.settings.buttonLinkUrlColor }}>{displayText || loc.transactions.details.copy}</Text>
     </TouchableOpacity>
   );
 };
@@ -483,9 +516,9 @@ export class BlueListItem extends Component {
         bottomDivider
         containerStyle={{
           backgroundColor: 'transparent',
-          borderBottomStartRadius: 20,
-          borderBottomEndRadius: 20,
-          borderBottomColor: '#ededed',
+          borderBottomStartRadius: 10,
+          borderBottomEndRadius: 10,
+          borderBottomColor: 'transparent',
         }}
         titleStyle={{
           color: BlueApp.settings.foregroundColor,
@@ -808,7 +841,7 @@ export class BlueDismissKeyboardInputAccessory extends Component {
       <InputAccessoryView nativeID={BlueDismissKeyboardInputAccessory.InputAccessoryViewID}>
         <View
           style={{
-            backgroundColor: '#eef0f4',
+            backgroundColor: 'rgba(38, 38, 38, 0.9)',
             height: 44,
             flex: 1,
             flexDirection: 'row',
@@ -835,17 +868,18 @@ export class BlueDoneAndDismissKeyboardInputAccessory extends Component {
     const inputView = (
       <View
         style={{
-          backgroundColor: '#eef0f4',
+          backgroundColor: 'rgba(38, 38, 38, 0.9)',
           height: 44,
           flex: 1,
+          marginVertical: 5,
           flexDirection: 'row',
           justifyContent: 'flex-end',
           alignItems: 'center',
         }}
       >
-        <BlueButtonLink title="Clear" onPress={this.props.onClearTapped} />
-        <BlueButtonLink title="Paste" onPress={this.onPasteTapped} />
-        <BlueButtonLink title="Done" onPress={() => Keyboard.dismiss()} />
+        <BlueButtonLinkUrl title="Clear" onPress={this.props.onClearTapped} />
+        <BlueButtonLinkUrl title="Paste" onPress={this.onPasteTapped} />
+        <BlueButtonLinkUrl title="Done" onPress={() => Keyboard.dismiss()} />
       </View>
     );
 
@@ -1133,7 +1167,7 @@ export class BlueReceiveButtonIcon extends Component {
                 marginBottom: -11,
               }}
             >
-              <Icon {...this.props} name="arrow-down" size={16} type="font-awesome" color={BlueApp.settings.buttonAlternativeTextColor} />
+              <Icon {...this.props} name="arrow-down" size={16} type="font-awesome" color="#37c0a1" />
             </View>
             <Text
               style={{
@@ -1176,7 +1210,7 @@ export class BlueSendButtonIcon extends Component {
                 marginBottom: 11,
               }}
             >
-              <Icon {...this.props} name="arrow-down" size={16} type="font-awesome" color={BlueApp.settings.buttonAlternativeTextColor} />
+              <Icon {...this.props} name="arrow-down" size={16} type="font-awesome" color="#ff0000" />
             </View>
             <Text
               style={{
@@ -1878,7 +1912,7 @@ export class BlueAddressInput extends Component {
   static defaultProps = {
     isLoading: false,
     address: '',
-    placeholder: loc.send.details.address,
+    placeholder: loc.wallets.details.address,
   };
 
   render() {
@@ -1904,9 +1938,10 @@ export class BlueAddressInput extends Component {
             this.props.onChangeText(text);
           }}
           placeholder={this.props.placeholder}
+          placeholderTextColor={BlueApp.settings.alternativeTextColor}
           numberOfLines={1}
           value={this.props.address}
-          style={{ flex: 1, marginHorizontal: 8, minHeight: 33 }}
+          style={{ color: BlueApp.settings.foregroundColor, flex: 1, marginHorizontal: 8, minHeight: 33 }}
           editable={!this.props.isLoading}
           onSubmitEditing={() => Keyboard.dismiss()}
           {...this.props}
@@ -1922,14 +1957,14 @@ export class BlueAddressInput extends Component {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            backgroundColor: '#9AA0AA',
+            backgroundColor: BlueApp.settings.buttonLinkUrlColor,
             borderRadius: 4,
             paddingVertical: 4,
             paddingHorizontal: 8,
             marginHorizontal: 4,
           }}
         >
-          <Icon name="qrcode" size={22} type="font-awesome" color={BlueApp.settings.inverseForegroundColor} />
+          <Icon name="qrcode" size={22} type="font-awesome" color={BlueApp.settings.foregroundColor} />
           <Text style={{ marginLeft: 4, color: BlueApp.settings.inverseForegroundColor }}>{loc.send.details.scan}</Text>
         </TouchableOpacity>
       </View>

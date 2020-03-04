@@ -9,6 +9,7 @@ import {
   BlueButton,
   BlueButtonLink,
   BlueNavigationStyle,
+  BlueSpacing10,
   is,
 } from '../../BlueComponents';
 import PropTypes from 'prop-types';
@@ -118,7 +119,7 @@ export default class ReceiveDetails extends Component {
                 logo={require('../../img/qr-code.png')}
                 size={(is.ipad() && 300) || 300}
                 logoSize={90}
-                color={BlueApp.settings.foregroundColor}
+                color={BlueApp.settings.navbarColor}
                 logoBackgroundColor={BlueApp.settings.brandingColor}
                 ecl={'H'}
                 getRef={c => (this.qrCodeSVG = c)}
@@ -135,6 +136,7 @@ export default class ReceiveDetails extends Component {
                 });
               }}
             />
+            <BlueSpacing10 />
             <View>
               <BlueButton
                 icon={{
@@ -144,12 +146,12 @@ export default class ReceiveDetails extends Component {
                 }}
                 onPress={async () => {
                   if (this.qrCodeSVG === undefined) {
-                    Share.open({ message: `bitcoin:${this.state.address}` }).catch(error => console.log(error));
+                    Share.open({ message: `veles:${this.state.address}` }).catch(error => console.log(error));
                   } else {
                     InteractionManager.runAfterInteractions(async () => {
                       this.qrCodeSVG.toDataURL(data => {
                         let shareImageBase64 = {
-                          message: `bitcoin:${this.state.address}`,
+                          message: `veles:${this.state.address}`,
                           url: `data:image/png;base64,${data}`,
                         };
                         Share.open(shareImageBase64).catch(error => console.log(error));

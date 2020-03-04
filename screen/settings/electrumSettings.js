@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { BlueLoading, BlueSpacing20, BlueButton, SafeBlueArea, BlueCard, BlueNavigationStyle, BlueText } from '../../BlueComponents';
 import PropTypes from 'prop-types';
 let loc = require('../../loc');
+let BlueApp = require('../../BlueApp');
 let BlueElectrum = require('../../BlueElectrum');
 
 export default class ElectrumSettings extends Component {
@@ -68,11 +69,10 @@ export default class ElectrumSettings extends Component {
           <View
             style={{
               flexDirection: 'row',
-              borderColor: '#d2d2d2',
-              borderBottomColor: '#d2d2d2',
+              borderColor: BlueApp.settings.inputBorderColor,
               borderWidth: 1.0,
               borderBottomWidth: 0.5,
-              backgroundColor: '#f5f5f5',
+              backgroundColor: BlueApp.settings.inputBackgroundColor,
               minHeight: 44,
               height: 44,
               alignItems: 'center',
@@ -81,10 +81,11 @@ export default class ElectrumSettings extends Component {
           >
             <TextInput
               placeholder={'host, for example 111.222.333.444'}
+              placeholderTextColor={BlueApp.settings.alternativeTextColor}
               value={this.state.host}
               onChangeText={text => this.setState({ host: text })}
               numberOfLines={1}
-              style={{ flex: 1, marginHorizontal: 8, minHeight: 36, height: 36 }}
+              style={{ flex: 1, marginHorizontal: 8, minHeight: 36, height: 36, color: BlueApp.settings.foregroundColor }}
               editable={!this.state.isLoading}
               underlineColorAndroid="transparent"
             />
@@ -93,11 +94,10 @@ export default class ElectrumSettings extends Component {
           <View
             style={{
               flexDirection: 'row',
-              borderColor: '#d2d2d2',
-              borderBottomColor: '#d2d2d2',
+              borderColor: BlueApp.settings.inputBorderColor,
               borderWidth: 1.0,
               borderBottomWidth: 0.5,
-              backgroundColor: '#f5f5f5',
+              backgroundColor: BlueApp.settings.inputBackgroundColor,
               minHeight: 44,
               height: 44,
               alignItems: 'center',
@@ -106,10 +106,11 @@ export default class ElectrumSettings extends Component {
           >
             <TextInput
               placeholder={'TCP port, usually 50001'}
+              placeholderTextColor={BlueApp.settings.alternativeTextColor}
               value={this.state.port}
               onChangeText={text => this.setState({ port: text })}
               numberOfLines={1}
-              style={{ flex: 1, marginHorizontal: 8, minHeight: 36, height: 36 }}
+              style={{ flex: 1, marginHorizontal: 8, minHeight: 36, height: 36, color: BlueApp.settings.foregroundColor }}
               editable={!this.state.isLoading}
               underlineColorAndroid="transparent"
             />

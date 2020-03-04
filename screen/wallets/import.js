@@ -12,11 +12,13 @@ import { KeyboardAvoidingView, Platform, Dimensions, View, TouchableWithoutFeedb
 import {
   BlueFormMultiInput,
   BlueButtonLink,
+  BlueButtonLinkUrl,
   BlueFormLabel,
   BlueLoading,
   BlueDoneAndDismissKeyboardInputAccessory,
   BlueButton,
   SafeBlueArea,
+  BlueSpacing10,
   BlueSpacing20,
   BlueNavigationStyle,
 } from '../../BlueComponents';
@@ -33,7 +35,7 @@ const { width } = Dimensions.get('window');
 export default class WalletsImport extends Component {
   static navigationOptions = {
     ...BlueNavigationStyle(),
-    title: loc.wallets.import.title,
+    title: loc.wallets.import.title.slice(0,1).toUpperCase() + loc.wallets.import.title.slice(1, loc.wallets.import.title.length),
   };
 
   constructor(props) {
@@ -232,20 +234,26 @@ export default class WalletsImport extends Component {
               onFocus={() => this.setState({ isToolbarVisibleForAndroid: true })}
               onBlur={() => this.setState({ isToolbarVisibleForAndroid: false })}
             />
-            {Platform.select({
-              ios: (
-                <BlueDoneAndDismissKeyboardInputAccessory
-                  onClearTapped={() => this.setState({ label: '' }, () => Keyboard.dismiss())}
-                  onPasteTapped={text => this.setState({ label: text }, () => Keyboard.dismiss())}
-                />
-              ),
-              android: this.state.isToolbarVisibleForAndroid && (
-                <BlueDoneAndDismissKeyboardInputAccessory
-                  onClearTapped={() => this.setState({ label: '' }, () => Keyboard.dismiss())}
-                  onPasteTapped={text => this.setState({ label: text }, () => Keyboard.dismiss())}
-                />
-              ),
-            })}
+            <View
+              style={{
+              alignItems: 'center',
+              }}
+            >
+              {Platform.select({
+                ios: (
+                  <BlueDoneAndDismissKeyboardInputAccessory
+                    onClearTapped={() => this.setState({ label: '' }, () => Keyboard.dismiss())}
+                    onPasteTapped={text => this.setState({ label: text }, () => Keyboard.dismiss())}
+                  />
+                ),
+                android: this.state.isToolbarVisibleForAndroid && (
+                  <BlueDoneAndDismissKeyboardInputAccessory
+                    onClearTapped={() => this.setState({ label: '' }, () => Keyboard.dismiss())}
+                    onPasteTapped={text => this.setState({ label: text }, () => Keyboard.dismiss())}
+                  />
+                ),
+              })}
+            </View>
           </KeyboardAvoidingView>
         </TouchableWithoutFeedback>
 
@@ -259,7 +267,7 @@ export default class WalletsImport extends Component {
             disabled={!this.state.label}
             title={loc.wallets.import.do_import}
             buttonStyle={{
-              width: width / 1.5,
+              width: width / 3,
             }}
             onPress={async () => {
               if (!this.state.label) {
@@ -271,6 +279,7 @@ export default class WalletsImport extends Component {
               });
             }}
           />
+          <BlueSpacing10 />
           <BlueButtonLink
             title={loc.wallets.import.scan_qr}
             onPress={() => {

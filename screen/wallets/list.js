@@ -15,9 +15,13 @@ let BlueElectrum = require('../../BlueElectrum');
 export default class WalletsList extends Component {
   static navigationOptions = ({ navigation }) => ({
     headerStyle: {
-      backgroundColor: '#FFFFFF',
+      backgroundColor: '#000000',
       borderBottomWidth: 0,
       elevation: 0,
+    },
+    headerTitleStyle: {
+      fontWeight: '600',
+      color: BlueApp.settings.foregroundColor,
     },
     headerRight: (
       <TouchableOpacity
@@ -27,6 +31,7 @@ export default class WalletsList extends Component {
         <Icon size={22} name="kebab-horizontal" type="octicon" color={BlueApp.settings.foregroundColor} />
       </TouchableOpacity>
     ),
+    title: loc.wallets.overview_wallets,
   });
 
   constructor(props) {
@@ -224,7 +229,7 @@ export default class WalletsList extends Component {
             color: BlueApp.settings.foregroundColor,
           }}
         >
-          {loc.transactions.list.title}
+          {loc.transactions.list.tabBarLabel}
         </Text>
       </View>
     );
@@ -237,6 +242,10 @@ export default class WalletsList extends Component {
       ReactNativeHapticFeedback.trigger('notificationError', { ignoreAndroidSystemSettings: false });
     }
   };
+
+  /* Outcomented but maybe will be used in future
+   * <BlueHeaderDefaultMain leftText={loc.wallets.list.title} onNewWalletPress={() => this.props.navigation.navigate('AddWallet')} />
+   */ 
 
   _renderItem = data => {
     return <BlueTransactionListItem item={data.item} itemPriceUnit={data.item.walletPreferredBalanceUnit} />;
@@ -257,7 +266,6 @@ export default class WalletsList extends Component {
             <RefreshControl onRefresh={() => this.refreshTransactions()} refreshing={!this.state.isFlatListRefreshControlHidden} />
           }
         >
-          <BlueHeaderDefaultMain leftText={loc.wallets.list.title} onNewWalletPress={() => this.props.navigation.navigate('AddWallet')} />
           <WalletsCarousel
             removeClippedSubviews={false}
             data={this.state.wallets}

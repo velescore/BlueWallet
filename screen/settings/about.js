@@ -46,7 +46,7 @@ export default class About extends Component {
       <SafeBlueArea forceInset={{ horizontal: 'always' }} style={{ flex: 1 }}>
         <ScrollView>
           <BlueCard>
-            <BlueTextCentered h4>GoldWallet is a free and open source Bitcoin wallet. Licensed MIT.</BlueTextCentered>
+            <BlueTextCentered h4>VelesWallet is a free and open source wallet. Licensed MIT.</BlueTextCentered>
             <BlueSpacing20 />
 
             <BlueTextCentered h4>Always backup your keys</BlueTextCentered>
@@ -59,9 +59,9 @@ export default class About extends Component {
                 color: BlueApp.settings.buttonTextColor,
               }}
               onPress={() => {
-                Linking.openURL('https://github.com/royalewallets/GoldWallet');
+                Linking.openURL('https://github.com/velescore/veles-mobile-wallet');
               }}
-              title="github.com/royalewallets/GoldWallet"
+              title="github.com/velescore/veles-mobile-wallet"
             />
             <BlueSpacing20 />
 
@@ -74,11 +74,11 @@ export default class About extends Component {
               onPress={() => {
                 let options = {
                   AppleAppID: '1376878040',
-                  GooglePackageName: 'io.goldwallet.wallet',
+                  GooglePackageName: 'io.veles.wallet',
                   preferredAndroidMarket: AndroidMarket.Google,
                   preferInApp: true,
                   openAppStoreIfInAppFails: true,
-                  fallbackPlatformURL: 'https://royalewallets.github.io',
+                  fallbackPlatformURL: 'https://veles.network',
                 };
                 Rate.rate(options, success => {
                   if (success) {
@@ -86,7 +86,7 @@ export default class About extends Component {
                   }
                 });
               }}
-              title="Rate GoldWallet"
+              title="Rate VelesWallet"
             />
 
             <BlueSpacing20 />

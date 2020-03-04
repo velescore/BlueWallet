@@ -8,11 +8,12 @@ module.exports = {
     ok: "OK",
   },
   wallets: {
+    overview_wallets: "Overview",
     select_wallet: "Select Wallet",
     options: "options",
     createBitcoinWallet: "You currently do not have a Bitcoin wallet. In order to fund a Lightning wallet, a Bitcoin wallet needs to be created or imported. Would you like to continue anyway?",
     list: {
-      app_name: "GoldWallet",
+      app_name: "GoldWallet", 
       title: "wallets",
       header: "A wallet represents a pair of a secret (private key) and an address you can share to receive coins.",
       add: "Add Wallet",
@@ -61,6 +62,7 @@ module.exports = {
       export_backup: "Export / backup",
       buy_bitcoin: "Buy Bitcoin",
       show_xpub: "Show wallet XPUB",
+      mnemoic_seed: "Mnemoic Seed",
     },
     export: {
       title: "wallet export",

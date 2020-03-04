@@ -168,10 +168,10 @@ export default class TransactionsStatus extends Component {
               onPress={() => this.changeWalletBalanceUnit()}
             >
             <View style={{ alignItems: 'center' }}>
-              <Text style={{ color: '#2f5fb3', fontSize: 36, fontWeight: '600' }}>
+              <Text style={{ color: BlueApp.settings.alternativeTextColor2, fontSize: 36, fontWeight: '600' }}>
                 {loc.formatBalanceWithoutSuffix(this.state.tx.value, this.state.wallet.preferredBalanceUnit, true)}{' '}
                 {this.state.wallet.preferredBalanceUnit !== BitcoinUnit.LOCAL_CURRENCY && (
-                  <Text style={{ color: '#2f5fb3', fontSize: 16, fontWeight: '600' }}>{this.state.wallet.preferredBalanceUnit}</Text>
+                  <Text style={{ color: BlueApp.settings.alternativeTextColor2, fontSize: 16, fontWeight: '600' }}>{this.state.wallet.preferredBalanceUnit}</Text>
                 )}
               </Text>
             </View>
@@ -201,7 +201,7 @@ export default class TransactionsStatus extends Component {
 
             <View
               style={{
-                backgroundColor: '#ccddf9',
+                backgroundColor: BlueApp.settings.buttonBackgroundColor,
                 width: 120,
                 height: 120,
                 borderRadius: 60,
@@ -212,7 +212,7 @@ export default class TransactionsStatus extends Component {
               }}
             >
               <View>
-                <Icon name="check" size={50} type="font-awesome" color="#0f5cc0" />
+                <Icon name="check" size={50} type="font-awesome" color="#e4b99c" />
               </View>
               <View
                 style={{
@@ -261,16 +261,16 @@ export default class TransactionsStatus extends Component {
 
             <View
               style={{
-                borderRadius: 11,
-                backgroundColor: '#eef0f4',
-                width: 109,
-                height: 21,
+                borderRadius: 4,
+                backgroundColor: BlueApp.settings.buttonBackgroundColor,
+                width: 120,
+                height: 25,
                 alignSelf: 'center',
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
             >
-              <Text style={{ color: '#9aa0aa', fontSize: 11 }}>
+              <Text style={{ color: BlueApp.settings.foregroundColor, fontSize: 13 }}>
                 {this.state.tx.confirmations} confirmations
               </Text>
             </View>

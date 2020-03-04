@@ -137,11 +137,10 @@ export default class RBF extends Component {
           <View
             style={{
               flexDirection: 'row',
-              borderColor: '#d2d2d2',
-              borderBottomColor: '#d2d2d2',
+              borderColor: BlueApp.settings.inputBorderColor,
               borderWidth: 1.0,
               borderBottomWidth: 0.5,
-              backgroundColor: '#f5f5f5',
+              backgroundColor: BlueApp.settings.inputBackgroundColor,
               minHeight: 44,
               height: 44,
               alignItems: 'center',
@@ -152,19 +151,19 @@ export default class RBF extends Component {
             <TextInput
               onChangeText={text => this.setState({ newDestinationAddress: text })}
               placeholder={'receiver address here'}
+              placeholderTextColor={BlueApp.settings.alternativeTextColor}
               value={this.state.newDestinationAddress}
-              style={{ flex: 1, minHeight: 33, marginHorizontal: 8 }}
+              style={{ flex: 1, minHeight: 33, marginHorizontal: 8, color: BlueApp.settings.foregroundColor }}
             />
           </View>
 
           <View
             style={{
               flexDirection: 'row',
-              borderColor: '#d2d2d2',
-              borderBottomColor: '#d2d2d2',
+              borderColor: BlueApp.settings.inputBorderColor,
               borderWidth: 1.0,
               borderBottomWidth: 0.5,
-              backgroundColor: '#f5f5f5',
+              backgroundColor: BlueApp.settings.inputBackgroundColor,
               minHeight: 44,
               height: 44,
               alignItems: 'center',
@@ -176,8 +175,9 @@ export default class RBF extends Component {
               onChangeText={text => this.setState({ feeDelta: text })}
               keyboardType={'numeric'}
               placeholder={'fee to add (in BTC)'}
+              placeholderTextColor={BlueApp.settings.alternativeTextColor}
               value={this.state.feeDelta + ''}
-              style={{ flex: 1, minHeight: 33, marginHorizontal: 8 }}
+              style={{ flex: 1, minHeight: 33, marginHorizontal: 8, color: BlueApp.settings.foregroundColor }}
             />
           </View>
         </BlueCard>

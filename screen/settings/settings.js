@@ -60,7 +60,6 @@ export const Settings = () => {
     <BlueLoading />
   ) : (
     <SafeBlueArea forceInset={{ horizontal: 'always' }} style={{ flex: 1 }}>
-      <BlueHeaderDefaultSub leftText={loc.settings.header} rightComponent={null} />
       <ScrollView>
         {BlueApp.getWallets().length > 1 && (
           <BlueListItem component={TouchableOpacity} onPress={() => navigate('DefaultView')} title="On Launch" />
@@ -97,6 +96,7 @@ export const Settings = () => {
 export default class SettingsContainer extends Component {
   static navigationOptions = {
     ...BlueNavigationStyle,
+    title: loc.settings.header.slice(0,1).toUpperCase() + loc.settings.header.slice(1, loc.settings.header.length),
   };
 
   render() {

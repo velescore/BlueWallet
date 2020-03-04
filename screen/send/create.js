@@ -86,7 +86,7 @@ export default class SendCreate extends Component {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
           <ScrollView>
             <BlueCard style={{ alignItems: 'center', flex: 1 }}>
-              <BlueText style={{ color: '#0c2550', fontWeight: '500' }}>{loc.send.create.this_is_hex}</BlueText>
+              <BlueText style={{ color: '#ffffff', fontWeight: '500' }}>{loc.send.create.this_is_hex}</BlueText>
               <TextInput
                 style={{
                   borderColor: '#ebebeb',
@@ -107,10 +107,10 @@ export default class SendCreate extends Component {
               />
 
               <TouchableOpacity style={{ marginVertical: 24 }} onPress={() => Clipboard.setString(this.state.tx)}>
-                <Text style={{ color: '#9aa0aa', fontSize: 15, fontWeight: '500', alignSelf: 'center' }}>Copy and broadcast later</Text>
+                <Text style={{ color: BlueApp.settings.buttonLinkUrlColor, fontSize: 15, fontWeight: '500', alignSelf: 'center' }}>Copy and broadcast later</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={{ marginVertical: 24 }} onPress={() => Linking.openURL('https://coinb.in/?verify=' + this.state.tx)}>
-                <Text style={{ color: '#9aa0aa', fontSize: 15, fontWeight: '500', alignSelf: 'center' }}>Verify on coinb.in</Text>
+              <TouchableOpacity style={{ marginVertical: 24 }} onPress={() => Linking.openURL('https://wallet.veles.network/?verify=' + this.state.tx)}>
+                <Text style={{ color: BlueApp.settings.buttonLinkUrlColor, fontSize: 15, fontWeight: '500', alignSelf: 'center' }}>Verify on Veles Webwallet</Text>
               </TouchableOpacity>
             </BlueCard>
             <BlueCard>
@@ -148,7 +148,7 @@ export default class SendCreate extends Component {
 
 const styles = StyleSheet.create({
   transactionDetailsTitle: {
-    color: '#0c2550',
+    color: '#ffffff',
     fontWeight: '500',
     fontSize: 17,
     marginBottom: 2,

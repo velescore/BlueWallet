@@ -100,7 +100,7 @@ export default class Confirm extends Component {
         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
           <Text
             style={{
-              color: '#0f5cc0',
+              color: '#f19b7e',
               fontSize: 36,
               fontWeight: '600',
             }}
@@ -111,7 +111,7 @@ export default class Confirm extends Component {
           </Text>
           <Text
             style={{
-              color: '#0f5cc0',
+              color: '#f19b7e',
               fontSize: 16,
               marginHorizontal: 4,
               paddingBottom: 6,
@@ -193,7 +193,7 @@ export default class Confirm extends Component {
                   });
                 }}
               >
-                <Text style={{ color: '#0c2550', fontSize: 15, fontWeight: '500', alignSelf: 'center' }}>
+                <Text style={{ color: BlueApp.settings.buttonLinkUrlColor, fontSize: 15, fontWeight: '500', alignSelf: 'center' }}>
                   {loc.transactions.details.transaction_details}
                 </Text>
               </TouchableOpacity>
@@ -207,13 +207,13 @@ export default class Confirm extends Component {
 
 const styles = StyleSheet.create({
   transactionDetailsTitle: {
-    color: '#0c2550',
+    color: BlueApp.settings.foregroundColor,
     fontWeight: '500',
     fontSize: 17,
     marginBottom: 2,
   },
   transactionDetailsSubtitle: {
-    color: '#9aa0aa',
+    color: BlueApp.settings.alternativeTextColor,
     fontWeight: '500',
     fontSize: 15,
     marginBottom: 20,

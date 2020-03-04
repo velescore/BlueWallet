@@ -25,6 +25,7 @@ import {
   BlueReceiveButtonIcon,
   BlueTransactionListItem,
   BlueWalletNavigationHeader,
+  BlueSpacing40,
 } from '../../BlueComponents';
 import WalletGradient from '../../class/walletGradient';
 import { Icon } from 'react-native-elements';
@@ -59,7 +60,7 @@ export default class WalletTransactions extends Component {
         elevation: 0,
         shadowRadius: 0,
       },
-      headerTintColor: '#FFFFFF',
+      headerTintColor: '#ffffff',
     };
   };
 
@@ -196,14 +197,14 @@ export default class WalletTransactions extends Component {
           style={{
             flex: 1,
             marginLeft: 16,
-            marginTop: 24,
+            marginTop: 10,
             marginBottom: 8,
             fontWeight: 'bold',
             fontSize: 24,
             color: BlueApp.settings.foregroundColor,
           }}
         >
-          {loc.transactions.list.title}
+          {loc.transactions.list.tabBarLabel}
         </Text>
       </View>
     );
@@ -250,7 +251,7 @@ export default class WalletTransactions extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: '#383737' }}>
         {this.state.wallet.chain === Chain.ONCHAIN}
         <NavigationEvents
           onWillFocus={() => {
@@ -268,7 +269,7 @@ export default class WalletTransactions extends Component {
             })
           }
         />
-        <View style={{ backgroundColor: '#FFFFFF' }}>
+        <View style={{ backgroundColor: 'transparent' }}>
           <View style={{ flexDirection: 'row', margin: 16, justifyContent: 'space-evenly' }}>
           </View>
           <FlatList
@@ -329,13 +330,13 @@ export default class WalletTransactions extends Component {
         <View
           style={{
             flexDirection: 'row',
+            flex: 1,
             alignSelf: 'center',
             backgroundColor: 'transparent',
             position: 'absolute',
-            bottom: 30,
-            borderRadius: 30,
+            bottom: 0,
+            borderRadius: 0,
             minHeight: 48,
-            overflow: 'hidden',
           }}
         >
           {(() => {

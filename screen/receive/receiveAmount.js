@@ -69,11 +69,10 @@ export default class ReceiveAmount extends Component {
         <View
           style={{
             flexDirection: 'row',
-            borderColor: '#d2d2d2',
-            borderBottomColor: '#d2d2d2',
+            borderColor: BlueApp.settings.inputBorderColor,
             borderWidth: 1.0,
             borderBottomWidth: 0.5,
-            backgroundColor: '#f5f5f5',
+            backgroundColor: BlueApp.settings.inputBackgroundColor,
             minHeight: 44,
             height: 44,
             marginHorizontal: 20,
@@ -84,10 +83,11 @@ export default class ReceiveAmount extends Component {
         >
           <TextInput
             onChangeText={text => this.setState({ label: text })}
+            placeholderTextColor={BlueApp.settings.alternativeTextColor}
             placeholder={loc.receive.details.label}
             value={this.state.label || ''}
             numberOfLines={1}
-            style={{ flex: 1, marginHorizontal: 8, minHeight: 33 }}
+            style={{ flex: 1, color: BlueApp.settings.foregroundColor, marginHorizontal: 8, minHeight: 33 }}
             editable={!this.state.isLoading}
           />
         </View>
@@ -109,7 +109,7 @@ export default class ReceiveAmount extends Component {
   renderWithSetAmount() {
     return (
       <View style={{ justifyContent: 'space-between' }}>
-        <BlueText style={{ color: '#0c2550', fontWeight: '600', textAlign: 'center', paddingBottom: 24 }} numberOfLines={1}>
+        <BlueText style={{ color: '#9aa0aa', fontWeight: '600', textAlign: 'center', paddingBottom: 24 }} numberOfLines={1}>
           {this.state.label}
         </BlueText>
         <View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 16 }}>
@@ -118,7 +118,7 @@ export default class ReceiveAmount extends Component {
             logo={require('../../img/qr-code.png')}
             size={this.determineSize()}
             logoSize={90}
-            color={BlueApp.settings.foregroundColor}
+            color={BlueApp.settings.navbarColor}
             logoBackgroundColor={BlueApp.settings.brandingColor}
             ecl={'Q'}
           />
@@ -134,7 +134,7 @@ export default class ReceiveAmount extends Component {
     return (
       <SafeBlueArea style={{ flex: 1 }}>
         <ScrollView>
-          <View style={{ flex: 1, backgroundColor: '#FFFFFF', justifyContent: 'space-between' }}>
+          <View style={{ flex: 1, backgroundColor: '#383737', justifyContent: 'space-between' }}>
             <KeyboardAvoidingView behavior="position">
               <BlueBitcoinAmount
                 amount={this.state.amount || ''}

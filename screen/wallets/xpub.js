@@ -13,7 +13,7 @@ const { height, width } = Dimensions.get('window');
 export default class WalletXpub extends Component {
   static navigationOptions = ({ navigation }) => ({
     ...BlueNavigationStyle(navigation, true),
-    title: loc.wallets.xpub.title,
+    title: loc.wallets.xpub.title.slice(0,1).toUpperCase() + loc.wallets.xpub.title.slice(1, loc.wallets.xpub.title.length),
     headerLeft: null,
   });
 
@@ -78,20 +78,19 @@ export default class WalletXpub extends Component {
           <View>
             <BlueText>{this.state.wallet.typeReadable}</BlueText>
           </View>
-          <BlueSpacing20 />
-
+          <BlueCopyTextToClipboard text={this.state.xpubText} />
+          
           <QRCode
             value={this.state.xpub}
             logo={require('../../img/qr-code.png')}
             size={this.state.qrCodeHeight}
             logoSize={90}
-            color={BlueApp.settings.foregroundColor}
+            color={BlueApp.settings.navbarColor}
             logoBackgroundColor={BlueApp.settings.brandingColor}
             ecl={'H'}
           />
 
           <BlueSpacing20 />
-          <BlueCopyTextToClipboard text={this.state.xpubText} />
         </View>
       </SafeBlueArea>
     );
