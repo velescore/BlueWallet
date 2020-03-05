@@ -197,12 +197,6 @@ export default class WalletsAdd extends Component {
                 <ActivityIndicator />
               )}
             </View>
-            <BlueButtonLinkUrl
-              title={loc.wallets.add.import_wallet}
-              onPress={() => {
-                this.props.navigation.navigate('ImportWallet');
-              }}
-            />
           </View>
         </KeyboardAvoidingView>
       </SafeBlueArea>
