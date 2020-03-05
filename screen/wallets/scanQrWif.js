@@ -84,9 +84,9 @@ export default class ScanQrWif extends React.Component {
 
     // Or is it a bare address?
     // TODO: remove these hardcodes
-    if (ret.data.indexOf('Y') === 0
-      || ret.data.indexOf('R') === 0 
-      || ret.data.indexOf('royale') === 0 ) {
+    if (ret.data.indexOf('V') === 0
+      || ret.data.indexOf('D') === 0 
+      || ret.data.indexOf('veles') === 0 ) {
       try {
         watchAddr = ret.data;
       } catch (err) {

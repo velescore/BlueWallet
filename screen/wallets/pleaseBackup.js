@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Privacy from '../../Privacy';
 import { ScrollView } from 'react-native-gesture-handler';
 let loc = require('../../loc');
+let BlueApp = require('../../BlueApp');
 
 export default class PleaseBackup extends Component {
   static navigationOptions = ({ navigation }) => ({

@@ -6,6 +6,7 @@ import { BlueButton, SafeBlueArea, BlueCard } from '../../BlueComponents';
 import { BitcoinUnit } from '../../models/bitcoinUnits';
 import PropTypes from 'prop-types';
 let loc = require('../../loc');
+let BlueApp = require('../../BlueApp');
 
 export default class Success extends Component {
   static navigationOptions = {
