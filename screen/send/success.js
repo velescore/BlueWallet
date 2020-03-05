@@ -90,7 +90,7 @@ export default class Success extends Component {
         </BlueCard>
         <View
           style={{
-            backgroundColor: BluaApp.settings.buttonBackgroundColor,
+            backgroundColor: BlueApp.settings.buttonBackgroundColor,
             width: 120,
             height: 120,
             borderRadius: 60,
