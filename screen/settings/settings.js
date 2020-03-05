@@ -77,15 +77,6 @@ export const Settings = () => {
         <BlueListItem title={loc.settings.language} component={TouchableOpacity} onPress={() => navigate('Language')} />
         <BlueListItem title={loc.settings.currency} component={TouchableOpacity} onPress={() => navigate('Currency')} />
         <BlueListItem title={'Electrum server'} component={TouchableOpacity} onPress={() => navigate('ElectrumSettings')} />
-        <BlueListItem title={loc.settings.advanced_options} component={TouchableOpacity} onPress={onShowAdvancedOptions} />
-        {showAdvancedOptions && (
-          <BlueCard>
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-              <BlueText>{loc.settings.enable_advanced_mode}</BlueText>
-              <Switch value={advancedModeEnabled} onValueChange={onAdvancedModeSwitch} />
-            </View>
-          </BlueCard>
-        )}
 
         <BlueListItem title={loc.settings.about} component={TouchableOpacity} onPress={() => navigate('About')} />
       </ScrollView>
