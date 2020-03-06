@@ -127,13 +127,10 @@ export default class WalletsAdd extends Component {
                     <Text style={{ color: '#ffffff', fontWeight: '500' }}>{loc.settings.advanced_options}</Text>
                     <RadioGroup color={'#e4b99c'} onSelect={(index, value) => this.onSelect(index, value)} selectedIndex={0}>
                       <RadioButton value={HDSegwitP2SHWallet.type}>
-                        <BlueText>{HDSegwitP2SHWallet.typeReadable} - Multiple addresses</BlueText>
-                      </RadioButton>
-                      <RadioButton value={SegwitP2SHWallet.type}>
-                        <BlueText>{SegwitP2SHWallet.typeReadable} - Single address</BlueText>
+                        <BlueText>{HDSegwitP2SHWallet.typeReadable}</BlueText>
                       </RadioButton>
                       <RadioButton value={HDSegwitBech32Wallet.type}>
-                        <BlueText>{HDSegwitBech32Wallet.typeReadable} - Multiple addresses</BlueText>
+                        <BlueText>{HDSegwitBech32Wallet.typeReadable}</BlueText>
                       </RadioButton>
                     </RadioGroup>
                   </View>
