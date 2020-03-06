@@ -12,7 +12,7 @@ module.exports = {
     select_wallet: "opciones",
     createBitcoinWallet: "En este momento no tiene ninguna cartera de bitcóin. Para financiar una cartera lightning, se debe crear o importar una cartera de bitcóin. ¿Quiere continuar de todos modos?",
     list: {
-      app_name: "GoldWallet",
+      app_name: "VelesWallet",
       title: "carteras",
       header: "Un cartera representa un par de secretos (clave privada) y una dirección que puede compartir para recibir monedas.",
       add: "Añadir cartera",
@@ -71,7 +71,7 @@ module.exports = {
     },
     import: {
       title: "importar",
-      explanation: "Escriba aquí su clave mnemotécnica, clave privada, WIF o cualquier cosa que tenga. GoldWallet hará todo lo posible para adivinar el formato correcto e importar su cartera.",
+      explanation: "Escriba aquí su clave mnemotécnica, clave privada, WIF o cualquier cosa que tenga. VelesWallet hará todo lo posible para adivinar el formato correcto e importar su cartera.",
       imported: "Importado",
       error: "No se ha podido importar. Asegúrese de que los datos que ha proporcionado son válidos.",
       success: "Éxito",
@@ -191,7 +191,7 @@ module.exports = {
   },
   plausibledeniability: {
     title: "Negación plausible",
-    help: "En determinadas circunstancias, podría verse obligado a revelar su contraseña. Para mantener sus monedas seguras, GoldWallet puede crear otro almacenamiento cifrado con una contraseña diferente. Bajo presión, podría revelar esta contraseña a un tercero. Si se ingresa en GoldWallet, desbloqueará un nuevo almacenamiento falso. Esto parecerá legítimo para un tercero, pero mantendrá en secreto su almacenamiento principal con monedas.",
+    help: "En determinadas circunstancias, podría verse obligado a revelar su contraseña. Para mantener sus monedas seguras, VelesWallet puede crear otro almacenamiento cifrado con una contraseña diferente. Bajo presión, podría revelar esta contraseña a un tercero. Si se ingresa en VelesWallet, desbloqueará un nuevo almacenamiento falso. Esto parecerá legítimo para un tercero, pero mantendrá en secreto su almacenamiento principal con monedas.",
     help2: "El nuevo almacenamiento será completamente funcional, y puede almacenar cantidades mínimas para que sea mas creíble.",
     create_fake_storage: "Crear un almacen cifrado falso",
     go_back: "Regresar",

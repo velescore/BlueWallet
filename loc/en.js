@@ -13,7 +13,7 @@ module.exports = {
     options: "options",
     createBitcoinWallet: "You currently do not have a Bitcoin wallet. In order to fund a Lightning wallet, a Bitcoin wallet needs to be created or imported. Would you like to continue anyway?",
     list: {
-      app_name: "GoldWallet", 
+      app_name: "VelesWallet", 
       title: "wallets",
       header: "A wallet represents a pair of a secret (private key) and an address you can share to receive coins.",
       add: "Add Wallet",
@@ -73,7 +73,7 @@ module.exports = {
     },
     import: {
       title: "import",
-      explanation: "Write here your mnemonic, private key, WIF, or anything you've got. GoldWallet will do its best to guess the correct format and import your wallet",
+      explanation: "Write here your mnemonic, private key, WIF, or anything you've got. VelesWallet will do its best to guess the correct format and import your wallet",
       imported: "Imported",
       error: "Failed to import. Please, make sure that the provided data is valid.",
       success: "Success",
@@ -193,7 +193,7 @@ module.exports = {
   },
   plausibledeniability: {
     title: "Plausible Deniability",
-    help: "Under certain circumstances, you might be forced to disclose a password. To keep your coins safe, GoldWallet can create another encrypted storage, with a different password. Under pressure, you can disclose this password to a 3rd party. If entered in GoldWallet, it will unlock new fake storage. This will seem legit to a 3rd party, but will secretly keep your main storage with coins safe.",
+    help: "Under certain circumstances, you might be forced to disclose a password. To keep your coins safe, VelesWallet can create another encrypted storage, with a different password. Under pressure, you can disclose this password to a 3rd party. If entered in VelesWallet, it will unlock new fake storage. This will seem legit to a 3rd party, but will secretly keep your main storage with coins safe.",
     help2: "New storage will be fully functional, and you can store some minimum amounts there so it looks more believable.",
     create_fake_storage: "Create fake encrypted storage",
     go_back: "Go Back",
