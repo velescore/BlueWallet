@@ -54,7 +54,7 @@ export default class SelectWallet extends Component {
           style={{ backgroundColor: 'transparent', padding: 10, marginVertical: 17 }}
         >
           <LinearGradient
-            shadowColor="#000000"
+            shadowColor="#ffffff"
             colors={WalletGradient.gradientsFor(item.type)}
             style={{
               padding: 15,

@@ -134,7 +134,7 @@ export default class ReceiveAmount extends Component {
     return (
       <SafeBlueArea style={{ flex: 1 }}>
         <ScrollView>
-          <View style={{ flex: 1, backgroundColor: '#383737', justifyContent: 'space-between' }}>
+          <View style={{ flex: 1, backgroundColor: BlueApp.settings.brandingColor, justifyContent: 'space-between' }}>
             <KeyboardAvoidingView behavior="position">
               <BlueBitcoinAmount
                 amount={this.state.amount || ''}

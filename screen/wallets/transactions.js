@@ -25,6 +25,7 @@ import {
   BlueReceiveButtonIcon,
   BlueTransactionListItem,
   BlueWalletNavigationHeader,
+  BlueSpacing10,
   BlueSpacing40,
 } from '../../BlueComponents';
 import WalletGradient from '../../class/walletGradient';
@@ -197,7 +198,7 @@ export default class WalletTransactions extends Component {
           style={{
             flex: 1,
             marginLeft: 16,
-            marginTop: 10,
+            marginTop: 30,
             marginBottom: 8,
             fontWeight: 'bold',
             fontSize: 24,
@@ -251,7 +252,7 @@ export default class WalletTransactions extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View style={{ flex: 1, backgroundColor: '#383737' }}>
+      <View style={{ flex: 1, backgroundColor: BlueApp.settings.brandingColor }}>
         {this.state.wallet.chain === Chain.ONCHAIN}
         <NavigationEvents
           onWillFocus={() => {
@@ -269,9 +270,7 @@ export default class WalletTransactions extends Component {
             })
           }
         />
-        <View style={{ backgroundColor: 'transparent' }}>
-          <View style={{ flexDirection: 'row', margin: 16, justifyContent: 'space-evenly' }}>
-          </View>
+        <View style={{ backgroundColor: 'transparent', flex: 1 }}>
           <FlatList
             onEndReachedThreshold={0.3}
             onEndReached={() => {
@@ -330,13 +329,13 @@ export default class WalletTransactions extends Component {
         <View
           style={{
             flexDirection: 'row',
-            flex: 1,
             alignSelf: 'center',
             backgroundColor: 'transparent',
             position: 'absolute',
-            bottom: 0,
+            bottom: 20,
             borderRadius: 0,
             minHeight: 48,
+            overflow: 'hidden',
           }}
         >
           {(() => {

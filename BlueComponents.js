@@ -929,34 +929,34 @@ const stylesBlueIcon = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 15,
-    backgroundColor: '#d2f8d6',
+    backgroundColor: BlueApp.settings.incomingBackgroundColor,
     transform: [{ rotate: '-45deg' }],
   },
   ballIncomingWithoutRotate: {
     width: 30,
     height: 30,
     borderRadius: 15,
-    backgroundColor: '#d2f8d6',
+    backgroundColor: BlueApp.settings.incomingBackgroundColor,
   },
   ballReceive: {
     width: 30,
     height: 30,
     borderBottomLeftRadius: 15,
-    backgroundColor: '#d2f8d6',
+    backgroundColor: BlueApp.settings.incomingBackgroundColor,
     transform: [{ rotate: '-45deg' }],
   },
   ballOutgoing: {
     width: 30,
     height: 30,
     borderRadius: 15,
-    backgroundColor: '#f8d2d2',
+    backgroundColor: BlueApp.settings.outgoingBackgroundColor,
     transform: [{ rotate: '225deg' }],
   },
   ballOutgoingWithoutRotate: {
     width: 30,
     height: 30,
     borderRadius: 15,
-    backgroundColor: '#f8d2d2',
+    backgroundColor: BlueApp.settings.outgoingBackgroundColor,
   },
   ballTransparrent: {
     width: 30,
@@ -1167,7 +1167,7 @@ export class BlueReceiveButtonIcon extends Component {
                 marginBottom: -11,
               }}
             >
-              <Icon {...this.props} name="arrow-down" size={16} type="font-awesome" color="#37c0a1" />
+              <Icon {...this.props} name="arrow-down" size={16} type="font-awesome" color="#aeed6a" />
             </View>
             <Text
               style={{
@@ -1210,7 +1210,7 @@ export class BlueSendButtonIcon extends Component {
                 marginBottom: 11,
               }}
             >
-              <Icon {...this.props} name="arrow-down" size={16} type="font-awesome" color="#ff0000" />
+              <Icon {...this.props} name="arrow-down" size={16} type="font-awesome" color="#FAA" />
             </View>
             <Text
               style={{
@@ -1420,8 +1420,7 @@ export const BlueTransactionListItem = ({ item, itemPriceUnit = BitcoinUnit.BTC 
         }
       }
     } else if (item.value < 0) {
-      // color = BlueApp.settings.foregroundColor;
-      color = '#c93a3a';
+      color = BlueApp.settings.outgoingForegroundColor;
     }
 
     return {
