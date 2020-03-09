@@ -18,6 +18,7 @@ import {
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 import PropTypes from 'prop-types';
 import { HDSegwitP2SHWallet } from '../../class/hd-segwit-p2sh-wallet';
+import { HDLegacyP2PKHWallet } from '../../class/hd-legacy-p2pkh-wallet';
 import { AppStorage, HDSegwitBech32Wallet, SegwitP2SHWallet } from '../../class';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 let EV = require('../../events');
@@ -126,6 +127,9 @@ export default class WalletsAdd extends Component {
                     <BlueSpacing20 />
                     <Text style={{ color: '#ffffff', fontWeight: '500' }}>{loc.settings.advanced_options}</Text>
                     <RadioGroup color={'#e4b99c'} onSelect={(index, value) => this.onSelect(index, value)} selectedIndex={0}>
+                      <RadioButton value={HDLegacyP2PKHWallet.type}>
+                        <BlueText>{HDLegacyP2PKHWallet.typeReadable}</BlueText>
+                      </RadioButton>
                       <RadioButton value={HDSegwitP2SHWallet.type}>
                         <BlueText>{HDSegwitP2SHWallet.typeReadable}</BlueText>
                       </RadioButton>
@@ -163,11 +167,11 @@ export default class WalletsAdd extends Component {
                         } else if (this.state.selectedIndex === 1) {
                           // btc was selected
                           // index 1 radio - segwit single address
-                          w = new SegwitP2SHWallet();
+                          w = new HDSegwitP2SHWallet();
                           w.setLabel(this.state.label || loc.wallets.details.title);
                         } else {
                           // zero index radio - HD segwit
-                          w = new HDSegwitP2SHWallet();
+                          w = new HDLegacyP2PKHWallet();
                           w.setLabel(this.state.label || loc.wallets.details.title);
                         }
                         if (this.state.activeBitcoin) {
@@ -177,7 +181,7 @@ export default class WalletsAdd extends Component {
                           EV(EV.enum.WALLETS_COUNT_CHANGED);
                           A(A.ENUM.CREATED_WALLET);
                           ReactNativeHapticFeedback.trigger('notificationSuccess', { ignoreAndroidSystemSettings: false });
-                          if (w.type === HDSegwitP2SHWallet.type || w.type === HDSegwitBech32Wallet.type) {
+                          if (w.type === HDSegwitP2SHWallet.type || w.type === HDSegwitBech32Wallet.type || w.type === HDLegacyP2PKHWallet.type) {
                             this.props.navigation.navigate('PleaseBackup', {
                               secret: w.getSecret(),
                             });
