@@ -51,7 +51,7 @@ export default class ScanQRCode extends React.Component {
           }}
           onPress={() => this.props.navigation.goBack(null)}
         >
-          <Image style={{ alignSelf: 'center' }} source={require('../../img/close-white.png')} />
+          <Image style={{ alignSelf: 'center' }} source={require('../../img/close.png')} />
         </TouchableOpacity>
         <TouchableOpacity
           style={{

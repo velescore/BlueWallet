@@ -118,7 +118,7 @@ export default class PsbtWithHardwareWallet extends Component {
           }}
           onPress={() => this.setState({ renderScanner: false })}
         >
-          <Image style={{ alignSelf: 'center' }} source={require('../../img/close-white.png')} />
+          <Image style={{ alignSelf: 'center' }} source={require('../../img/close.png')} />
         </TouchableOpacity>
       </SafeBlueArea>
     );
