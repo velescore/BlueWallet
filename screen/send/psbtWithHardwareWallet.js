@@ -129,7 +129,7 @@ export default class PsbtWithHardwareWallet extends Component {
       <SafeBlueArea style={{ flex: 1 }}>
         <View
           style={{
-            backgroundColor: '#ccddf9',
+            backgroundColor: BlueApp.settings.buttonBackgroundColor,
             width: 120,
             height: 120,
             borderRadius: 60,

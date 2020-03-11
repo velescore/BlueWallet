@@ -923,7 +923,7 @@ const stylesBlueIcon = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 15,
-    backgroundColor: '#ccddf9',
+    backgroundColor: BlueApp.settings.buttonBackgroundColor,
   },
   ballIncoming: {
     width: 30,
