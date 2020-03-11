@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Text, FlatList, InteractionManager, RefreshControl, ScrollView } from 'react-native';
-import { BlueLoading, SafeBlueArea, WalletsCarousel, BlueList, BlueHeaderDefaultMain, BlueTransactionListItem } from '../../BlueComponents';
+import { BlueLoading, SafeBlueArea, WalletsCarousel, BlueList, BlueHeaderDefaultMain, BlueTransactionListItem, NavbarLogo } from '../../BlueComponents';
 import { Icon } from 'react-native-elements';
 import { NavigationEvents } from 'react-navigation';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
@@ -15,14 +15,16 @@ let BlueElectrum = require('../../BlueElectrum');
 export default class WalletsList extends Component {
   static navigationOptions = ({ navigation }) => ({
     headerStyle: {
-      backgroundColor: '#000000',
+      backgroundColor: BlueApp.settings.navbarColor,
       borderBottomWidth: 0,
       elevation: 0,
     },
     headerTitleStyle: {
+      marginLeft: 3,
       fontWeight: '600',
       color: BlueApp.settings.foregroundColor,
     },
+    headerLeft: <NavbarLogo />,
     headerRight: (
       <TouchableOpacity
         style={{ marginHorizontal: 16, width: 40, height: 40, justifyContent: 'center', alignItems: 'flex-end' }}

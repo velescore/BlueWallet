@@ -2186,6 +2186,20 @@ export class BlueBitcoinAmount extends Component {
   }
 }
 
+export class NavbarLogo extends Component {
+  render() {
+    return (
+      <View style={{flexDirection: 'row'}}>
+        <Image
+          source={require('./img/veles.png')}
+          style={{ maxWidth: 40, maxHeight: 40, marginLeft: 10 }}
+        />
+ 
+      </View>
+    );
+  }
+}
+
 const styles = StyleSheet.create({
   balanceBlur: {
     height: 30,
