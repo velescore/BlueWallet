@@ -841,7 +841,7 @@ export class BlueDismissKeyboardInputAccessory extends Component {
       <InputAccessoryView nativeID={BlueDismissKeyboardInputAccessory.InputAccessoryViewID}>
         <View
           style={{
-            backgroundColor: 'rgba(38, 38, 38, 0.9)',
+            backgroundColor: BlueApp.settings.inputBackgroundColor,
             height: 44,
             flex: 1,
             flexDirection: 'row',
@@ -868,7 +868,7 @@ export class BlueDoneAndDismissKeyboardInputAccessory extends Component {
     const inputView = (
       <View
         style={{
-          backgroundColor: 'rgba(38, 38, 38, 0.9)',
+          backgroundColor: BlueApp.settings.inputBackgroundColor,
           height: 44,
           flex: 1,
           marginVertical: 5,
