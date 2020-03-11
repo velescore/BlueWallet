@@ -12,7 +12,7 @@ export class AbstractHDWallet extends LegacyWallet {
     this._address = [];
     this._address_to_wif_cache = {};
     this._addr_balances = {};
-    this.num_addresses = 1;
+    this.num_addresses = 5;
   }
 
   prepareForSerialization() {
