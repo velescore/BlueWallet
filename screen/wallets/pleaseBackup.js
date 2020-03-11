@@ -56,8 +56,8 @@ export default class PleaseBackup extends Component {
       <SafeBlueArea style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={{ justifyContent: 'space-between' }}>
           <View style={{ alignItems: 'center', paddingHorizontal: 16 }}>
-            <BlueText style={{ textAlign: 'center', fontWeight: 'bold', color: '#37c0a1' }}>{loc.pleasebackup.success}</BlueText>
-            <BlueText style={{ paddingBottom: 20, paddingRight: 20, paddingLeft: 20, color: '#ff0000' }}>{loc.pleasebackup.text}</BlueText>
+            <BlueText style={{ textAlign: 'center', fontWeight: 'bold', color: BlueApp.settings.successColor }}>{loc.pleasebackup.success}</BlueText>
+            <BlueText style={{ paddingBottom: 20, paddingRight: 20, paddingLeft: 20, color: BlueApp.settings.failedColor }}>{loc.pleasebackup.text}</BlueText>
 
             <View
               style={{

@@ -773,7 +773,7 @@ export class BlueUseAllFundsButton extends Component {
           maxHeight: 44,
           justifyContent: 'space-between',
           alignItems: 'center',
-          backgroundColor: '#eef0f4',
+          backgroundColor: BlueApp.settings.buttonBackgroundColor,
         }}
       >
         <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
@@ -802,7 +802,7 @@ export class BlueUseAllFundsButton extends Component {
           ) : (
             <Text
               style={{
-                color: BlueApp.settings.alternativeTextColor,
+                color: BlueApp.settings.alternativeTextColor2,
                 fontSize: 16,
                 marginLeft: 8,
                 marginRight: 0,
@@ -2192,7 +2192,7 @@ export class NavbarLogo extends Component {
       <View style={{flexDirection: 'row'}}>
         <Image
           source={require('./img/veles.png')}
-          style={{ maxWidth: 40, maxHeight: 40, marginLeft: 10 }}
+          style={{ maxWidth: 40, maxHeight: 40, marginLeft: 15 }}
         />
  
       </View>

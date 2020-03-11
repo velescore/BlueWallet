@@ -38,7 +38,7 @@ export default class Success extends Component {
           <View style={{ flexDirection: 'row', justifyContent: 'center', paddingTop: 76, paddingBottom: 16 }}>
             <Text
               style={{
-                color: '#f19b7e',
+                color: BlueApp.settings.alternativeTextColor2,
                 fontSize: 36,
                 fontWeight: '600',
               }}
@@ -47,7 +47,7 @@ export default class Success extends Component {
             </Text>
             <Text
               style={{
-                color: '#f19b7e',
+                color: BlueApp.settings.alternativeTextColor2,
                 fontSize: 16,
                 marginHorizontal: 4,
                 paddingBottom: 6,

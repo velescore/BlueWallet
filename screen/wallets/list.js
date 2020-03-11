@@ -20,7 +20,6 @@ export default class WalletsList extends Component {
       elevation: 0,
     },
     headerTitleStyle: {
-      marginLeft: 3,
       fontWeight: '600',
       color: BlueApp.settings.foregroundColor,
     },

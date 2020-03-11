@@ -94,7 +94,7 @@ export default class WalletExport extends Component {
           <BlueCard>
             <BlueText>{loc.wallets.details.mnemoic_seed}</BlueText>
           </BlueCard>
-          <BlueText style={{ alignItems: 'center', paddingHorizontal: 8, color: '#ff0000' }}>{this.state.wallet.getSecret()}</BlueText>
+          <BlueText style={{ alignItems: 'center', paddingHorizontal: 8, color: BlueApp.settings.failedColor }}>{this.state.wallet.getSecret()}</BlueText>
 
           <BlueSpacing20 />
 
