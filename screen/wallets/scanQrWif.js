@@ -290,7 +290,7 @@ export default class ScanQrWif extends React.Component {
                     width: 40,
                     height: 40,
                     marginLeft: 24,
-                    backgroundColor: '#FFFFFF',
+                    backgroundColor: BlueApp.settings.brandingColor,
                     justifyContent: 'center',
                     borderRadius: 20,
                     position: 'absolute',

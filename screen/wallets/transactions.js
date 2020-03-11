@@ -374,7 +374,7 @@ export default class WalletTransactions extends Component {
 
 const styles = StyleSheet.create({
   modalContent: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: BlueApp.settings.brandingColor,
     padding: 22,
     justifyContent: 'center',
     alignItems: 'center',
@@ -385,7 +385,7 @@ const styles = StyleSheet.create({
     height: 200,
   },
   advancedTransactionOptionsModalContent: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: BlueApp.settings.brandingColor,
     padding: 22,
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
