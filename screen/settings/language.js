@@ -68,7 +68,7 @@ export default class Language extends Component {
           title={item.label}
           {...(this.state.language === item.value
             ? {
-                rightIcon: <Icon name="check" type="font-awesome" color="#0c2550" />,
+                rightIcon: <Icon name="check" type="font-awesome" color="#aeed6a" />,
               }
             : { hideChevron: true })}
         />
@@ -91,7 +91,7 @@ export default class Language extends Component {
           renderItem={this.renderItem}
         />
         <BlueCard>
-          <BlueText>When selecting a new language, restarting GoldWallet may be required for the change to take effect.</BlueText>
+          <BlueText>When selecting a new language, restarting VelesWallet may be required for the change to take effect.</BlueText>
         </BlueCard>
       </SafeBlueArea>
     );
