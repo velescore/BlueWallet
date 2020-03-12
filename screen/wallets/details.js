@@ -125,18 +125,7 @@ export default class WalletDetails extends Component {
           <KeyboardAvoidingView behavior="position">
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
               <BlueCard style={{ alignItems: 'center', flex: 1 }}>
-                {(() => {
-                  if (this.state.wallet.getAddress()) {
-                    return (
-                      <React.Fragment>
-                        <Text style={{ color: '#ffffff', fontWeight: '500', fontSize: 14, marginVertical: 12 }}>
-                          {loc.wallets.details.address}
-                        </Text>
-                        <Text style={{ color: '#81868e', fontWeight: '500', fontSize: 14 }}>{this.state.wallet.getAddress()}</Text>
-                      </React.Fragment>
-                    );
-                  }
-                })()}
+
                 <Text style={{ color: '#ffffff', fontWeight: '500', fontSize: 14, marginVertical: 12 }}>
                   {loc.wallets.add.wallet_name.slice(0,1).toUpperCase() + loc.wallets.add.wallet_name.slice(1, loc.wallets.add.wallet_name.length)}
                 </Text>

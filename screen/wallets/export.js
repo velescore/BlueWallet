@@ -81,23 +81,6 @@ export default class WalletExport extends Component {
             <BlueText>{this.state.wallet.typeReadable}</BlueText>
           </BlueCard>
 
-          {(() => {
-            if (this.state.wallet.getAddress()) {
-              return (
-                <View>
-                  <BlueText style={{ alignItems: 'center', paddingHorizontal: 8, color: '#81868e' }}>{this.state.wallet.getAddress()}</BlueText>
-                </View>
-              );
-            }
-          })()}
-
-          <BlueCard>
-            <BlueText>{loc.wallets.details.mnemoic_seed}</BlueText>
-          </BlueCard>
-          <BlueText style={{ alignItems: 'center', paddingHorizontal: 8, color: BlueApp.settings.failedColor }}>{this.state.wallet.getSecret()}</BlueText>
-
-          <BlueSpacing20 />
-
           <QRCode
             value={this.state.wallet.getSecret()}
             logo={require('../../img/qr-code.png')}
@@ -107,6 +90,13 @@ export default class WalletExport extends Component {
             logoBackgroundColor={BlueApp.settings.brandingColor}
             ecl={'H'}
           />
+
+          <BlueSpacing20 />
+
+          <BlueCard>
+            <BlueText>{loc.wallets.details.mnemoic_seed}</BlueText>
+          </BlueCard>
+          <BlueText style={{ alignItems: 'center', paddingHorizontal: 8, color: BlueApp.settings.failedColor }}>{this.state.wallet.getSecret()}</BlueText>
 
           <BlueSpacing20 />
 
