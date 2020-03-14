@@ -2,7 +2,7 @@
 
 The first ever Veles wallet.
 
-[![Playstore](https://bluewallet.io/img/play-store-badge.svg)](https://play.google.com/store/apps/details?id=io.goldwallet.wallet)
+[![Playstore](https://bluewallet.io/img/play-store-badge.svg)](https://play.google.com/store/apps/details?id=io.veleswallet.wallet)
 
 
 ## BUILD & RUN IT
