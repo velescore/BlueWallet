@@ -909,7 +909,7 @@ export default class SendDetails extends Component {
   render() {
     if (this.state.isLoading || typeof this.state.fromWallet === 'undefined') {
       return (
-        <View style={{ flex: 1, paddingTop: 20 }}>
+        <View style={{ flex: 1, paddingTop: 20 , backgroundColor: BlueApp.settings.brandingColor }}>
           <BlueLoading />
         </View>
       );
