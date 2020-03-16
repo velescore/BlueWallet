@@ -21,7 +21,7 @@ function ypubToXpub(ypub) {
   let data = b58.decode(ypub);
   if (data.readUInt32BE() !== 0x049d7cb2) throw new Error('Not a valid ypub extended key!');
   data = data.slice(4);
-  data = Buffer.concat([Buffer.from('0488b21e', 'hex'), data]);
+  data = Buffer.concat([Buffer.from('a40c86fa', 'hex'), data]);
 
   return b58.encode(data);
 }

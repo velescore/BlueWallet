@@ -11,7 +11,7 @@ export default class WalletGradient {
   static legacyWallet = ['#40fad1', '#15be98'];
   static hdLegacyP2PKHWallet = ['#e36dfa', '#bd10e0'];
   static defaultGradients = ['#aeed6a', '#8aea23'];
-  static createWallet = ['#eef0f4', '#eef0f4'];
+  static createWallet = ['rgba(38, 38, 38, 0.9)', 'rgba(38, 38, 38, 0.9)'];
 
   static gradientsFor(type) {
     let gradient;
