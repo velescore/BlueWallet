@@ -50,7 +50,8 @@ class BlueAppComponent extends React.Component {
         <LottieView
           ref={ref => (this.loadingSplash = ref)}
           onAnimationFinish={this.onAnimationFinish}
-          source={require('./img/bluewalletsplash.json')}
+          source={require('./img/splash.json')}
+          style={{ backgroundColor: '#383737' }}
           autoPlay
           loop={false}
         />
@@ -67,7 +68,8 @@ class BlueAppComponent extends React.Component {
           <LottieView
             ref={ref => (this.loadingSplash = ref)}
             onAnimationFinish={this.onAnimationFinish}
-            source={require('./img/bluewalletsplash.json')}
+            source={require('./img/splash.json')}
+            style={{ backgroundColor: '#383737' }}
             autoPlay
             loop={false}
           />
