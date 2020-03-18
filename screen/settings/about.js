@@ -3,6 +3,7 @@ import { ScrollView, Linking, Dimensions } from 'react-native';
 import {
   BlueTextCentered,
   BlueLoading,
+  BlueSpacing10,
   BlueSpacing20,
   BlueButton,
   SafeBlueArea,
@@ -49,7 +50,7 @@ export default class About extends Component {
             <BlueTextCentered h4>VelesWallet is a free and open source wallet. Licensed MIT.</BlueTextCentered>
             <BlueSpacing20 />
 
-            <BlueTextCentered h4>Always backup your keys</BlueTextCentered>
+            <BlueTextCentered h4>Always backup your keys !</BlueTextCentered>
             <BlueSpacing20 />
 
             <BlueButton
@@ -90,15 +91,17 @@ export default class About extends Component {
             />
 
             <BlueSpacing20 />
-            <BlueText h3>Built with awesome:</BlueText>
-            <BlueSpacing20 />
-            <BlueText h4>* React Native</BlueText>
-            <BlueText h4>* Bitcoinjs-lib</BlueText>
-            <BlueText h4>* blockcypher.com API</BlueText>
-            <BlueText h4>* Nodejs</BlueText>
-            <BlueText h4>* react-native-elements</BlueText>
-            <BlueText h4>* rn-nodeify</BlueText>
-            <BlueText h4>* bignumber.js</BlueText>
+            <BlueText h4>Built with awesome:</BlueText>
+            <BlueSpacing10 />
+            <BlueText h5>* React Native</BlueText>
+            <BlueText h5>* Bitcoinjs-lib</BlueText>
+            <BlueText h5>* blockcypher.com API</BlueText>
+            <BlueText h5>* Nodejs</BlueText>
+            <BlueText h5>* react-native-elements</BlueText>
+            <BlueText h5>* rn-nodeify</BlueText>
+            <BlueText h5>* bignumber.js</BlueText>
+            <BlueText h5>* BlueWallet</BlueText>
+            <BlueText h5>* GoldWallet</BlueText>
             <BlueSpacing20 />
 
             <BlueButton
@@ -109,12 +112,6 @@ export default class About extends Component {
             />
             <BlueSpacing20 />
 
-            <BlueButton
-              onPress={() => {
-                this.props.navigation.navigate('Selftest');
-              }}
-              title="Run self test"
-            />
             <BlueTextCentered />
             <BlueTextCentered>
               {getApplicationName()} ver {getVersion()} (build {getBuildNumber()})
