@@ -11,7 +11,7 @@ module.exports = {
     select_wallet: 'Odaberi volet',
     options: 'opcije',
     list: {
-      app_name: 'BlueWallet',
+      app_name: 'VelesWallet',
       title: 'Voleti',
       header: 'Volet je par privatnog ključa (tajna!) i javne adrese ' + 'koju slobodno možete dijeliti kada primate novce.',
       add: 'Dodaj volet',
@@ -72,7 +72,7 @@ module.exports = {
     import: {
       title: 'unesi',
       explanation:
-        'Ovdje upiši svoj mnemonik slijed riječi, privatni ključ, WIF, ili što već imaš. BlueWallet će pokušati porocijeniti format i unesti tvoj volet.',
+        'Ovdje upiši svoj mnemonik slijed riječi, privatni ključ, WIF, ili što već imaš. VelesWallet će pokušati porocijeniti format i unesti tvoj volet.',
       imported: 'Uneseno',
       error: 'Neuspješan unos. Molimo pažljivo provjerite ispravnost unesenih podataka.',
       success: 'Uspjeh',
@@ -199,7 +199,7 @@ module.exports = {
     help:
       'Pazi. Netko gadan te može u iznimnim okolnostima (pljačka, prijevremeni izbori, itd.) ' +
       'brutalno pritisnuti da mu otkriješ lozinku za svoj volet. ' +
-      'BlueWallet ti čuva leđa buraz. Nemaš brige. Gledaj, ' +
+      'VelesWallet ti čuva leđa buraz. Nemaš brige. Gledaj, ' +
       'stvoriti ćemo fejk volet sa drugačijom lozinkom. Haha, žišku? ' +
       'Pa kad se ovaj počne pjeniti, a ti vidiš da je vrag odnio šalu, ' +
       'samo mu podvali lozinku za ovaj drugi volet. Eto mu ga. Nek si cucla. ',
