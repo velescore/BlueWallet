@@ -134,7 +134,7 @@ export default class TransactionsStatus extends Component {
   }
 
   changeWalletBalanceUnit() {
-    let walletPreviousPreferredUnit = this.state.wallet.getPreferredBalanceUnit();
+    let walletPreviousPreferredUnit = this.state.wallet.preferredBalanceUnit;
     const wallet = this.state.wallet;
     if (walletPreviousPreferredUnit === BitcoinUnit.BTC) {
       wallet.preferredBalanceUnit = BitcoinUnit.SATS;
