@@ -1,4 +1,4 @@
-package io.veleswallet.wallet;
+package io.veles.wallet;
 
 import com.facebook.react.ReactActivity;
 

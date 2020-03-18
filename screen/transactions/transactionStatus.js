@@ -159,7 +159,7 @@ export default class TransactionsStatus extends Component {
       <SafeBlueArea forceInset={{ horizontal: 'always' }} style={{ flex: 1 }}>
         <Handoff
           title={`Veles Transaction ${this.state.tx.txid}`}
-          type="io.veleswallet.wallet"
+          type="io.veles.wallet"
           url={`http://explorer.veles.network/tx/${this.state.tx.txid}`}
         />
         <View style={{ flex: 1, justifyContent: 'space-between' }}>
