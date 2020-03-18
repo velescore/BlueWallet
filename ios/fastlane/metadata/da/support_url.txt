@@ -1,1 +1,1 @@
-https://github.com/VelesWallet/VelesWallet/issues
+https://github.com/velescore/veles-mobile-wallet/issues

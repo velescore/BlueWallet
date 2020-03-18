@@ -1,8 +1,8 @@
-# BlueWallet - A Veles mobile wallet
+# VelesWallet - A Veles mobile wallet
 
 The first ever Veles wallet.
 
-[![Playstore](https://bluewallet.io/img/play-store-badge.svg)](https://play.google.com/store/apps/details?id=io.veleswallet.wallet)
+[![Playstore](https://bluewallet.io/img/play-store-badge.svg)](https://play.google.com/store/apps/details?id=io.veles.wallet)
 
 
 ## BUILD & RUN IT
@@ -10,8 +10,8 @@ The first ever Veles wallet.
 * In your console:
 
 ```
-git clone https://github.com/BlueWallet/BlueWallet.git
-cd BlueWallet
+git clone https://github.com/velescore/veles-mobile-wallet.git
+cd veles-mobile-wallet
 npm install
 ``` 
 
