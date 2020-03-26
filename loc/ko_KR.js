@@ -12,7 +12,7 @@ module.exports = {
     options: "옵션",
     createBitcoinWallet: "현재 비트코인 지갑을 보유하고 있지 않습니다. 라이트닝 지갑에 이체하기 위해선 비트코인 지갑의 생성 또는 들여오기가 필요합니다. 계속해서 진행하시겠습니까?",
     list: {
-      app_name: "VelesWallet",
+      app_name: "Veles Wallet",
       title: "지갑",
       header: "지갑은 한 쌍의 암호키 (개인 키)와 코인 수령을 위해 공유될 수 있는 지갑 주소를 제공합니다. ",
       add: "지갑 추가",

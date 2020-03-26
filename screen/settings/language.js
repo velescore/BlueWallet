@@ -91,7 +91,7 @@ export default class Language extends Component {
           renderItem={this.renderItem}
         />
         <BlueCard>
-          <BlueText>When selecting a new language, restarting VelesWallet may be required for the change to take effect.</BlueText>
+          <BlueText>When selecting a new language, restarting Veles Wallet may be required for the change to take effect.</BlueText>
         </BlueCard>
       </SafeBlueArea>
     );

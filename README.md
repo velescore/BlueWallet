@@ -1,4 +1,4 @@
-# VelesWallet - A Veles mobile wallet
+# Veles Wallet - A Veles mobile wallet
 
 The first ever Veles wallet.
 

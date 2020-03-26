@@ -47,7 +47,7 @@ export default class About extends Component {
       <SafeBlueArea forceInset={{ horizontal: 'always' }} style={{ flex: 1 }}>
         <ScrollView>
           <BlueCard>
-            <BlueTextCentered h4>VelesWallet is a free and open source wallet. Licensed MIT.</BlueTextCentered>
+            <BlueTextCentered h4>Veles Wallet is a free and open source wallet. Licensed MIT.</BlueTextCentered>
             <BlueSpacing20 />
 
             <BlueTextCentered h4>Always backup your keys !</BlueTextCentered>
@@ -87,7 +87,7 @@ export default class About extends Component {
                   }
                 });
               }}
-              title="Rate VelesWallet"
+              title="Rate Veles Wallet"
             />
 
             <BlueSpacing20 />

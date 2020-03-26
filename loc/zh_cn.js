@@ -12,7 +12,7 @@ module.exports = {
     options: "选项",
     createBitcoinWallet: "您当前没有bitcoin钱包，为了支持闪电钱包，我们需要创建或者导入一个比特币钱包，是否需要继续?",
     list: {
-      app_name: "VelesWallet",
+      app_name: "Veles Wallet",
       title: "钱包",
       header: "一个钱包由一个私钥和一个可以收款的地址组成。",
       add: "添加钱包",
@@ -71,7 +71,7 @@ module.exports = {
     },
     import: {
       title: "导入",
-      explanation: "输入你的助记词，私钥，WIF，或者其他格式的数据。VelesWallet将尽可能地自动识别格式并导入钱包。",
+      explanation: "输入你的助记词，私钥，WIF，或者其他格式的数据。Veles Wallet将尽可能地自动识别格式并导入钱包。",
       imported: "已经导入",
       error: "导入失败，请确认你提供的信息是有效的",
       success: "成功",
@@ -191,7 +191,7 @@ module.exports = {
   },
   plausibledeniability: {
     title: "可否认性",
-    help: "在某些情况下，您可能被迫透露密码。 为了确保您的比特币安全，VelesWallet可以创建另一个具有不同密码的加密存储。 在被胁迫情况下下，您可以将此密码透露给第三者。 如果在VelesWallet中输入，它将解锁新的虚拟存储。 这对于第三方来说似乎合法，但是会秘密地将您的比特币存放在安全的地方。",
+    help: "在某些情况下，您可能被迫透露密码。 为了确保您的比特币安全，Veles Wallet可以创建另一个具有不同密码的加密存储。 在被胁迫情况下下，您可以将此密码透露给第三者。 如果在Veles Wallet中输入，它将解锁新的虚拟存储。 这对于第三方来说似乎合法，但是会秘密地将您的比特币存放在安全的地方。",
     help2: "新的空间具备完整的功能，你可以存少量的金额在里面。",
     create_fake_storage: "创建虚拟加密存储",
     go_back: "回退",

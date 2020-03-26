@@ -12,7 +12,7 @@ module.exports = {
     options: "オプション",
     createBitcoinWallet: "Bitcoin ウォレットを持っていません。Lightning ウォレットへ課金する場合は Bitcoin ウォレットを新規作成するかインポートする必要があります。続行しますか?",
     list: {
-      app_name: "VelesWallet",
+      app_name: "Veles Wallet",
       title: "ウォレット",
       header: "ウォレットは秘密鍵(プライベートキー)とウォレットアドレスのペアで構成されています。コインを受信するために共有できます。",
       add: "ウォレットの追加",
@@ -71,7 +71,7 @@ module.exports = {
     },
     import: {
       title: "インポート",
-      explanation: "ここにニーモニック、秘密鍵(プライベートキー）、WIFなどを入力してください。VelesWallet が正しい形式を推測しウォレットをインポートします。",
+      explanation: "ここにニーモニック、秘密鍵(プライベートキー）、WIFなどを入力してください。Veles Wallet が正しい形式を推測しウォレットをインポートします。",
       imported: "インポート完了",
       error: "インポートに失敗しました。入力したデータが有効か確認してください。",
       success: "成功",
@@ -183,7 +183,7 @@ module.exports = {
     electrum_settings: "Electrum 設定",
     electrum_settings_explain: "Set to blank to use default",
     save: "保存",
-    about: "VelesWallet について",
+    about: "Veles Wallet について",
     language: "言語",
     currency: "通貨",
     advanced_options: "詳細オプション",
@@ -191,7 +191,7 @@ module.exports = {
   },
   plausibledeniability: {
     title: "拒否権",
-    help: "BuleWallet のウォレットの復号に必要なパスワードを第三者に強要される場合、コインを安全に保護するためにメインのウォレットとは異なるパスワードで 暗号化されたダミーのウォレットを作成することが可能です。第三者へ異なるパスワードを提供すれば、VelesWallet のダミーの 暗号化ウォレットを復号することとなり、メインのウォレットは隠匿され コインは安全に保護されます。",
+    help: "BuleWallet のウォレットの復号に必要なパスワードを第三者に強要される場合、コインを安全に保護するためにメインのウォレットとは異なるパスワードで 暗号化されたダミーのウォレットを作成することが可能です。第三者へ異なるパスワードを提供すれば、Veles Wallet のダミーの 暗号化ウォレットを復号することとなり、メインのウォレットは隠匿され コインは安全に保護されます。",
     help2: "新規のダミーのウォレットはメインと同様に機能します。少額のコインを入金しておくことで ダミーと疑われないようにすることが可能です。",
     create_fake_storage: "ダミーの暗号化ウォレットの作成",
     go_back: "戻る",

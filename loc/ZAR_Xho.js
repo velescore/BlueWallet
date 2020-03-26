@@ -13,7 +13,7 @@
     createBitcoinWallet:
       'Okwangoku awunayo ingxowa yebitcoin. Ukuze kuxhaswe ingxowa ekhawulezayo, Ingxowa yeBitcoin kufuneka idalwe okanye ikhutshelwe. Ungathanda ukuqhubeka ?',
     list: {
-      app_name: 'VelesWallet',
+      app_name: 'Veles Wallet',
       title: 'Ingxowa',
       header: 'Ingxowa imele ukuba nemfihlelo yokuyivula nekheli kwaye unokuyisebenzisa ukwamkela imali.',
       add: 'Yongeza Ingxowa',
@@ -72,7 +72,7 @@
     import: {
       title: 'ukungenisa',
       explanation:
-        'Bhale apha imnemonic yakho, ngundoqo, WIF , okanye nantoni na onayo. VelesWallet uya kwenza konke okusemandleni ukuqiqa ifomathi efanelekileyo kwaye ingenise ingxowa yakho',
+        'Bhale apha imnemonic yakho, ngundoqo, WIF , okanye nantoni na onayo. Veles Wallet uya kwenza konke okusemandleni ukuqiqa ifomathi efanelekileyo kwaye ingenise ingxowa yakho',
       imported: 'Ngenisiwe',
       error: 'Ayiphumelelanga ukungenisa. Nceda, uqiniseka ukuba idata ehlinzekiweyo iyasebenza.',
       success: 'Iphumelele',
@@ -192,10 +192,10 @@
     title: 'Ukuphika',
     help:
       'Phantsi kweemeko unokunyaneliswa ukuba uchaze a ' +
-      'inombolo yokuvula. VelesWallet ukugcina imali yakho ikhuselekile, unokudala enye ' +
+      'inombolo yokuvula. Veles Wallet ukugcina imali yakho ikhuselekile, unokudala enye ' +
       'ukugcinwa kwekhowudi, ngegama eligqithisiweyo. Phantsi kwefuthe, ' +
       'unako ukutyhila le phasiwedi kumntu wesithatu. Ukuba ungenayo ' +
-      'VelesWallet, iya kuvula ukugcinwa kwetyala ‘entsha’. Oku kuya kubonakala ' +
+      'Veles Wallet, iya kuvula ukugcinwa kwetyala ‘entsha’. Oku kuya kubonakala ' +
       'Umlenze kumntu wesithathu kodwa uza kugcina ngasese ukugcinwa kwakho ' +
       'ngemali ekhuselekile..',
     help2:

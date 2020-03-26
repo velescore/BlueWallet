@@ -43,7 +43,7 @@
                                 <label alignment="center" text="Loading wallets..." id="hCG-Eg-bck"/>
                             </items>
                         </group>
-                        <label alignment="center" verticalAlignment="center" hidden="YES" text="No wallets available. Please, add one by opening VelesWallet on your iPhone." textAlignment="center" numberOfLines="0" id="I2I-8t-hp3"/>
+                        <label alignment="center" verticalAlignment="center" hidden="YES" text="No wallets available. Please, add one by opening Veles Wallet on your iPhone." textAlignment="center" numberOfLines="0" id="I2I-8t-hp3"/>
                     </items>
                     <connections>
                         <outlet property="loadingIndicatorGroup" destination="1Db-mZ-yxl" id="XPX-Y8-dv0"/>

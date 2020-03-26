@@ -12,7 +12,7 @@ module.exports = {
     options: "lựa chọn",
     createBitcoinWallet: "Hiện giờ quý khách không có Ví bitcoin. Để trả tiền cho ví Lightning, một ví Bitcoin cần được tạo hoặc nhập. Quý khách có muốn tiếp tục không?",
     list: {
-      app_name: "VelesWallet",
+      app_name: "Veles Wallet",
       title: "ví",
       header: "Một ví đại diện cho cặp khóa bí mật ( khóa riêng tư) và một địa chỉ quý khách có thể chia sẻ để nhận tiền xu",
       add: "Thêm Ví",
@@ -71,7 +71,7 @@ module.exports = {
     },
     import: {
       title: "nhập",
-      explanation: "Viết ở đây bản ghi nhớ, khóa riêng, WIF hoặc bất cứ thứ gì quý khách có. VelesWallet sẽ cố hết sức để đoán đúng định dạng và nhập ví của quý khách",
+      explanation: "Viết ở đây bản ghi nhớ, khóa riêng, WIF hoặc bất cứ thứ gì quý khách có. Veles Wallet sẽ cố hết sức để đoán đúng định dạng và nhập ví của quý khách",
       imported: "Đã nhập",
       error: "Không thể nhập. Xin vui lòng đảm bảo rằng dữ liệu quý khách cung cấp là hợp lệ",
       success: "Thành công",
@@ -191,7 +191,7 @@ module.exports = {
   },
   plausibledeniability: {
     title: "Từ chối hợp lý",
-    help: "Trong một số trường hợp nhất định, quý khách có thể bắt buộc phải tiết lộ mật khẩu. Để giữ tiền xu của quý khách được an toàn, VelesWallet có thể tạo một bộ lưu trữ được mã hóa khác, với một mật khẩu khác. Dưới áp lực, quý khách có thể tiết lộ mật khẩu này cho bên thứ ba. Nếu được nhập vào VelesWallet, nó sẽ mở khóa bộ nhớ giả mới. Điều này có vẻ hợp pháp với bên thứ ba nhưng sẽ bí mật giữ bộ nhớ chính của quý khách với tiền xu an toàn",
+    help: "Trong một số trường hợp nhất định, quý khách có thể bắt buộc phải tiết lộ mật khẩu. Để giữ tiền xu của quý khách được an toàn, Veles Wallet có thể tạo một bộ lưu trữ được mã hóa khác, với một mật khẩu khác. Dưới áp lực, quý khách có thể tiết lộ mật khẩu này cho bên thứ ba. Nếu được nhập vào Veles Wallet, nó sẽ mở khóa bộ nhớ giả mới. Điều này có vẻ hợp pháp với bên thứ ba nhưng sẽ bí mật giữ bộ nhớ chính của quý khách với tiền xu an toàn",
     help2: "Bộ lưu trữ mới sẽ có đầy đủ chức năng và quý khách có thể lưu trữ một số lượng tối thiểu ở đó với thông tin đáng tin cậy hơn",
     create_fake_storage: "Tạo lưu trữ được mã hóa giả",
     go_back: "Quay lại",
