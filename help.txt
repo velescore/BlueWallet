@@ -6,4 +6,5 @@ https://developer.android.com/studio/run/emulator-commandline
 
 ./gradlew cleanBuildCache
 ./gradlew assembleRelease
+./gradlew clean bundleRelease
 react-native run-android --variant=release
