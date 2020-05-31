@@ -79,7 +79,6 @@
     "frisbee": "2.0.9",
     "intl": "1.2.5",
     "lottie-react-native": "3.1.1",
-    "metro-minify-uglify": "^0.58.0",
     "mocha": "5.2.0",
     "node-libs-react-native": "1.0.3",
     "path-browserify": "1.0.0",
@@ -127,7 +126,6 @@
     "readable-stream": "3.4.0",
     "secure-random": "1.1.2",
     "stream-browserify": "2.0.2",
-    "uglify-es": "^3.3.9",
     "url": "0.11.0",
     "util": "0.12.1",
     "wif": "2.0.6"
