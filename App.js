@@ -17,7 +17,7 @@ const A = require('./analytics');
 
 if (process.env.NODE_ENV !== 'development') {
   Sentry.init({
-    dsn: 'https://23377936131848ca8003448a893cb622@sentry.io/1295736',
+    dsn: 'https://d92707b46ee84bdba8138056c98943ed@o366002.ingest.sentry.io/5161421',
   });
 }
 
