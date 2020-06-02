@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.io.veles.wallet</string>
+		<string>group.network.veles.wallet</string>
 	</array>
 </dict>
 </plist>
