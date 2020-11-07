@@ -238,17 +238,18 @@ const WalletsList = () => {
     if (carouselData.length > 0 && !carouselData.some(wallet => wallet.type === PlaceholderWallet.type)) {
       const button = (
         <TouchableOpacity
+          disabled={true}
           onPress={() => {
             navigate('HodlHodl', { screen: 'HodlHodl' });
           }}
           style={[styles.ltRoot, stylesHook.ltRoot]}
         >
           <View style={styles.ltTextWrap}>
-            <Text style={[styles.ltTextBig, stylesHook.ltTextBig]}>{loc.hodl.local_trader}</Text>
-            <Text style={[styles.ltTextSmall, stylesHook.ltTextSmall]}>{loc.hodl.p2p}</Text>
+            <Text style={styles.ltTextBig}>DVPN Masternodes List</Text>
+            <Text style={styles.ltTextSmall}>Download a dVPN config</Text>
           </View>
           <View style={styles.ltButtonWrap}>
-            <Text style={styles.ltButton}>{loc.hodl.local_trader_new}</Text>
+            <Text style={styles.ltButton}>Under Development</Text>
           </View>
         </TouchableOpacity>
       );

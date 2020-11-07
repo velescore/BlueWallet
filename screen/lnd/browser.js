@@ -298,11 +298,11 @@ export default class Browser extends Component {
     if (props.route.params.url) url = props.route.params.url;
 
     this.state = {
-      url: url || 'https://bluewallet.io/marketplace/',
+      url: url || 'https://www.veles.network/Exchanges.wiki.en.html/',
       fromWallet: props.route.params.fromWallet,
       canGoBack: false,
       pageIsLoading: false,
-      stateURL: url || 'https://bluewallet.io/marketplace/',
+      stateURL: url || 'https://www.veles.network/Exchanges.wiki.en.html/',
     };
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButton.bind(this));
   }

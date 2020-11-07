@@ -358,7 +358,7 @@ const WalletTransactions = () => {
         wallet.current.getBalance() > 0 ? (
           <TouchableOpacity
             onPress={async () => {
-              Linking.openURL('https://bluewallet.io/marketplace/');
+              Linking.openURL('https://www.veles.network/Exchanges.wiki.en.html/');
             }}
             style={[styles.marketplaceButton1, stylesHook.marketplaceButton1]}
           >

@@ -232,7 +232,7 @@ const WalletDetails = () => {
       ios: (
         <SecondButton
           onPress={async () => {
-            Linking.openURL('https://bluewallet.io/marketplace-btc/');
+            Linking.openURL('https://www.veles.network/Exchanges.wiki.en.html/');
           }}
           title={loc.wallets.details_marketplace}
         />
