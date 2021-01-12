@@ -85,10 +85,10 @@
     "bc-ur": "file:blue_modules/bc-ur",
     "bech32": "1.1.4",
     "bignumber.js": "9.0.1",
-    "bip21": "2.0.3",
-    "bip32": "2.0.6",
+    "bip21": "git+https://github.com/velescore/bip21.git",
+    "bip32": "git+https://github.com/mdfkbtc/bip32.git",
     "bip39": "2.6.0",
-    "bitcoinjs-lib": "5.2.0",
+    "bitcoinjs-lib": "git+https://github.com/mdfkbtc/bitcoinjs-lib.git",// TODO: update to >= 5.2.0 in future
     "bolt11": "1.2.7",
     "buffer": "6.0.1",
     "buffer-reverse": "1.0.1",

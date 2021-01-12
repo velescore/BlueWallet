@@ -97,7 +97,7 @@ export class MultisigCosigner {
   static _zpubToXpub(zpub) {
     let data = b58.decode(zpub);
     data = data.slice(4);
-    data = Buffer.concat([Buffer.from('0488b21e', 'hex'), data]);
+    data = Buffer.concat([Buffer.from('a40c86fa', 'hex'), data]);
 
     return b58.encode(data);
   }
