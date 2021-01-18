@@ -19,7 +19,7 @@ const hardcodedPeers = [
   // { host: 'Bitkoins.nl', tcp: '50001' }, // down
   // { host: 'fullnode.coinkite.com', tcp: '50001' },
   // { host: 'preperfect.eleCTruMioUS.com', tcp: '50001' }, // down
-  // { host: 'electrum1.bluewallet.io', ssl: '443' },
+   { host: 'electrum.veles.network', tcp: '50001' },
   // { host: 'electrum1.bluewallet.io', ssl: '443' }, // 2x weight
   // { host: 'electrum2.bluewallet.io', ssl: '443' },
   // { host: 'electrum3.bluewallet.io', ssl: '443' },

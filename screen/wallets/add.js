@@ -25,7 +25,7 @@ import {
   BlueSpacing20,
 } from '../../BlueComponents';
 import navigationStyle from '../../components/navigationStyle';
-import { HDSegwitBech32Wallet, SegwitP2SHWallet, HDSegwitP2SHWallet, LightningCustodianWallet, AppStorage } from '../../class';
+import { HDSegwitBech32Wallet, HDSegwitP2SHWallet, HDLegacyP2PKHWallet, SegwitP2SHWallet, LegacyWallet, SegwitBech32Wallet, LightningCustodianWallet, AppStorage } from '../../class';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 import { useTheme, useNavigation } from '@react-navigation/native';
 import { Chain } from '../../models/bitcoinUnits';
@@ -46,8 +46,8 @@ const WalletsAdd = () => {
   const [walletBaseURI, setWalletBaseURI] = useState();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [label, setLabel] = useState('');
-  const [isAdvancedOptionsEnabled, setIsAdvancedOptionsEnabled] = useState(false);
-  const [selectedWalletType, setSelectedWalletType] = useState(false);
+  const [isAdvancedOptionsEnabled, setIsAdvancedOptionsEnabled] = useState(true);
+  const [selectedWalletType, setSelectedWalletType] = Chain.ONCHAIN;
   const { navigate, goBack } = useNavigation();
   const [entropy, setEntropy] = useState();
   const [entropyButtonText, setEntropyButtonText] = useState(loc.wallets.add_entropy_provide);
@@ -106,22 +106,28 @@ const WalletsAdd = () => {
 
     let w;
 
-    if (selectedWalletType === ButtonSelected.OFFCHAIN) {
+     if (selectedWalletType === Chain.OFFCHAIN) {
       createLightningWallet(w);
-    } else if (selectedWalletType === ButtonSelected.ONCHAIN) {
+    } else if (selectedWalletType === Chain.ONCHAIN) {
       if (selectedIndex === 2) {
-        // zero index radio - HD segwit
-        w = new HDSegwitP2SHWallet();
+        w = new HDSegwitBech32Wallet();
         w.setLabel(label || loc.wallets.details_title);
       } else if (selectedIndex === 1) {
-        // btc was selected
-        // index 1 radio - segwit single address
+        w = new HDSegwitP2SHWallet();
+        w.setLabel(label || loc.wallets.details_title);
+      } else if (selectedIndex === 3){
+        w = new LegacyWallet();
+        w.setLabel(label || loc.wallets.details_title);
+      } else if (selectedIndex === 4){
         w = new SegwitP2SHWallet();
+        w.setLabel(label || loc.wallets.details_title);
+      } else if (selectedIndex === 5){
+        w = new SegwitBech32Wallet();
         w.setLabel(label || loc.wallets.details_title);
       } else {
         // btc was selected
         // index 2 radio - hd bip84
-        w = new HDSegwitBech32Wallet();
+        w = new HDLegacyP2PKHWallet();
         w.setLabel(label || loc.wallets.details_title);
       }
       if (selectedWalletType === ButtonSelected.ONCHAIN) {
@@ -142,7 +148,7 @@ const WalletsAdd = () => {
         setNewWalletAdded(true);
         A(A.ENUM.CREATED_WALLET);
         ReactNativeHapticFeedback.trigger('notificationSuccess', { ignoreAndroidSystemSettings: false });
-        if (w.type === HDSegwitP2SHWallet.type || w.type === HDSegwitBech32Wallet.type) {
+        if (w.type === HDSegwitP2SHWallet.type || w.type === HDSegwitBech32Wallet.type || w.type === HDLegacyP2PKHWallet.type) {
           navigate('PleaseBackup', {
             walletID: w.getID(),
           });
@@ -260,49 +266,45 @@ const WalletsAdd = () => {
                     containerStyle={[styles.noPadding, stylesHook.noPadding]}
                     bottomDivider={false}
                     onPress={() => setSelectedIndex(0)}
-                    title={HDSegwitBech32Wallet.typeReadable}
+                    title={HDLegacyP2PKHWallet.typeReadable}
                     checkmark={selectedIndex === 0}
                   />
                   <BlueListItem
                     containerStyle={[styles.noPadding, stylesHook.noPadding]}
                     bottomDivider={false}
                     onPress={() => setSelectedIndex(1)}
-                    title={SegwitP2SHWallet.typeReadable}
+                    title={HDSegwitP2SHWallet.typeReadable}
                     checkmark={selectedIndex === 1}
                   />
                   <BlueListItem
                     containerStyle={[styles.noPadding, stylesHook.noPadding]}
                     bottomDivider={false}
                     onPress={() => setSelectedIndex(2)}
-                    title={HDSegwitP2SHWallet.typeReadable}
+                    title={HDSegwitBech32Wallet.typeReadable}
                     checkmark={selectedIndex === 2}
                   />
+                  <BlueListItem
+                    containerStyle={[styles.noPadding, stylesHook.noPadding]}
+                    bottomDivider={false}
+                    onPress={() => setSelectedIndex(3)}
+                    title={LegacyWallet.typeReadable}
+                    checkmark={selectedIndex === 3}
+                  />
+                  <BlueListItem
+                    containerStyle={[styles.noPadding, stylesHook.noPadding]}
+                    bottomDivider={false}
+                    onPress={() => setSelectedIndex(4)}
+                    title={SegwitP2SHWallet.typeReadable}
+                    checkmark={selectedIndex === 4}
+                  />
+                  <BlueListItem
+                    containerStyle={[styles.noPadding, stylesHook.noPadding]}
+                    bottomDivider={false}
+                    onPress={() => setSelectedIndex(5)}
+                    title={SegwitBech32Wallet.typeReadable}
+                    checkmark={selectedIndex === 5}
+                  />
                 </View>
-              );
-            } else if (selectedWalletType === ButtonSelected.OFFCHAIN && isAdvancedOptionsEnabled) {
-              return (
-                <>
-                  <BlueSpacing20 />
-                  <Text style={[styles.advancedText, stylesHook.advancedText]}>{loc.settings.advanced_options}</Text>
-                  <BlueSpacing20 />
-                  <BlueText>{loc.wallets.add_lndhub}</BlueText>
-                  <View style={[styles.lndUri, stylesHook.lndUri]}>
-                    <TextInput
-                      value={walletBaseURI}
-                      onChangeText={setWalletBaseURI}
-                      onSubmitEditing={Keyboard.dismiss}
-                      placeholder={loc.wallets.add_lndhub_placeholder}
-                      clearButtonMode="while-editing"
-                      autoCapitalize="none"
-                      textContentType="URL"
-                      autoCorrect={false}
-                      placeholderTextColor="#81868e"
-                      style={styles.textInputCommon}
-                      editable={!isLoading}
-                      underlineColorAndroid="transparent"
-                    />
-                  </View>
-                </>
               );
             }
           })()}
