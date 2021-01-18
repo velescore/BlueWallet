@@ -58,6 +58,20 @@ if (aspectRatio > 1.6) {
 // eslint-disable-next-line no-unused-expressions
 Platform.OS === 'android' ? (ActivityIndicator.defaultProps.color = PlatformColor('?attr/colorControlActivated')) : null;
 
+export class NavbarLogo extends Component {
+  render() {
+    return (
+      <View style={{flexDirection: 'row'}}>
+        <Image
+          source={require('./img/veles.png')}
+          style={{ maxWidth: 40, maxHeight: 40, marginLeft: 10 }}
+        />
+
+      </View>
+    );
+  }
+}
+
 export const BlueButton = props => {
   const { colors } = useTheme();
 

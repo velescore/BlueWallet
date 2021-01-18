@@ -13,7 +13,7 @@ import {
   useWindowDimensions,
   SafeAreaView,
 } from 'react-native';
-import { BlueHeaderDefaultMain, BlueTransactionListItem } from '../../BlueComponents';
+import { BlueHeaderDefaultMain, BlueTransactionListItem, NavbarLogo } from '../../BlueComponents';
 import WalletsCarousel from '../../components/WalletsCarousel';
 import { Icon } from 'react-native-elements';
 import DeeplinkSchemaMatch from '../../class/deeplink-schema-match';
@@ -122,6 +122,9 @@ const WalletsList = () => {
         shadowOpacity: 0,
         shadowOffset: { height: 0, width: 0 },
       },
+      headerLeft: () => ( 
+        <NavbarLogo /> 
+      ),
       headerRight: () => (
         <TouchableOpacity testID="SettingsButton" style={styles.headerTouch} onPress={navigateToSettings}>
           <Icon size={22} name="kebab-horizontal" type="octicon" color={colors.foregroundColor} />
