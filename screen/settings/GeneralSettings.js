@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 const GeneralSettings = () => {
   const { isAdancedModeEnabled, setIsAdancedModeEnabled, wallets } = useContext(BlueStorageContext);
   const [isLoading, setIsLoading] = useState(true);
-  const [isAdancedModeSwitchEnabled, setIsAdancedModeSwitchEnabled] = useState(false);
+  const [isAdancedModeSwitchEnabled, setIsAdancedModeSwitchEnabled] = useState(true);
   const [isHandoffUseEnabled, setIsHandoffUseEnabled] = useState(false);
   const { navigate } = useNavigation();
   const { colors } = useTheme();
@@ -33,7 +33,7 @@ const GeneralSettings = () => {
 
   useEffect(() => {
     (async () => {
-      setIsAdancedModeSwitchEnabled(await isAdancedModeEnabled());
+      setIsAdancedModeSwitchEnabled(true);
       setIsHandoffUseEnabled(await HandoffSettings.isHandoffUseEnabled());
       setIsLoading(false);
     })();
@@ -77,11 +77,6 @@ const GeneralSettings = () => {
           <BlueSpacing20 />
         </>
       ) : null}
-      <BlueListItem
-        Component={TouchableWithoutFeedback}
-        title={loc.settings.general_adv_mode}
-        switch={{ onValueChange: onAdvancedModeSwitch, value: isAdancedModeSwitchEnabled }}
-      />
       <BlueCard>
         <BlueText>{loc.settings.general_adv_mode_e}</BlueText>
       </BlueCard>

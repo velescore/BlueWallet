@@ -47,7 +47,7 @@ const WalletsAdd = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [label, setLabel] = useState('');
   const [isAdvancedOptionsEnabled, setIsAdvancedOptionsEnabled] = useState(true);
-  const [selectedWalletType, setSelectedWalletType] = Chain.ONCHAIN;
+  const [selectedWalletType, setSelectedWalletType] = useState(Chain.ONCHAIN);
   const { navigate, goBack } = useNavigation();
   const [entropy, setEntropy] = useState();
   const [entropyButtonText, setEntropyButtonText] = useState(loc.wallets.add_entropy_provide);
@@ -247,17 +247,12 @@ const WalletsAdd = () => {
             onPress={handleOnBitcoinButtonPressed}
             style={styles.button}
           />
-          <LightningButton
-            active={selectedWalletType === ButtonSelected.OFFCHAIN}
-            onPress={handleOnLightningButtonPressed}
-            style={styles.button}
-          />
           <VaultButton active={selectedWalletType === ButtonSelected.VAULT} onPress={handleOnVaultButtonPressed} style={styles.button} />
         </View>
 
         <View style={styles.advanced}>
           {(() => {
-            if (selectedWalletType === ButtonSelected.ONCHAIN && isAdvancedOptionsEnabled) {
+            if (selectedWalletType === ButtonSelected.ONCHAIN) {
               return (
                 <View>
                   <BlueSpacing20 />
@@ -308,7 +303,7 @@ const WalletsAdd = () => {
               );
             }
           })()}
-          {isAdvancedOptionsEnabled && selectedWalletType === ButtonSelected.ONCHAIN && !isLoading && (
+          {selectedWalletType === ButtonSelected.ONCHAIN && !isLoading && (
             <BlueButtonLink style={styles.import} title={entropyButtonText} onPress={navigateToEntropy} />
           )}
           <BlueSpacing20 />
