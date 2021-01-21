@@ -63,9 +63,10 @@ export class NavbarLogo extends Component {
     return (
       <View style={{flexDirection: 'row'}}>
         <Image
-          source={require('./img/veles.png')}
+          source={require('./img/icon.png')}
           style={{ maxWidth: 40, maxHeight: 40, marginLeft: 10 }}
         />
+        <Text>Overview</Text>
 
       </View>
     );
