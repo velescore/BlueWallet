@@ -453,7 +453,7 @@
     "vault_key": "Clé du coffre {number}",
     "required_keys_out_of_total": "Clés requises par rapport au total",
     "fee": "Frais: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_btc": "{number} VLS",
     "confirm": "Confirmer",
     "header": "Envoyer",
     "share": "Partager",
@@ -541,7 +541,7 @@
     "tip": "Autorise la vue, l'étiquetage, le gel ou la sélection des pièces pour une gestion améliorée du portefeuille."
   },
   "units": {
-    "BTC": "BTC",
+    "VLS": "VLS",
     "MAX": "MAX",
     "sat_byte": "sat/byte",
     "sats": "sats"

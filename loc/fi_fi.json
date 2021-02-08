@@ -454,7 +454,7 @@
     "vault_key": "Holvi avain {number}",
     "required_keys_out_of_total": "Vaaditut avaimet kokonaismäärästä",
     "fee": "Siirtokulu: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_btc": "{number} VLS",
     "confirm": "Vahvista",
     "header": "Lähetä",
     "share": "Jaa",
@@ -542,7 +542,7 @@
     "tip": "Antaa sinun nähdä, merkitä, jäädyttää tai valita kolikoita parempaan lompakon hallintaan."
   },
   "units": {
-    "BTC": "BTC",
+    "VLS": "VLS",
     "MAX": "MAX",
     "sat_byte": "sat/bitti",
     "sats": "sats"

@@ -17,7 +17,17 @@ import LinearGradient from 'react-native-linear-gradient';
 import Carousel from 'react-native-snap-carousel';
 
 import loc, { formatBalance, transactionTimeToReadable } from '../loc';
-import { LightningCustodianWallet, MultisigHDWallet, PlaceholderWallet } from '../class';
+import { 
+  LightningCustodianWallet, 
+  MultisigHDWallet, 
+  PlaceholderWallet, 
+  HDLegacyP2PKHWallet, 
+  HDSegwitBech32Wallet, 
+  HDSegwitP2SHWallet,
+  LegacyWallet,
+  SegwitBech32Wallet,
+  SegwitP2SHWallet,  
+} from '../class';
 import WalletGradient from '../class/wallet-gradient';
 import { BluePrivateBalance } from '../BlueComponents';
 
@@ -46,7 +56,7 @@ const nStyles = StyleSheet.create({
   },
   button: {
     marginTop: 12,
-    backgroundColor: '#007AFF',
+    backgroundColor: '#b19683bb',
     paddingHorizontal: 32,
     paddingVertical: 12,
     borderRadius: 8,
@@ -87,11 +97,19 @@ const iStyles = StyleSheet.create({
     elevation: 5,
   },
   image: {
-    width: 99,
-    height: 94,
+    width: 98,
+    height: 95,
     position: 'absolute',
     bottom: 0,
     right: 0,
+  },
+  image_top_corner: {
+    width: '50%',
+    height: '50%',
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    borderRadius: 10,
   },
   br: {
     backgroundColor: 'transparent',
@@ -203,6 +221,28 @@ const WalletCarouselItem = ({ item, index, onPress, handleLongPress, isSelectedW
       image = require('../img/btc-shape.png');
   }
 
+  let image_top_corner;
+  switch (item.type) {
+    case HDLegacyP2PKHWallet.type:
+      image_top_corner = require('../img/card_sun.png');
+      break;
+    case HDSegwitP2SHWallet.type:
+      image_top_corner = require('../img/card_sun2.png');
+      break;
+    case HDSegwitBech32Wallet.type:
+      image_top_corner = require('../img/card_sun3.png');
+      break;
+    case LegacyWallet.type:
+      image_top_corner = require('../img/card_sun4.png');
+      break;
+    case SegwitP2SHWallet.type:
+      image_top_corner = require('../img/card_sun5.png');
+      break;
+    case SegwitBech32Wallet.type:
+      image_top_corner = require('../img/card_sun6.png');
+      break;      
+  }
+
   return (
     <Animated.View
       style={[iStyles.root, { opacity, transform: [{ scale: scaleValue }] }]}
@@ -221,7 +261,8 @@ const WalletCarouselItem = ({ item, index, onPress, handleLongPress, isSelectedW
           onPressedOut();
         }}
       >
-        <LinearGradient shadowColor={colors.shadowColor} colors={WalletGradient.gradientsFor(item.type)} style={iStyles.grad}>
+        <LinearGradient shadowColor={colors.shadowColor} start={{x: 2, y: 0}} colors={WalletGradient.gradientsFor(item.type)} style={iStyles.grad}>
+          <Image source={image_top_corner} style={iStyles.image_top_corner} />
           <Image source={image} style={iStyles.image} />
           <Text style={iStyles.br} />
           <Text numberOfLines={1} style={[iStyles.label, { color: colors.inverseForegroundColor }]}>

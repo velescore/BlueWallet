@@ -4,6 +4,7 @@ import QRCode from 'react-native-qrcode-svg';
 import { useTheme, useNavigation, useFocusEffect, useRoute } from '@react-navigation/native';
 
 import { BlueSpacing20, SafeBlueArea, BlueText, BlueCopyTextToClipboard, BlueCard } from '../../BlueComponents';
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import Privacy from '../../Privacy';
 import Biometric from '../../class/biometrics';
@@ -93,42 +94,47 @@ const WalletExport = () => {
     </View>
   ) : (
     <SafeBlueArea style={stylesHook.root}>
-      <StatusBar barStyle="light-content" />
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <View>
-          <BlueText style={stylesHook.type}>{wallet.current.typeReadable}</BlueText>
-        </View>
+      <StatusBar 
+        barStyle="light-content"
+        backgroundColor="rgba(95, 88, 84, .18)"
+      />
+      <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+        <ScrollView contentContainerStyle={styles.scrollViewContent}>
+          <View>
+            <BlueText style={stylesHook.type}>{wallet.current.typeReadable}</BlueText>
+          </View>
 
-        {(() => {
-          if ([LegacyWallet.type, SegwitBech32Wallet.type, SegwitP2SHWallet.type].includes(wallet.current.type)) {
-            return (
-              <BlueCard>
-                <BlueText>{wallet.current.getAddress()}</BlueText>
-              </BlueCard>
-            );
-          }
-        })()}
-        <BlueSpacing20 />
-        <View style={styles.activeQrcode}>
-          <QRCode
-            value={wallet.current.getSecret()}
-            logo={require('../../img/qr-code.png')}
-            size={height > width ? width - 40 : width / 2}
-            logoSize={70}
-            color="#000000"
-            logoBackgroundColor={colors.brandingColor}
-            backgroundColor="#FFFFFF"
-            ecl="H"
-          />
-        </View>
-        {wallet.type !== WatchOnlyWallet.type && <BlueText style={stylesHook.warning}>{loc.wallets.warning_do_not_disclose}</BlueText>}
-        <BlueSpacing20 />
-        {wallet.current.type === LightningCustodianWallet.type || wallet.current.type === WatchOnlyWallet.type ? (
-          <BlueCopyTextToClipboard text={wallet.current.getSecret()} />
-        ) : (
-          <BlueText style={stylesHook.secret}>{wallet.current.getSecret()}</BlueText>
-        )}
-      </ScrollView>
+          {(() => {
+            if ([LegacyWallet.type, SegwitBech32Wallet.type, SegwitP2SHWallet.type].includes(wallet.current.type)) {
+              return (
+                <BlueCard>
+                  <BlueText>{wallet.current.getAddress()}</BlueText>
+                </BlueCard>
+              );
+            }
+          })()}
+          <BlueSpacing20 />
+          <View style={styles.activeQrcode}>
+            <QRCode
+              value={wallet.current.getSecret()}
+              logo={require('../../img/qr-code.png')}
+              size={height > width ? width - 40 : width / 2}
+              logoSize={70}
+              color="#000000"
+              logoBackgroundColor={colors.brandingColor}
+              backgroundColor="#FFFFFF"
+              ecl="H"
+            />
+          </View>
+          {wallet.type !== WatchOnlyWallet.type && <BlueText style={stylesHook.warning}>{loc.wallets.warning_do_not_disclose}</BlueText>}
+          <BlueSpacing20 />
+          {wallet.current.type === LightningCustodianWallet.type || wallet.current.type === WatchOnlyWallet.type ? (
+            <BlueCopyTextToClipboard text={wallet.current.getSecret()} />
+          ) : (
+            <BlueText style={stylesHook.secret}>{wallet.current.getSecret()}</BlueText>
+          )}
+        </ScrollView>
+      </LinearGradient>  
     </SafeBlueArea>
   );
 };

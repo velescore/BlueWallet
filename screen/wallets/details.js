@@ -16,6 +16,7 @@ import {
   StatusBar,
   PermissionsAndroid,
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import { SecondButton, SafeBlueArea, BlueCard, BlueSpacing20, BlueText, BlueLoading } from '../../BlueComponents';
 import navigationStyle from '../../components/navigationStyle';
 import { LightningCustodianWallet } from '../../class/wallets/lightning-custodian-wallet';
@@ -388,155 +389,158 @@ const WalletDetails = () => {
     </View>
   ) : (
     <SafeBlueArea style={styles.root}>
-      <StatusBar barStyle="default" />
+      <StatusBar 
+        barStyle="default" 
+        backgroundColor="rgba(95, 88, 84, .18)"
+      />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <ScrollView contentContainerStyle={styles.scrollViewContent}>
-          <BlueCard style={styles.address}>
-            {(() => {
-              if (
-                [LegacyWallet.type, SegwitBech32Wallet.type, SegwitP2SHWallet.type].includes(wallet.type) ||
-                (wallet.type === WatchOnlyWallet.type && !wallet.isHd())
-              ) {
-                return (
-                  <>
-                    <Text style={[styles.textLabel1, stylesHook.textLabel1]}>{loc.wallets.details_address.toLowerCase()}</Text>
-                    <Text style={[styles.textValue, stylesHook.textValue]}>{wallet.getAddress()}</Text>
-                  </>
-                );
-              }
-            })()}
-            <Text style={[styles.textLabel2, stylesHook.textLabel2]}>{loc.wallets.add_wallet_name.toLowerCase()}</Text>
-            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : null}>
-              <View style={[styles.input, stylesHook.input]}>
-                <TextInput
-                  placeholder={loc.send.details_note_placeholder}
-                  value={walletName}
-                  onChangeText={setWalletName}
-                  onBlur={walletNameTextInputOnBlur}
-                  numberOfLines={1}
-                  placeholderTextColor="#81868e"
-                  style={styles.inputText}
-                  editable={!isLoading}
-                  underlineColorAndroid="transparent"
-                />
-              </View>
-            </KeyboardAvoidingView>
-            <BlueSpacing20 />
-            <Text style={[styles.textLabel1, stylesHook.textLabel1]}>{loc.wallets.details_type.toLowerCase()}</Text>
-            <Text style={[styles.textValue, stylesHook.textValue]}>{wallet.typeReadable}</Text>
-
-            {wallet.type === MultisigHDWallet.type && (
-              <>
-                <Text style={[styles.textLabel2, stylesHook.textLabel2]}>{loc.wallets.details_multisig_type}</Text>
-                <BlueText>
-                  {loc.formatString(loc.wallets[`details_ms_${wallet.isNativeSegwit() ? 'ns' : wallet.isWrappedSegwit() ? 'ws' : 'l'}`], {
-                    m: wallet.getM(),
-                    n: wallet.getN(),
-                  })}
-                </BlueText>
-              </>
-            )}
-
-            {wallet.type === MultisigHDWallet.type && (
-              <>
-                <Text style={[styles.textLabel2, stylesHook.textLabel2]}>{loc.multisig.how_many_signatures_can_bluewallet_make}</Text>
-                <BlueText>{wallet.howManySignaturesCanWeMake()}</BlueText>
-              </>
-            )}
-
-            {wallet.type === MultisigHDWallet.type && !!wallet.getDerivationPath() && (
-              <>
-                <Text style={[styles.textLabel2, stylesHook.textLabel2]}>{loc.wallets.details_derivation_path}</Text>
-                <BlueText>{wallet.getDerivationPath()}</BlueText>
-              </>
-            )}
-
-            {wallet.type === LightningCustodianWallet.type && (
-              <>
-                <Text style={[styles.textLabel1, stylesHook.textLabel1]}>{loc.wallets.details_connected_to.toLowerCase()}</Text>
-                <BlueText>{wallet.getBaseURI()}</BlueText>
-              </>
-            )}
-            <>
-              <Text onPress={exportInternals} style={[styles.textLabel2, stylesHook.textLabel2]}>
-                {loc.transactions.list_title.toLowerCase()}
-              </Text>
-              <View style={styles.hardware}>
-                <BlueText>{loc.wallets.details_display}</BlueText>
-                <Switch value={hideTransactionsInWalletsList} onValueChange={setHideTransactionsInWalletsList} />
-              </View>
-            </>
-            <>
-              <Text onPress={purgeTransactions} style={[styles.textLabel2, stylesHook.textLabel2]}>
-                {loc.transactions.transactions_count.toLowerCase()}
-              </Text>
-              <BlueText>{wallet.getTransactions().length}</BlueText>
-            </>
-            <View>
-              {wallet.type === WatchOnlyWallet.type && wallet.getSecret().startsWith('zpub') && (
-                <>
-                  <Text style={[styles.textLabel2, stylesHook.textLabel2]}>{loc.wallets.details_advanced.toLowerCase()}</Text>
-                  <View style={styles.hardware}>
-                    <BlueText>{loc.wallets.details_use_with_hardware_wallet}</BlueText>
-                    <Switch value={useWithHardwareWallet} onValueChange={setUseWithHardwareWallet} />
-                  </View>
-                  <>
-                    <Text style={[styles.textLabel1, stylesHook.textLabel1]}>{loc.wallets.details_master_fingerprint.toLowerCase()}</Text>
-                    <Text style={[styles.textValue, stylesHook.textValue]}>{wallet.getMasterFingerprintHex()}</Text>
-                  </>
-                  <BlueSpacing20 />
-                </>
-              )}
-              <BlueSpacing20 />
-
-              <SecondButton onPress={navigateToWalletExport} title={loc.wallets.details_export_backup} />
-
-              <BlueSpacing20 />
-
-              {wallet.type === MultisigHDWallet.type && (
-                <>
-                  <SecondButton
-                    onPress={navigateToMultisigCoordinationSetup}
-                    title={loc.multisig.export_coordination_setup.replace(/^\w/, c => c.toUpperCase())}
+          <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+            <BlueCard style={styles.address}>
+              {(() => {
+                if (
+                  [LegacyWallet.type, SegwitBech32Wallet.type, SegwitP2SHWallet.type].includes(wallet.type) ||
+                  (wallet.type === WatchOnlyWallet.type && !wallet.isHd())
+                ) {
+                  return (
+                    <>
+                      <Text style={[styles.textLabel1, stylesHook.textLabel1]}>{loc.wallets.details_address.toLowerCase()}</Text>
+                      <Text style={[styles.textValue, stylesHook.textValue]}>{wallet.getAddress()}</Text>
+                    </>
+                  );
+                }
+              })()}
+              <Text style={[styles.textLabel2, stylesHook.textLabel2]}>{loc.wallets.add_wallet_name.toLowerCase()}</Text>
+              <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : null}>
+                <View style={[styles.input, stylesHook.input]}>
+                  <TextInput
+                    placeholder={loc.send.details_note_placeholder}
+                    value={walletName}
+                    onChangeText={setWalletName}
+                    onBlur={walletNameTextInputOnBlur}
+                    numberOfLines={1}
+                    placeholderTextColor="#81868e"
+                    style={styles.inputText}
+                    editable={!isLoading}
+                    underlineColorAndroid="transparent"
                   />
+                </View>
+              </KeyboardAvoidingView>
+              <BlueSpacing20 />
+              <Text style={[styles.textLabel1, stylesHook.textLabel1]}>{loc.wallets.details_type.toLowerCase()}</Text>
+              <Text style={[styles.textValue, stylesHook.textValue]}>{wallet.typeReadable}</Text>
+
+              {wallet.type === MultisigHDWallet.type && (
+                <>
+                  <Text style={[styles.textLabel2, stylesHook.textLabel2]}>{loc.wallets.details_multisig_type}</Text>
+                  <BlueText>
+                    {loc.formatString(loc.wallets[`details_ms_${wallet.isNativeSegwit() ? 'ns' : wallet.isWrappedSegwit() ? 'ws' : 'l'}`], {
+                      m: wallet.getM(),
+                      n: wallet.getN(),
+                    })}
+                  </BlueText>
                 </>
               )}
 
               {wallet.type === MultisigHDWallet.type && (
                 <>
-                  <BlueSpacing20 />
-                  <SecondButton onPress={navigateToViewEditCosigners} title={loc.multisig.view_edit_cosigners} />
+                  <Text style={[styles.textLabel2, stylesHook.textLabel2]}>{loc.multisig.how_many_signatures_can_bluewallet_make}</Text>
+                  <BlueText>{wallet.howManySignaturesCanWeMake()}</BlueText>
                 </>
               )}
 
-              {(wallet.type === HDLegacyBreadwalletWallet.type ||
-                wallet.type === HDLegacyP2PKHWallet.type ||
-                wallet.type === HDSegwitBech32Wallet.type ||
-                wallet.type === HDSegwitP2SHWallet.type) && (
+              {wallet.type === MultisigHDWallet.type && !!wallet.getDerivationPath() && (
                 <>
-                  <SecondButton onPress={navigateToXPub} title={loc.wallets.details_show_xpub} />
-
-                  <BlueSpacing20 />
-                  {renderMarketplaceButton()}
+                  <Text style={[styles.textLabel2, stylesHook.textLabel2]}>{loc.wallets.details_derivation_path}</Text>
+                  <BlueText>{wallet.getDerivationPath()}</BlueText>
                 </>
               )}
-              {wallet.type !== LightningCustodianWallet.type && (
+
+              {wallet.type === LightningCustodianWallet.type && (
                 <>
-                  <BlueSpacing20 />
-                  <SecondButton onPress={navigateToBroadcast} title={loc.settings.network_broadcast} />
+                  <Text style={[styles.textLabel1, stylesHook.textLabel1]}>{loc.wallets.details_connected_to.toLowerCase()}</Text>
+                  <BlueText>{wallet.getBaseURI()}</BlueText>
                 </>
               )}
               <>
-                <BlueSpacing20 />
-                <SecondButton onPress={navigateToIsItMyAddress} title={loc.is_it_my_address.title} />
+                <Text onPress={exportInternals} style={[styles.textLabel2, stylesHook.textLabel2]}>
+                  {loc.transactions.list_title.toLowerCase()}
+                </Text>
+                <View style={styles.hardware}>
+                  <BlueText>{loc.wallets.details_display}</BlueText>
+                  <Switch value={hideTransactionsInWalletsList} onValueChange={setHideTransactionsInWalletsList} />
+                </View>
               </>
-              <BlueSpacing20 />
-              <BlueSpacing20 />
-              <TouchableOpacity onPress={handleDeleteButtonTapped}>
-                <Text textBreakStrategy="simple" style={styles.delete}>{`${loc.wallets.details_delete}${'  '}`}</Text>
-              </TouchableOpacity>
-            </View>
-          </BlueCard>
+              <>
+                <Text onPress={purgeTransactions} style={[styles.textLabel2, stylesHook.textLabel2]}>
+                  {loc.transactions.transactions_count.toLowerCase()}
+                </Text>
+                <BlueText>{wallet.getTransactions().length}</BlueText>
+              </>
+              <View>
+                {wallet.type === WatchOnlyWallet.type && wallet.getSecret().startsWith('zpub') && (
+                  <>
+                    <Text style={[styles.textLabel2, stylesHook.textLabel2]}>{loc.wallets.details_advanced.toLowerCase()}</Text>
+                    <View style={styles.hardware}>
+                      <BlueText>{loc.wallets.details_use_with_hardware_wallet}</BlueText>
+                      <Switch value={useWithHardwareWallet} onValueChange={setUseWithHardwareWallet} />
+                    </View>
+                    <>
+                      <Text style={[styles.textLabel1, stylesHook.textLabel1]}>{loc.wallets.details_master_fingerprint.toLowerCase()}</Text>
+                      <Text style={[styles.textValue, stylesHook.textValue]}>{wallet.getMasterFingerprintHex()}</Text>
+                    </>
+                    <BlueSpacing20 />
+                  </>
+                )}
+                <BlueSpacing20 />
+
+                <SecondButton onPress={navigateToWalletExport} title={loc.wallets.details_export_backup} />
+
+                <BlueSpacing20 />
+
+                {wallet.type === MultisigHDWallet.type && (
+                  <>
+                    <SecondButton
+                      onPress={navigateToMultisigCoordinationSetup}
+                      title={loc.multisig.export_coordination_setup.replace(/^\w/, c => c.toUpperCase())}
+                    />
+                  </>
+                )}
+
+                {wallet.type === MultisigHDWallet.type && (
+                  <>
+                    <BlueSpacing20 />
+                    <SecondButton onPress={navigateToViewEditCosigners} title={loc.multisig.view_edit_cosigners} />
+                  </>
+                )}
+
+                {(wallet.type === HDLegacyBreadwalletWallet.type ||
+                  wallet.type === HDLegacyP2PKHWallet.type ||
+                  wallet.type === HDSegwitBech32Wallet.type ||
+                  wallet.type === HDSegwitP2SHWallet.type) && (
+                  <>
+                    <SecondButton onPress={navigateToXPub} title={loc.wallets.details_show_xpub} />
+
+                  </>
+                )}
+                {wallet.type !== LightningCustodianWallet.type && (
+                  <>
+                    <BlueSpacing20 />
+                    <SecondButton onPress={navigateToBroadcast} title={loc.settings.network_broadcast} />
+                  </>
+                )}
+                <>
+                  <BlueSpacing20 />
+                  <SecondButton onPress={navigateToIsItMyAddress} title={loc.is_it_my_address.title} />
+                </>
+                <BlueSpacing20 />
+                <BlueSpacing20 />
+                <TouchableOpacity onPress={handleDeleteButtonTapped}>
+                  <Text textBreakStrategy="simple" style={styles.delete}>{`${loc.wallets.details_delete}${'  '}`}</Text>
+                </TouchableOpacity>
+              </View>
+            </BlueCard>
+          </LinearGradient>
         </ScrollView>
       </TouchableWithoutFeedback>
     </SafeBlueArea>

@@ -27,6 +27,7 @@ import {
   BlueSpacing20,
   BlueAlertWalletExportReminder,
 } from '../../BlueComponents';
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import BottomModal from '../../components/BottomModal';
 import Privacy from '../../Privacy';
@@ -46,7 +47,7 @@ const ReceiveDetails = () => {
   const [address, setAddress] = useState('');
   const [customLabel, setCustomLabel] = useState();
   const [customAmount, setCustomAmount] = useState(0);
-  const [customUnit, setCustomUnit] = useState(BitcoinUnit.BTC);
+  const [customUnit, setCustomUnit] = useState(BitcoinUnit.VLS);
   const [bip21encoded, setBip21encoded] = useState();
   const [isCustom, setIsCustom] = useState(false);
   const [isCustomModalVisible, setIsCustomModalVisible] = useState(false);
@@ -55,7 +56,7 @@ const ReceiveDetails = () => {
   const { colors } = useTheme();
   const styles = StyleSheet.create({
     modalContent: {
-      backgroundColor: colors.modal,
+      backgroundColor: 'lightgrey',
       padding: 22,
       justifyContent: 'center',
       alignItems: 'center',
@@ -135,37 +136,39 @@ const ReceiveDetails = () => {
   const renderReceiveDetails = () => {
     return (
       <ScrollView style={styles.root} contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="always">
-        <View style={styles.scrollBody}>
-          {isCustom && (
-            <>
-              <BlueText style={styles.amount} numberOfLines={1}>
-                {getDisplayAmount()}
-              </BlueText>
-              <BlueText style={styles.label} numberOfLines={1}>
-                {customLabel}
-              </BlueText>
-            </>
-          )}
-          <View style={styles.qrCodeContainer}>
-            <QRCode
-              value={bip21encoded}
-              logo={require('../../img/qr-code.png')}
-              size={(is.ipad() && 300) || 300}
-              logoSize={90}
-              color="#000000"
-              logoBackgroundColor={colors.brandingColor}
-              backgroundColor="#FFFFFF"
-              ecl="H"
-            />
+        <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+          <View style={styles.scrollBody}>
+            {isCustom && (
+              <>
+                <BlueText style={styles.amount} numberOfLines={1}>
+                  {getDisplayAmount()}
+                </BlueText>
+                <BlueText style={styles.label} numberOfLines={1}>
+                  {customLabel}
+                </BlueText>
+              </>
+            )}
+            <View style={styles.qrCodeContainer}>
+              <QRCode
+                value={bip21encoded}
+                logo={require('../../img/qr-code.png')}
+                size={(is.ipad() && 300) || 300}
+                logoSize={90}
+                color="#000000"
+                logoBackgroundColor={colors.brandingColor}
+                backgroundColor="#FFFFFF"
+                ecl="H"
+              />
+            </View>
+            <BlueCopyTextToClipboard text={isCustom ? bip21encoded : address} />
           </View>
-          <BlueCopyTextToClipboard text={isCustom ? bip21encoded : address} />
-        </View>
-        <View style={styles.share}>
-          <BlueButtonLink title={loc.receive.details_setAmount} onPress={showCustomAmountModal} />
-          <View>
-            <SecondButton onPress={handleShareButtonPressed} title={loc.receive.details_share} />
+          <View style={styles.share}>
+            <BlueButtonLink title={loc.receive.details_setAmount} onPress={showCustomAmountModal} />
+            <View>
+              <SecondButton onPress={handleShareButtonPressed} title={loc.receive.details_share} />
+            </View>
           </View>
-        </View>
+        </LinearGradient>
         {renderCustomAmountModal()}
       </ScrollView>
     );
@@ -264,7 +267,7 @@ const ReceiveDetails = () => {
     setIsCustomModalVisible(false);
     let amount = customAmount;
     switch (customUnit) {
-      case BitcoinUnit.BTC:
+      case BitcoinUnit.VLS:
         // nop
         break;
       case BitcoinUnit.SATS:
@@ -321,28 +324,31 @@ const ReceiveDetails = () => {
   };
 
   /**
-   * @returns {string} BTC amount, accounting for current `customUnit` and `customUnit`
+   * @returns {string} VLS amount, accounting for current `customUnit` and `customUnit`
    */
   const getDisplayAmount = () => {
     switch (customUnit) {
-      case BitcoinUnit.BTC:
-        return customAmount + ' BTC';
+      case BitcoinUnit.VLS:
+        return customAmount + ' VLS';
       case BitcoinUnit.SATS:
-        return currency.satoshiToBTC(customAmount) + ' BTC';
+        return currency.satoshiToBTC(customAmount) + ' VLS';
       case BitcoinUnit.LOCAL_CURRENCY:
-        return currency.fiatToBTC(customAmount) + ' BTC';
+        return currency.fiatToBTC(customAmount) + ' VLS';
     }
     return customAmount + ' ' + customUnit;
   };
 
   return (
     <View style={styles.root}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar 
+  barStyle="light-content"
+  backgroundColor="rgba(95, 88, 84, .18)"
+/>
       {isHandOffUseEnabled && address !== undefined && showAddress && (
         <Handoff
           title={`Bitcoin Transaction ${address}`}
           type="io.bluewallet.bluewallet"
-          url={`https://blockstream.info/address/${address}`}
+          url={`https://explorer.veles.network/address/${address}`}
         />
       )}
       {showAddress ? renderReceiveDetails() : <BlueLoading />}

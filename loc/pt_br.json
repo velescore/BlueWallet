@@ -419,7 +419,7 @@
     "vault_key": "Chave do cofre {número}",
     "required_keys_out_of_total": "Chaves obrigatórias do total",
     "fee": "Taxa: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_btc": "{number} VLS",
     "confirm": "Confirmar",
     "header": "Enviar",
     "share": "Ver",

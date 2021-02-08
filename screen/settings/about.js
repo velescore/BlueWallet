@@ -6,6 +6,7 @@ import { getApplicationName, getVersion, getBundleId, getBuildNumber } from 'rea
 import Rate, { AndroidMarket } from 'react-native-rate';
 
 import { BlueButton, BlueCard, BlueListItem, BlueSpacing20, BlueTextCentered, SafeBlueArea } from '../../BlueComponents';
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import loc from '../../loc';
 
@@ -23,8 +24,8 @@ const About = () => {
       marginTop: 54,
     },
     logo: {
-      width: 102,
-      height: 124,
+      width: 150,
+      height: 150,
     },
     textFree: {
       maxWidth: 260,
@@ -43,13 +44,13 @@ const About = () => {
       fontWeight: '500',
     },
     buildWith: {
-      backgroundColor: colors.inputBackgroundColor,
+      backgroundColor: 'rgba(95, 88, 84, .05)',
       padding: 16,
       paddingTop: 0,
       borderRadius: 8,
     },
     buttonLink: {
-      backgroundColor: colors.lightButton,
+      backgroundColor: '#b1968384',
       borderRadius: 12,
       justifyContent: 'center',
       padding: 8,
@@ -75,18 +76,18 @@ const About = () => {
   };
 
   const handleOnTwitterPress = () => {
-    Linking.openURL('https://twitter.com/bluewalletio');
+    Linking.openURL('https://twitter.com/velescore');
   };
 
   const handleOnDiscordPress = () => {
-    Linking.openURL('https://discord.gg/btWq2Aby2z');
+    Linking.openURL('https://discord.gg/eYJ7sQHEtH');
   };
 
   const handleOnTelegramPress = () => {
     Linking.openURL('https://t.me/bluewallethat');
   };
   const handleOnGithubPress = () => {
-    Linking.openURL('https://github.com/BlueWallet/BlueWallet');
+    Linking.openURL('https://github.com/velescore/veles-mobile-wallet');
   };
   const handleOnRatePress = () => {
     const options = {
@@ -95,7 +96,7 @@ const About = () => {
       preferredAndroidMarket: AndroidMarket.Google,
       preferInApp: true,
       openAppStoreIfInAppFails: true,
-      fallbackPlatformURL: 'https://bluewallet.io',
+      fallbackPlatformURL: 'https://veles.network',
     };
     Rate.rate(options, success => {
       if (success) {
@@ -106,104 +107,87 @@ const About = () => {
 
   return (
     <SafeBlueArea style={styles.root}>
-      <ScrollView testID="AboutScrollView">
-        <BlueCard>
-          <View style={styles.center}>
-            <Image style={styles.logo} source={require('../../img/bluebeast.png')} />
-            <Text style={styles.textFree}>{loc.settings.about_free}</Text>
-            <Text style={styles.textBackup}>{loc.settings.about_backup}</Text>
-            <BlueButton onPress={handleOnRatePress} title={loc.settings.about_review + ' ⭐🙏'} />
-          </View>
-        </BlueCard>
-        <BlueListItem
-          leftIcon={{
-            name: 'twitter',
-            type: 'font-awesome',
-            color: '#1da1f2',
-          }}
-          onPress={handleOnTwitterPress}
-          title={loc.settings.about_sm_twitter}
-        />
-        <BlueListItem
-          leftIcon={{
-            name: 'telegram',
-            type: 'font-awesome',
-            color: '#0088cc',
-          }}
-          onPress={handleOnTelegramPress}
-          title={loc.settings.about_sm_telegram}
-        />
-        <BlueListItem
-          leftIcon={{
-            name: 'discord',
-            type: 'font-awesome-5',
-            color: '#7289da',
-          }}
-          onPress={handleOnDiscordPress}
-          title={loc.settings.about_sm_discord}
-        />
-        <BlueCard>
-          <View style={styles.buildWith}>
-            <BlueSpacing20 />
+      <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+        <ScrollView testID="AboutScrollView">
+          <BlueCard>
+            <View style={styles.center}>
+              <Image style={styles.logo} source={require('../../img/icon.png')} />
+              <Text style={styles.textFree}>{loc.settings.about_free}</Text>
+              <Text style={styles.textBackup}>{loc.settings.about_backup}</Text>
+              <BlueButton onPress={handleOnRatePress} title={loc.settings.about_review + ' ⭐🙏'} />
+            </View>
+          </BlueCard>
+          <BlueListItem
+            leftIcon={{
+              name: 'twitter',
+              type: 'font-awesome',
+              color: '#1da1f2',
+            }}
+            onPress={handleOnTwitterPress}
+            title={loc.settings.about_sm_twitter}
+          />
+          <BlueListItem
+            leftIcon={{
+              name: 'discord',
+              type: 'font-awesome-5',
+              color: '#7289da',
+            }}
+            onPress={handleOnDiscordPress}
+            title={loc.settings.about_sm_discord}
+          />
+          <BlueCard>
+            <View style={styles.buildWith}>
+              <BlueSpacing20 />
 
-            <BlueTextCentered>{loc.settings.about_awesome} 👍</BlueTextCentered>
-            <BlueSpacing20 />
-            <BlueTextCentered>React Native</BlueTextCentered>
-            <BlueTextCentered>bitcoinjs-lib</BlueTextCentered>
-            <BlueTextCentered>Nodejs</BlueTextCentered>
-            <BlueTextCentered>Electrum server</BlueTextCentered>
-            <BlueSpacing20 />
+              <BlueTextCentered>{loc.settings.about_awesome} 👍</BlueTextCentered>
+              <BlueSpacing20 />
+              <BlueTextCentered>BlueWallet</BlueTextCentered>
+              <BlueTextCentered>React Native</BlueTextCentered>
+              <BlueTextCentered>bitcoinjs-lib</BlueTextCentered>
+              <BlueTextCentered>Nodejs</BlueTextCentered>
+              <BlueTextCentered>Electrum server</BlueTextCentered>
+              <BlueSpacing20 />
 
-            <TouchableOpacity onPress={handleOnGithubPress} style={styles.buttonLink}>
-              <Icon size={22} name="github" type="font-awesome-5" color={colors.foregroundColor} />
-              <Text style={styles.textLink}>{loc.settings.about_sm_github}</Text>
-            </TouchableOpacity>
-          </View>
-        </BlueCard>
-        <BlueListItem
-          leftIcon={{
-            name: 'book',
-            type: 'font-awesome',
-            color: '#9AA0AA',
-          }}
-          chevron
-          onPress={handleOnReleaseNotesPress}
-          title={loc.settings.about_release_notes}
-        />
-        <BlueListItem
-          leftIcon={{
-            name: 'law',
-            type: 'octicon',
-            color: colors.foregroundColor,
-          }}
-          chevron
-          onPress={handleOnLicensingPress}
-          title={loc.settings.about_license}
-        />
-        <BlueListItem
-          leftIcon={{
-            name: 'flask',
-            type: 'font-awesome',
-            color: '#FC0D44',
-          }}
-          chevron
-          onPress={handleOnSelfTestPress}
-          testID="RunSelfTestButton"
-          title={loc.settings.about_selftest}
-        />
-        <BlueSpacing20 />
-        <BlueSpacing20 />
-        <BlueTextCentered>
-          {getApplicationName()} ver {getVersion()} (build {getBuildNumber()})
-        </BlueTextCentered>
-        <BlueTextCentered>{new Date(getBuildNumber() * 1000).toGMTString()}</BlueTextCentered>
-        <BlueTextCentered>{getBundleId()}</BlueTextCentered>
-        <BlueTextCentered>
-          w, h = {width}, {height}
-        </BlueTextCentered>
-        <BlueSpacing20 />
-        <BlueSpacing20 />
-      </ScrollView>
+              <TouchableOpacity onPress={handleOnGithubPress} style={styles.buttonLink}>
+                <Icon size={22} name="github" type="font-awesome-5" color={colors.foregroundColor} />
+                <Text style={styles.textLink}>{loc.settings.about_sm_github}</Text>
+              </TouchableOpacity>
+            </View>
+          </BlueCard>
+          <BlueListItem
+            leftIcon={{
+              name: 'book',
+              type: 'font-awesome',
+              color: '#9AA0AA',
+            }}
+            chevron
+            onPress={handleOnReleaseNotesPress}
+            title={loc.settings.about_release_notes}
+          />
+          <BlueListItem
+            leftIcon={{
+              name: 'law',
+              type: 'octicon',
+              color: colors.foregroundColor,
+            }}
+            chevron
+            onPress={handleOnLicensingPress}
+            title={loc.settings.about_license}
+          />
+          <BlueSpacing20 />
+          <BlueSpacing20 />
+          <BlueTextCentered>
+            {getApplicationName()} ver {getVersion()} (build {getBuildNumber()})
+          </BlueTextCentered>
+          <BlueTextCentered>{new Date(getBuildNumber() * 1000).toGMTString()}</BlueTextCentered>
+          <BlueTextCentered>{getBundleId()}</BlueTextCentered>
+          <BlueTextCentered>
+            w, h = {width}, {height}
+          </BlueTextCentered>
+          <BlueSpacing20 />
+          <BlueSpacing20 />
+        </ScrollView>
+      </LinearGradient>
     </SafeBlueArea>
   );
 };

@@ -17,7 +17,7 @@ import {
   View,
 } from 'react-native';
 import { useRoute, useTheme, useNavigation } from '@react-navigation/native';
-
+import LinearGradient from 'react-native-linear-gradient';
 import loc, { formatBalance } from '../../loc';
 import { BitcoinUnit } from '../../models/bitcoinUnits';
 import { SafeBlueArea, BlueSpacing10, BlueSpacing20, BlueButton, BlueListItem } from '../../BlueComponents';
@@ -59,7 +59,7 @@ const ChangeBadge = () => {
 
 const OutputList = ({
   item: { address, txid, value, vout, confirmations },
-  balanceUnit = BitcoinUnit.BTC,
+  balanceUnit = BitcoinUnit.VLS,
   oMemo,
   frozen,
   change,
@@ -133,7 +133,7 @@ OutputList.propTypes = {
   onDeSelect: PropTypes.func,
 };
 
-const OutputModal = ({ item: { address, txid, value, vout, confirmations }, balanceUnit = BitcoinUnit.BTC, oMemo }) => {
+const OutputModal = ({ item: { address, txid, value, vout, confirmations }, balanceUnit = BitcoinUnit.VLS, oMemo }) => {
   const { colors } = useTheme();
   const { txMetadata } = useContext(BlueStorageContext);
   const memo = oMemo || txMetadata[txid]?.memo || '';
@@ -385,7 +385,8 @@ const CoinControl = () => {
   }
 
   return (
-    <View style={[styles.root, { backgroundColor: colors.elevated }]}>
+    <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+    <View style={[styles.root, { backgroundColor: 'transparent' }]}>
       {utxo.length === 0 && (
         <View style={styles.empty}>
           <Text style={{ color: colors.foregroundColor }}>{loc.cc.empty}</Text>
@@ -431,6 +432,7 @@ const CoinControl = () => {
         </FContainer>
       )}
     </View>
+    </LinearGradient>
   );
 };
 

@@ -129,7 +129,7 @@
     "create_new_key": "新規作成",
     "export_coordination_setup": "エクスポート調整設定",
     "fee": "費用: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_btc": "{number} VLS",
     "forget_this_seed": "このシードではなくxpubを代わりに利用する",
     "header": "送る",
     "how_many_signatures_can_bluewallet_make": "Bluewalletが何人分の署名を作ることができるか",

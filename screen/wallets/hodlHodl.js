@@ -850,7 +850,10 @@ export default class HodlHodl extends Component {
   render() {
     return (
       <SafeBlueArea>
-        <StatusBar barStyle="default" />
+        <StatusBar 
+          barStyle="default" 
+          backgroundColor="rgba(95, 88, 84, .18)"
+        />
         <SectionList
           onRefresh={this._onRefreshOffers}
           refreshing={this.state.showShowFlatListRefreshControl}

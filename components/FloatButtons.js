@@ -74,6 +74,7 @@ const bStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
+    marginLeft: 1,    
   },
   icon: {
     alignItems: 'center',

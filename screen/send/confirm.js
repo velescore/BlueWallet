@@ -91,7 +91,7 @@ export default class Confirm extends Component {
           amount += recipient.value;
         }
 
-        amount = formatBalanceWithoutSuffix(amount, BitcoinUnit.BTC, false);
+        amount = formatBalanceWithoutSuffix(amount, BitcoinUnit.VLS, false);
 
         this.props.navigation.navigate('Success', {
           fee: Number(this.state.fee),
@@ -137,7 +137,7 @@ export default class Confirm extends Component {
           <Text testID="TransactionValue" style={styles.valueValue}>
             {currency.satoshiToBTC(item.value)}
           </Text>
-          <Text style={styles.valueUnit}>{' ' + loc.units[BitcoinUnit.BTC]}</Text>
+          <Text style={styles.valueUnit}>{' ' + loc.units[BitcoinUnit.VLS]}</Text>
         </View>
         <Text style={styles.transactionAmountFiat}>{currency.satoshiToLocalCurrency(item.value)}</Text>
         <BlueCard>
@@ -175,7 +175,7 @@ export default class Confirm extends Component {
           <View style={styles.cardContainer}>
             <BlueCard>
               <Text style={styles.cardText}>
-                {loc.send.create_fee}: {formatBalance(this.state.feeSatoshi, BitcoinUnit.BTC)} (
+                {loc.send.create_fee}: {formatBalance(this.state.feeSatoshi, BitcoinUnit.VLS)} (
                 {currency.satoshiToLocalCurrency(this.state.feeSatoshi)})
               </Text>
               <BlueSpacing40 />

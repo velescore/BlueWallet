@@ -2,12 +2,22 @@ import React, { useEffect, useState, useRef, useContext } from 'react';
 import { View, ActivityIndicator, Image, Text, StyleSheet, StatusBar, ScrollView } from 'react-native';
 import { BluePrivateBalance } from '../../BlueComponents';
 import SortableList from 'react-native-sortable-list';
-import LinearGradient from 'react-native-linear-gradient';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
+import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation, useTheme } from '@react-navigation/native';
 
 import navigationStyle from '../../components/navigationStyle';
-import { PlaceholderWallet, LightningCustodianWallet, MultisigHDWallet } from '../../class';
+import { 
+  LightningCustodianWallet, 
+  MultisigHDWallet, 
+  PlaceholderWallet, 
+  HDLegacyP2PKHWallet, 
+  HDSegwitBech32Wallet, 
+  HDSegwitP2SHWallet,
+  LegacyWallet,
+  SegwitBech32Wallet,
+  SegwitP2SHWallet,  
+} from '../../class';
 import WalletGradient from '../../class/wallet-gradient';
 import loc, { formatBalance, transactionTimeToReadable } from '../../loc';
 import { BlueStorageContext } from '../../blue_modules/storage-context';
@@ -37,6 +47,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     right: 0,
+  },
+image_top_corner: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    borderRadius: 10,
   },
   transparentText: {
     backgroundColor: 'transparent',
@@ -76,7 +94,7 @@ const ReorderWallets = () => {
   const { wallets, setWalletsWithNewOrder } = useContext(BlueStorageContext);
   const stylesHook = {
     root: {
-      backgroundColor: colors.elevated,
+      backgroundColor: 'transparent',
     },
     loading: {
       backgroundColor: colors.elevated,
@@ -118,7 +136,26 @@ const ReorderWallets = () => {
 
     return (
       <View shadowOpacity={40 / 100} shadowOffset={{ width: 0, height: 0 }} shadowRadius={5} style={styles.itemRoot}>
-        <LinearGradient shadowColor="#000000" colors={WalletGradient.gradientsFor(item.type)} style={styles.gradient}>
+        <LinearGradient shadowColor="#000000" start={{x: 2, y: 0}} colors={WalletGradient.gradientsFor(item.type)} style={styles.gradient}>
+          <Image
+            source={(() => {
+              switch (item.type) {
+                case HDLegacyP2PKHWallet.type:
+                  return require('../../img/card_sun.png');
+                case HDSegwitP2SHWallet.type:
+                  return require('../../img/card_sun2.png');
+                case HDSegwitBech32Wallet.type:
+                  return require('../../img/card_sun3.png');
+                case LegacyWallet.type:
+                  return require('../../img/card_sun4.png');
+                case SegwitP2SHWallet.type:
+                  return require('../../img/card_sun5.png');
+                case SegwitBech32Wallet.type:
+                  return require('../../img/card_sun6.png');
+              }
+            })()}
+            style={styles.image_top_corner}
+          />
           <Image
             source={(() => {
               switch (item.type) {
@@ -176,8 +213,12 @@ const ReorderWallets = () => {
       <ActivityIndicator />
     </View>
   ) : (
+    <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
     <View style={[styles.root, stylesHook.root]}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar 
+        barStyle="light-content"
+        backgroundColor="rgba(95, 88, 84, .18)"
+      />
       <ScrollView scrollEnabled={scrollEnabled}>
         <SortableList
           ref={sortableList}
@@ -190,6 +231,7 @@ const ReorderWallets = () => {
         />
       </ScrollView>
     </View>
+    </LinearGradient>
   );
 };
 

@@ -35,6 +35,7 @@ import {
   BlueListItem,
   BlueText,
 } from '../../BlueComponents';
+import LinearGradient from 'react-native-linear-gradient';
 import { navigationStyleTx } from '../../components/navigationStyle';
 import NetworkTransactionFees, { NetworkTransactionFee } from '../../models/networkTransactionFees';
 import { BitcoinUnit, Chain } from '../../models/bitcoinUnits';
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     justifyContent: 'space-between',
-    backgroundColor: BlueCurrentTheme.colors.elevated,
+    backgroundColor: 'transparent',
   },
   scrollViewContent: {
     flexDirection: 'row',
@@ -320,7 +321,7 @@ export default class SendDetails extends Component {
         console.log(options);
         if (btcAddressRx.test(address) || address.indexOf('bc1') === 0 || address.indexOf('BC1') === 0) {
           const units = this.state.units;
-          units[this.state.recipientsScrollIndex] = BitcoinUnit.BTC; // also resetting current unit to BTC
+          units[this.state.recipientsScrollIndex] = BitcoinUnit.VLS; // also resetting current unit to VLS
           recipients[[this.state.recipientsScrollIndex]].address = address;
           recipients[[this.state.recipientsScrollIndex]].amount = options.amount;
           recipients[[this.state.recipientsScrollIndex]].amountSats = new BigNumber(options.amount).multipliedBy(100000000).toNumber();
@@ -328,7 +329,7 @@ export default class SendDetails extends Component {
             addresses: recipients,
             memo: options.label || options.message,
             isLoading: false,
-            amountUnit: BitcoinUnit.BTC,
+            amountUnit: BitcoinUnit.VLS,
             units,
             payjoinUrl: options.pj || '',
           });
@@ -353,7 +354,7 @@ export default class SendDetails extends Component {
         const { address, amount, memo, payjoinUrl } = DeeplinkSchemaMatch.decodeBitcoinUri(uri);
         addresses.push(new BitcoinTransaction(address, amount, currency.btcToSatoshi(amount)));
         initialMemo = memo;
-        this.setState({ addresses, memo: initialMemo, isLoading: false, amountUnit: BitcoinUnit.BTC, payjoinUrl });
+        this.setState({ addresses, memo: initialMemo, isLoading: false, amountUnit: BitcoinUnit.VLS, payjoinUrl });
       } catch (error) {
         console.log(error);
         alert(loc.send.details_error_decode);
@@ -361,7 +362,7 @@ export default class SendDetails extends Component {
     } else if (this.props.route.params.address) {
       addresses.push(new BitcoinTransaction(this.props.route.params.address));
       if (this.props.route.params.memo) initialMemo = this.props.route.params.memo;
-      this.setState({ addresses, memo: initialMemo, isLoading: false, amountUnit: BitcoinUnit.BTC });
+      this.setState({ addresses, memo: initialMemo, isLoading: false, amountUnit: BitcoinUnit.VLS });
     } else {
       this.setState({ addresses: [new BitcoinTransaction()], isLoading: false });
     }
@@ -1262,7 +1263,7 @@ export default class SendDetails extends Component {
               case BitcoinUnit.SATS:
                 item.amountSats = parseInt(item.amount);
                 break;
-              case BitcoinUnit.BTC:
+              case BitcoinUnit.VLS:
                 item.amountSats = currency.btcToSatoshi(item.amount);
                 break;
               case BitcoinUnit.LOCAL_CURRENCY:
@@ -1278,7 +1279,7 @@ export default class SendDetails extends Component {
           onChangeText={text => {
             item.amount = text;
             switch (this.state.units[index] || this.state.amountUnit) {
-              case BitcoinUnit.BTC:
+              case BitcoinUnit.VLS:
                 item.amountSats = currency.btcToSatoshi(item.amount);
                 break;
               case BitcoinUnit.LOCAL_CURRENCY:
@@ -1344,7 +1345,7 @@ export default class SendDetails extends Component {
             this.setState(
               {
                 addresses: [recipient],
-                units: [BitcoinUnit.BTC],
+                units: [BitcoinUnit.VLS],
                 isAdvancedTransactionOptionsVisible: false,
               },
               this.reCalcTx,
@@ -1380,83 +1381,88 @@ export default class SendDetails extends Component {
 
     // if utxo is limited we use it to calculate available balance
     const balance = utxo ? utxo.reduce((prev, curr) => prev + curr.value, 0) : fromWallet.getBalance();
-    const allBalance = formatBalanceWithoutSuffix(balance, BitcoinUnit.BTC, true);
+    const allBalance = formatBalanceWithoutSuffix(balance, BitcoinUnit.VLS, true);
 
     return (
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <View style={styles.root} onLayout={this.onLayout}>
-          <StatusBar barStyle="light-content" />
-          <View>
-            <KeyboardAvoidingView behavior="position">
-              <FlatList
-                keyboardShouldPersistTaps="always"
-                scrollEnabled={this.state.addresses.length > 1}
-                extraData={this.state.addresses}
-                data={this.state.addresses}
-                renderItem={this.renderBitcoinTransactionInfoFields}
-                keyExtractor={this.keyExtractor}
-                ref={this.scrollView}
-                horizontal
-                pagingEnabled
-                removeClippedSubviews={false}
-                onMomentumScrollBegin={Keyboard.dismiss}
-                scrollIndicatorInsets={{ top: 0, left: 8, bottom: 0, right: 8 }}
-                contentContainerStyle={styles.scrollViewContent}
-              />
-              <View hide={!this.state.showMemoRow} style={styles.memo}>
-                <TextInput
-                  onChangeText={text => this.setState({ memo: text })}
-                  placeholder={loc.send.details_note_placeholder}
-                  placeholderTextColor="#81868e"
-                  value={this.state.memo}
-                  numberOfLines={1}
-                  style={styles.memoText}
-                  editable={!this.state.isLoading}
-                  onSubmitEditing={Keyboard.dismiss}
-                  inputAccessoryViewID={BlueDismissKeyboardInputAccessory.InputAccessoryViewID}
+      <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+          <View style={styles.root} onLayout={this.onLayout}>
+            <StatusBar 
+              barStyle="light-content"
+              backgroundColor="rgba(95, 88, 84, .18)"
+            />
+            <View>
+              <KeyboardAvoidingView behavior="position">
+                <FlatList
+                  keyboardShouldPersistTaps="always"
+                  scrollEnabled={this.state.addresses.length > 1}
+                  extraData={this.state.addresses}
+                  data={this.state.addresses}
+                  renderItem={this.renderBitcoinTransactionInfoFields}
+                  keyExtractor={this.keyExtractor}
+                  ref={this.scrollView}
+                  horizontal
+                  pagingEnabled
+                  removeClippedSubviews={false}
+                  onMomentumScrollBegin={Keyboard.dismiss}
+                  scrollIndicatorInsets={{ top: 0, left: 8, bottom: 0, right: 8 }}
+                  contentContainerStyle={styles.scrollViewContent}
                 />
-              </View>
-              <TouchableOpacity
-                testID="chooseFee"
-                onPress={() => this.setState({ isFeeSelectionModalVisible: true }, () => this.reCalcTx(true))}
-                disabled={this.state.isLoading}
-                style={styles.fee}
-              >
-                <Text style={styles.feeLabel}>{loc.send.create_fee}</Text>
-                <View style={styles.feeRow}>
-                  <Text style={styles.feeValue}>
-                    {this.state.feePrecalc.current
-                      ? this.formatFee(this.state.feePrecalc.current)
-                      : this.state.fee + ' ' + loc.units.sat_byte}
-                  </Text>
+                <View hide={!this.state.showMemoRow} style={styles.memo}>
+                  <TextInput
+                    onChangeText={text => this.setState({ memo: text })}
+                    placeholder={loc.send.details_note_placeholder}
+                    placeholderTextColor="#81868e"
+                    value={this.state.memo}
+                    numberOfLines={1}
+                    style={styles.memoText}
+                    editable={!this.state.isLoading}
+                    onSubmitEditing={Keyboard.dismiss}
+                    inputAccessoryViewID={BlueDismissKeyboardInputAccessory.InputAccessoryViewID}
+                  />
                 </View>
-              </TouchableOpacity>
-              {this.renderCreateButton()}
-              {this.renderFeeSelectionModal()}
-              {this.renderAdvancedTransactionOptionsModal()}
-            </KeyboardAvoidingView>
-          </View>
-          <BlueDismissKeyboardInputAccessory />
-          {Platform.select({
-            ios: (
-              <BlueUseAllFundsButton
-                canUseAll={fromWallet.allowSendMax() && allBalance > 0}
-                onUseAllPressed={this.onUseAllPressed}
-                balance={allBalance}
-              />
-            ),
-            android: this.state.isAmountToolbarVisibleForAndroid && (
-              <BlueUseAllFundsButton
-                canUseAll={fromWallet.allowSendMax() && allBalance > 0}
-                onUseAllPressed={this.onUseAllPressed}
-                balance={allBalance}
-              />
-            ),
-          })}
+                <TouchableOpacity
+                  testID="chooseFee"
+                  onPress={() => this.setState({ isFeeSelectionModalVisible: true }, () => this.reCalcTx(true))}
+                  disabled={this.state.isLoading}
+                  style={styles.fee}
+                >
+                  <Text style={styles.feeLabel}>{loc.send.create_fee}</Text>
+                  <View style={styles.feeRow}>
+                    <Text style={styles.feeValue}>
+                      {this.state.feePrecalc.current
+                        ? this.formatFee(this.state.feePrecalc.current)
+                        : this.state.fee + ' ' + loc.units.sat_byte}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+                {this.renderCreateButton()}
+                {this.renderFeeSelectionModal()}
+                {this.renderAdvancedTransactionOptionsModal()}
+              </KeyboardAvoidingView>
+            </View>
+            <BlueDismissKeyboardInputAccessory />
+            {Platform.select({
+              ios: (
+                <BlueUseAllFundsButton
+                  canUseAll={fromWallet.allowSendMax() && allBalance > 0}
+                  onUseAllPressed={this.onUseAllPressed}
+                  balance={allBalance}
+                />
+              ),
+              android: this.state.isAmountToolbarVisibleForAndroid && (
+                <BlueUseAllFundsButton
+                  canUseAll={fromWallet.allowSendMax() && allBalance > 0}
+                  onUseAllPressed={this.onUseAllPressed}
+                  balance={allBalance}
+                />
+              ),
+            })}
 
-          {this.renderWalletSelectionOrCoinsSelected()}
-        </View>
-      </TouchableWithoutFeedback>
+            {this.renderWalletSelectionOrCoinsSelected()}
+          </View>
+        </TouchableWithoutFeedback>
+      </LinearGradient>
     );
   }
 }

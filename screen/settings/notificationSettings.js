@@ -4,6 +4,7 @@ import { ScrollView, TouchableWithoutFeedback, StyleSheet, Linking, View, TextIn
 import { useTheme } from '@react-navigation/native';
 import { Button } from 'react-native-elements';
 
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import { BlueButton, BlueCard, BlueCopyToClipboardButton, BlueListItem, BlueLoading, BlueSpacing20, BlueText } from '../../BlueComponents';
 import loc from '../../loc';
@@ -95,63 +96,65 @@ const NotificationSettings = () => {
     <BlueLoading />
   ) : (
     <ScrollView style={stylesWithThemeHook.scroll}>
-      <BlueListItem
-        Component={TouchableWithoutFeedback}
-        title={loc.settings.push_notifications}
-        switch={{ onValueChange: onNotificationsSwitch, value: isNotificationsEnabled }}
-      />
-      <BlueSpacing20 />
-
-      <BlueCard>
-        <BlueText>{loc.settings.groundcontrol_explanation}</BlueText>
-      </BlueCard>
-
-      <Button
-        icon={{
-          name: 'github',
-          type: 'font-awesome',
-          color: colors.foregroundColor,
-        }}
-        onPress={() => Linking.openURL('https://github.com/BlueWallet/GroundControl')}
-        titleStyle={{ color: colors.buttonAlternativeTextColor }}
-        title="github.com/BlueWallet/GroundControl"
-        color={colors.buttonTextColor}
-        buttonStyle={styles.buttonStyle}
-      />
-
-      <BlueCard>
-        <View style={styles.uri}>
-          <TextInput
-            placeholder={Notifications.getDefaultUri()}
-            value={URI}
-            onChangeText={setURI}
-            numberOfLines={1}
-            style={styles.uriText}
-            placeholderTextColor="#81868e"
-            editable={!isLoading}
-            textContentType="URL"
-            autoCapitalize="none"
-            underlineColorAndroid="transparent"
-          />
-        </View>
-
+      <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+        <BlueListItem
+          Component={TouchableWithoutFeedback}
+          title={loc.settings.push_notifications}
+          switch={{ onValueChange: onNotificationsSwitch, value: isNotificationsEnabled }}
+        />
         <BlueSpacing20 />
-        <BlueText style={styles.centered} onPress={() => setShowTokenInfo(isShowTokenInfo + 1)}>
-          ♪ Ground Control to Major Tom ♪
-        </BlueText>
-        <BlueText style={styles.centered} onPress={() => setShowTokenInfo(isShowTokenInfo + 1)}>
-          ♪ Commencing countdown, engines on ♪
-        </BlueText>
 
-        {isShowTokenInfo >= 9 && (
-          <View>
-            <BlueCopyToClipboardButton stringToCopy={tokenInfo} displayText={tokenInfo} />
+        <BlueCard>
+          <BlueText>{loc.settings.groundcontrol_explanation}</BlueText>
+        </BlueCard>
+
+        <Button
+          icon={{
+            name: 'github',
+            type: 'font-awesome',
+            color: colors.foregroundColor,
+          }}
+          onPress={() => Linking.openURL('https://github.com/BlueWallet/GroundControl')}
+          titleStyle={{ color: colors.buttonAlternativeTextColor }}
+          title="github.com/BlueWallet/GroundControl"
+          color={colors.buttonTextColor}
+          buttonStyle={styles.buttonStyle}
+        />
+
+        <BlueCard>
+          <View style={styles.uri}>
+            <TextInput
+              placeholder={Notifications.getDefaultUri()}
+              value={URI}
+              onChangeText={setURI}
+              numberOfLines={1}
+              style={styles.uriText}
+              placeholderTextColor="#81868e"
+              editable={!isLoading}
+              textContentType="URL"
+              autoCapitalize="none"
+              underlineColorAndroid="transparent"
+            />
           </View>
-        )}
 
-        <BlueSpacing20 />
-        <BlueButton onPress={save} title={loc.settings.save} />
-      </BlueCard>
+          <BlueSpacing20 />
+          <BlueText style={styles.centered} onPress={() => setShowTokenInfo(isShowTokenInfo + 1)}>
+            ♪ Ground Control to Major Tom ♪
+          </BlueText>
+          <BlueText style={styles.centered} onPress={() => setShowTokenInfo(isShowTokenInfo + 1)}>
+            ♪ Commencing countdown, engines on ♪
+          </BlueText>
+
+          {isShowTokenInfo >= 9 && (
+            <View>
+              <BlueCopyToClipboardButton stringToCopy={tokenInfo} displayText={tokenInfo} />
+            </View>
+          )}
+
+          <BlueSpacing20 />
+          <BlueButton onPress={save} title={loc.settings.save} />
+        </BlueCard>
+      </LinearGradient>
     </ScrollView>
   );
 };

@@ -14,6 +14,7 @@ import {
   SafeBlueArea,
   BlueSpacing20,
 } from '../../BlueComponents';
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import Privacy from '../../Privacy';
 import WalletImport from '../../class/wallet-import';
@@ -32,7 +33,7 @@ const WalletsImport = () => {
     root: {
       flex: 1,
       paddingTop: 40,
-      backgroundColor: colors.elevated,
+      backgroundColor: 'transparent',
     },
     center: {
       flex: 1,
@@ -110,59 +111,64 @@ const WalletsImport = () => {
   };
 
   return (
-    <SafeBlueArea forceInset={{ horizontal: 'always' }} style={styles.root}>
-      <StatusBar barStyle="light-content" />
-      <BlueSpacing20 />
-      <BlueFormLabel>{loc.wallets.import_explanation}</BlueFormLabel>
-      <BlueSpacing20 />
-      <BlueFormMultiInput
-        testID="MnemonicInput"
-        value={importText}
-        contextMenuHidden={getSystemName() !== 'Mac OS X'}
-        onChangeText={setImportText}
-        inputAccessoryViewID={BlueDoneAndDismissKeyboardInputAccessory.InputAccessoryViewID}
-      />
+    <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+      <SafeBlueArea forceInset={{ horizontal: 'always' }} style={styles.root}>
+        <StatusBar 
+          barStyle="light-content"
+          backgroundColor="rgba(95, 88, 84, .18)"
+        />
+        <BlueSpacing20 />
+        <BlueFormLabel>{loc.wallets.import_explanation}</BlueFormLabel>
+        <BlueSpacing20 />
+        <BlueFormMultiInput
+          testID="MnemonicInput"
+          value={importText}
+          contextMenuHidden={getSystemName() !== 'Mac OS X'}
+          onChangeText={setImportText}
+          inputAccessoryViewID={BlueDoneAndDismissKeyboardInputAccessory.InputAccessoryViewID}
+        />
 
-      <BlueSpacing20 />
-      <View style={styles.center}>
-        <>
-          <BlueButton
-            testID="DoImport"
-            disabled={importText.trim().length === 0}
-            title={loc.wallets.import_do_import}
-            onPress={importButtonPressed}
-          />
-          <BlueSpacing20 />
-          <BlueButtonLink title={loc.wallets.import_scan_qr} onPress={importScan} testID="ScanImport" />
-        </>
-      </View>
-      {Platform.select({
-        ios: (
-          <BlueDoneAndDismissKeyboardInputAccessory
-            onClearTapped={() => {
-              setImportText('');
-              Keyboard.dismiss();
-            }}
-            onPasteTapped={text => {
-              setImportText(text);
-              Keyboard.dismiss();
-            }}
-          />
-        ),
-        android: isToolbarVisibleForAndroid && (
-          <BlueDoneAndDismissKeyboardInputAccessory
-            onClearTapped={() => {
-              setImportText('');
-              Keyboard.dismiss();
-            }}
-            onPasteTapped={text => {
-              setImportText(text);
-              Keyboard.dismiss();
-            }}
-          />
-        ),
-      })}
-    </SafeBlueArea>
+        <BlueSpacing20 />
+        <View style={styles.center}>
+          <>
+            <BlueButton
+              testID="DoImport"
+              disabled={importText.trim().length === 0}
+              title={loc.wallets.import_do_import}
+              onPress={importButtonPressed}
+            />
+            <BlueSpacing20 />
+            <BlueButtonLink title={loc.wallets.import_scan_qr} onPress={importScan} testID="ScanImport" />
+          </>
+        </View>
+        {Platform.select({
+          ios: (
+            <BlueDoneAndDismissKeyboardInputAccessory
+              onClearTapped={() => {
+                setImportText('');
+                Keyboard.dismiss();
+              }}
+              onPasteTapped={text => {
+                setImportText(text);
+                Keyboard.dismiss();
+              }}
+            />
+          ),
+          android: isToolbarVisibleForAndroid && (
+            <BlueDoneAndDismissKeyboardInputAccessory
+              onClearTapped={() => {
+                setImportText('');
+                Keyboard.dismiss();
+              }}
+              onPasteTapped={text => {
+                setImportText(text);
+                Keyboard.dismiss();
+              }}
+            />
+          ),
+        })}
+      </SafeBlueArea>
+    </LinearGradient>
   );
 };
 

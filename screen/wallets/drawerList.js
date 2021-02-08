@@ -118,7 +118,10 @@ const DrawerList = props => {
   return (
     <DrawerContentScrollView {...props} scrollEnabled={false}>
       <View styles={[styles.root, stylesHook.root]}>
-        <StatusBar barStyle="default" />
+        <StatusBar 
+          barStyle="default" 
+          backgroundColor="rgba(95, 88, 84, .18)"
+        />
         <SafeAreaView style={styles.root}>
           <BlueHeaderDefaultMain leftText={loc.wallets.list_title} onNewWalletPress={onNewWalletPress} isDrawerList />
         </SafeAreaView>

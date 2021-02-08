@@ -25,7 +25,17 @@ import {
   BlueSpacing20,
 } from '../../BlueComponents';
 import navigationStyle from '../../components/navigationStyle';
-import { HDSegwitBech32Wallet, HDSegwitP2SHWallet, HDLegacyP2PKHWallet, SegwitP2SHWallet, LegacyWallet, SegwitBech32Wallet, LightningCustodianWallet, AppStorage } from '../../class';
+import { 
+ HDSegwitBech32Wallet,
+ HDSegwitP2SHWallet,
+ HDLegacyP2PKHWallet,
+ SegwitP2SHWallet, 
+ LegacyWallet, 
+ SegwitBech32Wallet, 
+ LightningCustodianWallet, 
+ AppStorage 
+} from '../../class';
+import LinearGradient from 'react-native-linear-gradient';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 import { useTheme, useNavigation } from '@react-navigation/native';
 import { Chain } from '../../models/bitcoinUnits';
@@ -61,7 +71,7 @@ const WalletsAdd = () => {
       backgroundColor: colors.inputBackgroundColor,
     },
     noPadding: {
-      backgroundColor: colors.elevated,
+      backgroundColor: 'transparent',
     },
     root: {
       backgroundColor: colors.elevated,
@@ -223,107 +233,114 @@ const WalletsAdd = () => {
 
   return (
     <ScrollView style={stylesHook.root}>
-      <StatusBar barStyle="light-content" />
-      <BlueSpacing20 />
-      <KeyboardAvoidingView enabled behavior={Platform.OS === 'ios' ? 'padding' : null} keyboardVerticalOffset={62}>
-        <BlueFormLabel>{loc.wallets.add_wallet_name}</BlueFormLabel>
-        <View style={[styles.label, stylesHook.label]}>
-          <TextInput
-            testID="WalletNameInput"
-            value={label}
-            placeholderTextColor="#81868e"
-            placeholder="my first wallet"
-            onChangeText={setLabel}
-            style={styles.textInputCommon}
-            editable={!isLoading}
-            underlineColorAndroid="transparent"
-          />
-        </View>
-        <BlueFormLabel>{loc.wallets.add_wallet_type}</BlueFormLabel>
-        <View style={styles.buttons}>
-          <BitcoinButton
-            testID="ActivateBitcoinButton"
-            active={selectedWalletType === ButtonSelected.ONCHAIN}
-            onPress={handleOnBitcoinButtonPressed}
-            style={styles.button}
-          />
-          <VaultButton active={selectedWalletType === ButtonSelected.VAULT} onPress={handleOnVaultButtonPressed} style={styles.button} />
-        </View>
+      <StatusBar 
+        barStyle="light-content"
+        backgroundColor="rgba(95, 88, 84, .18)"
+      />
+      <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+        <BlueSpacing20 />
+        <KeyboardAvoidingView enabled behavior={Platform.OS === 'ios' ? 'padding' : null} keyboardVerticalOffset={62}>
+          <BlueFormLabel>{loc.wallets.add_wallet_name}</BlueFormLabel>
+          <View style={[styles.label, stylesHook.label]}>
+            <TextInput
+              testID="WalletNameInput"
+              value={label}
+              placeholderTextColor="#81868e"
+              placeholder="my first wallet"
+              onChangeText={setLabel}
+              style={styles.textInputCommon}
+              editable={!isLoading}
+              underlineColorAndroid="transparent"
+            />
+          </View>
+          <BlueFormLabel>{loc.wallets.add_wallet_type}</BlueFormLabel>
 
-        <View style={styles.advanced}>
-          {(() => {
-            if (selectedWalletType === ButtonSelected.ONCHAIN) {
-              return (
-                <View>
-                  <BlueSpacing20 />
-                  <Text style={[styles.advancedText, stylesHook.advancedText]}>{loc.settings.advanced_options}</Text>
-                  <BlueListItem
-                    containerStyle={[styles.noPadding, stylesHook.noPadding]}
-                    bottomDivider={false}
-                    onPress={() => setSelectedIndex(0)}
-                    title={HDLegacyP2PKHWallet.typeReadable}
-                    checkmark={selectedIndex === 0}
-                  />
-                  <BlueListItem
-                    containerStyle={[styles.noPadding, stylesHook.noPadding]}
-                    bottomDivider={false}
-                    onPress={() => setSelectedIndex(1)}
-                    title={HDSegwitP2SHWallet.typeReadable}
-                    checkmark={selectedIndex === 1}
-                  />
-                  <BlueListItem
-                    containerStyle={[styles.noPadding, stylesHook.noPadding]}
-                    bottomDivider={false}
-                    onPress={() => setSelectedIndex(2)}
-                    title={HDSegwitBech32Wallet.typeReadable}
-                    checkmark={selectedIndex === 2}
-                  />
-                  <BlueListItem
-                    containerStyle={[styles.noPadding, stylesHook.noPadding]}
-                    bottomDivider={false}
-                    onPress={() => setSelectedIndex(3)}
-                    title={LegacyWallet.typeReadable}
-                    checkmark={selectedIndex === 3}
-                  />
-                  <BlueListItem
-                    containerStyle={[styles.noPadding, stylesHook.noPadding]}
-                    bottomDivider={false}
-                    onPress={() => setSelectedIndex(4)}
-                    title={SegwitP2SHWallet.typeReadable}
-                    checkmark={selectedIndex === 4}
-                  />
-                  <BlueListItem
-                    containerStyle={[styles.noPadding, stylesHook.noPadding]}
-                    bottomDivider={false}
-                    onPress={() => setSelectedIndex(5)}
-                    title={SegwitBech32Wallet.typeReadable}
-                    checkmark={selectedIndex === 5}
-                  />
-                </View>
-              );
-            }
-          })()}
-          {selectedWalletType === ButtonSelected.ONCHAIN && !isLoading && (
-            <BlueButtonLink style={styles.import} title={entropyButtonText} onPress={navigateToEntropy} />
-          )}
-          <BlueSpacing20 />
-          <View style={styles.createButton}>
-            {!isLoading ? (
-              <BlueButton testID="Create" title={loc.wallets.add_create} disabled={!selectedWalletType} onPress={createWallet} />
-            ) : (
-              <ActivityIndicator />
+          <View style={styles.buttons}>
+            <BitcoinButton
+              testID="ActivateBitcoinButton"
+              active={selectedWalletType === ButtonSelected.ONCHAIN}
+              onPress={handleOnBitcoinButtonPressed}
+              style={styles.button}
+            />
+            {/*<VaultButton active={selectedWalletType === ButtonSelected.VAULT} onPress={handleOnVaultButtonPressed} style={styles.button} />*/}
+          </View>
+
+          <View style={styles.advanced}>
+            {(() => {
+              if (selectedWalletType === ButtonSelected.ONCHAIN) {
+                return (
+                  <View>
+                    <BlueSpacing20 />
+                    <Text style={[styles.advancedText, stylesHook.advancedText]}>Multi-Addresses wallets</Text>
+                    <BlueListItem
+                      containerStyle={[styles.noPadding, stylesHook.noPadding]}
+                      bottomDivider={false}
+                      onPress={() => setSelectedIndex(0)}
+                      title={HDLegacyP2PKHWallet.typeReadable}
+                      checkmark={selectedIndex === 0}
+                    />
+                    <BlueListItem
+                      containerStyle={[styles.noPadding, stylesHook.noPadding]}
+                      bottomDivider={false}
+                      onPress={() => setSelectedIndex(1)}
+                      title={HDSegwitP2SHWallet.typeReadable}
+                      checkmark={selectedIndex === 1}
+                    />
+                    <BlueListItem
+                      containerStyle={[styles.noPadding, stylesHook.noPadding]}
+                      bottomDivider={false}
+                      onPress={() => setSelectedIndex(2)}
+                      title={HDSegwitBech32Wallet.typeReadable}
+                      checkmark={selectedIndex === 2}
+                    />
+                    <Text style={[styles.advancedText, stylesHook.advancedText]}>Single-Address wallets</Text>
+                    <BlueListItem
+                      containerStyle={[styles.noPadding, stylesHook.noPadding]}
+                      bottomDivider={false}
+                      onPress={() => setSelectedIndex(3)}
+                      title={LegacyWallet.typeReadable}
+                      checkmark={selectedIndex === 3}
+                    />
+                    <BlueListItem
+                      containerStyle={[styles.noPadding, stylesHook.noPadding]}
+                      bottomDivider={false}
+                      onPress={() => setSelectedIndex(4)}
+                      title={SegwitP2SHWallet.typeReadable}
+                      checkmark={selectedIndex === 4}
+                    />
+                    <BlueListItem
+                      containerStyle={[styles.noPadding, stylesHook.noPadding]}
+                      bottomDivider={false}
+                      onPress={() => setSelectedIndex(5)}
+                      title={SegwitBech32Wallet.typeReadable}
+                      checkmark={selectedIndex === 5}
+                    />
+                  </View>
+                );
+              }
+            })()}
+            {selectedWalletType === ButtonSelected.ONCHAIN && !isLoading && (
+              <BlueButtonLink style={styles.import} title={entropyButtonText} onPress={navigateToEntropy} />
+            )}
+            <BlueSpacing20 />
+            <View style={styles.createButton}>
+              {!isLoading ? (
+                <BlueButton testID="Create" title={loc.wallets.add_create} disabled={!selectedWalletType} onPress={createWallet} />
+              ) : (
+                <ActivityIndicator />
+              )}
+            </View>
+            {!isLoading && (
+              <BlueButtonLink
+                testID="ImportWallet"
+                style={styles.import}
+                title={loc.wallets.add_import_wallet}
+                onPress={navigateToImportWallet}
+              />
             )}
           </View>
-          {!isLoading && (
-            <BlueButtonLink
-              testID="ImportWallet"
-              style={styles.import}
-              title={loc.wallets.add_import_wallet}
-              onPress={navigateToImportWallet}
-            />
-          )}
-        </View>
-      </KeyboardAvoidingView>
+        </KeyboardAvoidingView>
+      </LinearGradient>
     </ScrollView>
   );
 };

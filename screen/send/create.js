@@ -115,7 +115,7 @@ export default class SendCreate extends Component {
           <Text style={styles.transactionDetailsSubtitle}>{item.address}</Text>
           <Text style={styles.transactionDetailsTitle}>{loc.send.create_amount}</Text>
           <Text style={styles.transactionDetailsSubtitle}>
-            {currency.satoshiToBTC(item.value)} {BitcoinUnit.BTC}
+            {currency.satoshiToBTC(item.value)} {BitcoinUnit.VLS}
           </Text>
           {this.state.recipients.length > 1 && (
             <BlueText style={styles.itemOf}>
@@ -143,7 +143,7 @@ export default class SendCreate extends Component {
               <TouchableOpacity style={styles.actionTouch} onPress={() => Clipboard.setString(this.state.tx)}>
                 <Text style={styles.actionText}>{loc.send.create_copy}</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.actionTouch} onPress={() => Linking.openURL('https://coinb.in/?verify=' + this.state.tx)}>
+              <TouchableOpacity style={styles.actionTouch} onPress={() => Linking.openURL('https://wallet.veles.network/?verify=' + this.state.tx)}>
                 <Text style={styles.actionText}>{loc.send.create_verify}</Text>
               </TouchableOpacity>
             </BlueCard>
@@ -158,7 +158,7 @@ export default class SendCreate extends Component {
               />
               <Text style={styles.transactionDetailsTitle}>{loc.send.create_fee}</Text>
               <Text style={styles.transactionDetailsSubtitle}>
-                {this.state.fee} {BitcoinUnit.BTC}
+                {this.state.fee} {BitcoinUnit.VLS}
               </Text>
 
               <Text style={styles.transactionDetailsTitle}>{loc.send.create_tx_size}</Text>

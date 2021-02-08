@@ -4,6 +4,7 @@ import { ScrollView, StyleSheet } from 'react-native';
 import { useNavigation, useTheme } from '@react-navigation/native';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../components/navigationStyle';
 import { BlueLoading, BlueButton, SafeBlueArea, BlueCard, BlueText, BlueSpacing20 } from '../BlueComponents';
 import loc from '../loc';
@@ -23,7 +24,7 @@ const PlausibleDeniability = () => {
   const { colors } = useTheme();
   const stylesHook = StyleSheet.create({
     root: {
-      backgroundColor: colors.background,
+      backgroundColor: 'transparent',
     },
   });
 
@@ -63,25 +64,27 @@ const PlausibleDeniability = () => {
       <BlueLoading />
     </SafeBlueArea>
   ) : (
-    <SafeBlueArea forceInset={{ horizontal: 'always' }} style={[styles.root, stylesHook.root]}>
-      <BlueCard>
-        <ScrollView maxHeight={450}>
-          <BlueText>{loc.plausibledeniability.help}</BlueText>
+    <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+      <SafeBlueArea forceInset={{ horizontal: 'always' }} style={[styles.root, stylesHook.root]}>
+        <BlueCard>
+          <ScrollView maxHeight={450}>
+            <BlueText>{loc.plausibledeniability.help}</BlueText>
 
-          <BlueText />
+            <BlueText />
 
-          <BlueText>{loc.plausibledeniability.help2}</BlueText>
+            <BlueText>{loc.plausibledeniability.help2}</BlueText>
 
-          <BlueSpacing20 />
+            <BlueSpacing20 />
 
-          <BlueButton
-            testID="CreateFakeStorageButton"
-            title={loc.plausibledeniability.create_fake_storage}
-            onPress={handleOnCreateFakeStorageButtonPressed}
-          />
-        </ScrollView>
-      </BlueCard>
-    </SafeBlueArea>
+            <BlueButton
+              testID="CreateFakeStorageButton"
+              title={loc.plausibledeniability.create_fake_storage}
+              onPress={handleOnCreateFakeStorageButtonPressed}
+            />
+          </ScrollView>
+        </BlueCard>
+      </SafeBlueArea>
+    </LinearGradient>
   );
 };
 

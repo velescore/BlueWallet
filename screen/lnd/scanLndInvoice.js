@@ -181,7 +181,7 @@ const ScanLndInvoice = () => {
       case BitcoinUnit.SATS:
         amountSats = parseInt(amountSats); // nop
         break;
-      case BitcoinUnit.BTC:
+      case BitcoinUnit.VLS:
         amountSats = currency.btcToSatoshi(amountSats);
         break;
       case BitcoinUnit.LOCAL_CURRENCY:
@@ -292,7 +292,10 @@ const ScanLndInvoice = () => {
 
   return (
     <SafeBlueArea forceInset={{ horizontal: 'always' }} style={[styles.root, stylesHook.root]}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar 
+  barStyle="light-content"
+  backgroundColor="rgba(95, 88, 84, .18)"
+/>
       <View style={[styles.root, stylesHook.root]}>
         <ScrollView contentContainerStyle={styles.scroll}>
           <KeyboardAvoidingView enabled behavior="position" keyboardVerticalOffset={20}>

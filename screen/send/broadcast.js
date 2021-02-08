@@ -17,6 +17,7 @@ import {
   BlueTextCentered,
   SafeBlueArea,
 } from '../../BlueComponents';
+import LinearGradient from 'react-native-linear-gradient';
 import BlueElectrum from '../../blue_modules/BlueElectrum';
 import Notifications from '../../blue_modules/notifications';
 import { useTheme } from '@react-navigation/native';
@@ -91,43 +92,45 @@ const Broadcast = () => {
   }
 
   return (
-    <SafeBlueArea style={styles.blueArea}>
-      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : null} keyboardShouldPersistTaps="handled">
-        <View style={styles.wrapper}>
-          {BROADCAST_RESULT.success !== broadcastResult && (
-            <BlueCard style={styles.mainCard}>
-              <View style={styles.topFormRow}>
-                <BlueFormLabel>{status}</BlueFormLabel>
-                {BROADCAST_RESULT.pending === broadcastResult && <ActivityIndicator size="small" />}
-              </View>
+    <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+      <SafeBlueArea style={styles.blueArea}>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : null} keyboardShouldPersistTaps="handled">
+            <View style={styles.wrapper}>
+              {BROADCAST_RESULT.success !== broadcastResult && (
+                <BlueCard style={styles.mainCard}>
+                  <View style={styles.topFormRow}>
+                    <BlueFormLabel>{status}</BlueFormLabel>
+                    {BROADCAST_RESULT.pending === broadcastResult && <ActivityIndicator size="small" />}
+                  </View>
 
-              <View style={[styles.input, stylesHooks.input]}>
-                <TextInput
-                  style={styles.text}
-                  maxHeight={100}
-                  minHeight={100}
-                  maxWidth="100%"
-                  minWidth="100%"
-                  multiline
-                  editable
-                  placeholderTextColor="#81868e"
-                  value={txHex}
-                  onChangeText={handleUpdateTxHex}
-                />
-              </View>
+                  <View style={[styles.input, stylesHooks.input]}>
+                    <TextInput
+                      style={styles.text}
+                      maxHeight={100}
+                      minHeight={100}
+                      maxWidth="100%"
+                      minWidth="100%"
+                      multiline
+                      editable
+                      placeholderTextColor="#81868e"
+                      value={txHex}
+                      onChangeText={handleUpdateTxHex}
+                    />
+                  </View>
 
-              <BlueSpacing10 />
-              <BlueButton
-                title={loc.send.broadcastButton}
-                onPress={handleBroadcast}
-                disabled={broadcastResult === BROADCAST_RESULT.pending}
-              />
-            </BlueCard>
-          )}
-          {BROADCAST_RESULT.success === broadcastResult && <SuccessScreen tx={tx} />}
-        </View>
-      </KeyboardAvoidingView>
-    </SafeBlueArea>
+                  <BlueSpacing10 />
+                  <BlueButton
+                    title={loc.send.broadcastButton}
+                    onPress={handleBroadcast}
+                    disabled={broadcastResult === BROADCAST_RESULT.pending}
+                  />
+                </BlueCard>
+              )}
+              {BROADCAST_RESULT.success === broadcastResult && <SuccessScreen tx={tx} />}
+            </View>
+        </KeyboardAvoidingView>
+      </SafeBlueArea>
+    </LinearGradient>
   );
 };
 
@@ -200,7 +203,7 @@ const SuccessScreen = ({ tx }) => {
           <BlueSpacing20 />
           <BlueTextCentered>{loc.settings.success_transaction_broadcasted}</BlueTextCentered>
           <BlueSpacing10 />
-          <BlueButtonLink title={loc.settings.open_link_in_explorer} onPress={() => Linking.openURL(`https://blockstream.info/tx/${tx}`)} />
+          <BlueButtonLink title={loc.settings.open_link_in_explorer} onPress={() => Linking.openURL(`https://explorer.veles.network/tx/${tx}`)} />
         </View>
       </BlueCard>
     </View>

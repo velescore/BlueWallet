@@ -48,11 +48,11 @@ describe('Localization', () => {
   it.each([
     [123000000, BitcoinUnit.SATS, false, '123000000', false],
     [123000000, BitcoinUnit.SATS, true, '123 000 000', false],
-    [123456000, BitcoinUnit.BTC, true, '1.23456', false],
-    ['123456000', BitcoinUnit.BTC, true, '1.23456', false], // can handle strings
-    [100000000, BitcoinUnit.BTC, true, '1', false],
-    [10000000, BitcoinUnit.BTC, true, '0.1', false],
-    [1, BitcoinUnit.BTC, true, '0.00000001', false],
+    [123456000, BitcoinUnit.VLS, true, '1.23456', false],
+    ['123456000', BitcoinUnit.VLS, true, '1.23456', false], // can handle strings
+    [100000000, BitcoinUnit.VLS, true, '1', false],
+    [10000000, BitcoinUnit.VLS, true, '0.1', false],
+    [1, BitcoinUnit.VLS, true, '0.00000001', false],
     [10000000, BitcoinUnit.LOCAL_CURRENCY, true, '...', true], // means unknown since we did not receive exchange rate
   ])(
     'can formatBalanceWithoutSuffix',
@@ -70,7 +70,7 @@ describe('Localization', () => {
 
   it.each([
     [123000000, BitcoinUnit.SATS, false, '123000000 sats'],
-    [123000000, BitcoinUnit.BTC, false, '1.23 BTC'],
+    [123000000, BitcoinUnit.VLS, false, '1.23 VLS'],
     [123000000, BitcoinUnit.LOCAL_CURRENCY, false, '$1.23'],
   ])(
     'can formatBalance',

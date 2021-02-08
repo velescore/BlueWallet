@@ -147,14 +147,20 @@ const SelectWallet = ({ navigation }) => {
   if (isLoading) {
     return (
       <View style={styles.loading}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar 
+          barStyle="light-content"
+          backgroundColor="rgba(95, 88, 84, .18)"
+        />
         <ActivityIndicator />
       </View>
     );
   } else if (data.length <= 0) {
     return (
       <SafeBlueArea style={styles.root}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar 
+          barStyle="light-content"
+          backgroundColor="rgba(95, 88, 84, .18)"
+        />
         <View style={styles.noWallets}>
           <BlueText style={styles.center}>{loc.wallets.select_no_bitcoin}</BlueText>
           <BlueSpacing20 />
@@ -165,7 +171,10 @@ const SelectWallet = ({ navigation }) => {
   } else {
     return (
       <SafeBlueArea style={styles.root}>
-        <StatusBar barStyle="default" />
+        <StatusBar 
+          barStyle="default" 
+          backgroundColor="rgba(95, 88, 84, .18)"
+        />
         <FlatList extraData={data} data={data} renderItem={renderItem} keyExtractor={(_item, index) => `${index}`} />
       </SafeBlueArea>
     );

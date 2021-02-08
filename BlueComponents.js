@@ -25,7 +25,17 @@ import {
 } from 'react-native';
 import Clipboard from '@react-native-community/clipboard';
 import LinearGradient from 'react-native-linear-gradient';
-import { LightningCustodianWallet, MultisigHDWallet } from './class';
+import { 
+  LightningCustodianWallet, 
+  MultisigHDWallet, 
+  PlaceholderWallet, 
+  HDLegacyP2PKHWallet, 
+  HDSegwitBech32Wallet, 
+  HDSegwitP2SHWallet,
+  LegacyWallet,
+  SegwitBech32Wallet,
+  SegwitP2SHWallet,  
+} from './class';
 import { BitcoinUnit } from './models/bitcoinUnits';
 import * as NavigationService from './NavigationService';
 import WalletGradient from './class/wallet-gradient';
@@ -66,8 +76,6 @@ export class NavbarLogo extends Component {
           source={require('./img/icon.png')}
           style={{ maxWidth: 40, maxHeight: 40, marginLeft: 10 }}
         />
-        <Text>Overview</Text>
-
       </View>
     );
   }
@@ -160,7 +168,7 @@ export const BitcoinButton = props => {
       >
         <View style={{ marginHorizontal: 16, marginVertical: 10, flexDirection: 'row', alignItems: 'center' }}>
           <View>
-            <Image style={{ width: 34, height: 34, marginRight: 8 }} source={require('./img/addWallet/bitcoin.png')} />
+            <Image style={{ width: 34, height: 34, marginRight: 8 }} source={require('./img/icon.png')} />
           </View>
           <View>
             <Text style={{ color: colors.newBlue, fontWeight: 'bold', fontSize: 18 }}>{loc.wallets.add_bitcoin}</Text>
@@ -328,18 +336,18 @@ export class BlueWalletNavigationHeader extends Component {
   changeWalletBalanceUnit = () => {
     let walletPreviousPreferredUnit = this.state.wallet.getPreferredBalanceUnit();
     const wallet = this.state.wallet;
-    if (walletPreviousPreferredUnit === BitcoinUnit.BTC) {
+    if (walletPreviousPreferredUnit === BitcoinUnit.VLS) {
       wallet.preferredBalanceUnit = BitcoinUnit.SATS;
-      walletPreviousPreferredUnit = BitcoinUnit.BTC;
+      walletPreviousPreferredUnit = BitcoinUnit.VLS;
     } else if (walletPreviousPreferredUnit === BitcoinUnit.SATS) {
       wallet.preferredBalanceUnit = BitcoinUnit.LOCAL_CURRENCY;
       walletPreviousPreferredUnit = BitcoinUnit.SATS;
     } else if (walletPreviousPreferredUnit === BitcoinUnit.LOCAL_CURRENCY) {
-      wallet.preferredBalanceUnit = BitcoinUnit.BTC;
-      walletPreviousPreferredUnit = BitcoinUnit.BTC;
+      wallet.preferredBalanceUnit = BitcoinUnit.VLS;
+      walletPreviousPreferredUnit = BitcoinUnit.VLS;
     } else {
-      wallet.preferredBalanceUnit = BitcoinUnit.BTC;
-      walletPreviousPreferredUnit = BitcoinUnit.BTC;
+      wallet.preferredBalanceUnit = BitcoinUnit.VLS;
+      walletPreviousPreferredUnit = BitcoinUnit.VLS;
     }
 
     this.setState({ wallet, walletPreviousPreferredUnit: walletPreviousPreferredUnit }, () => {
@@ -361,6 +369,33 @@ export class BlueWalletNavigationHeader extends Component {
         <Image
           source={(() => {
             switch (this.state.wallet.type) {
+              case HDLegacyP2PKHWallet.type:
+                return require('./img/card_sun.png');
+              case HDSegwitP2SHWallet.type:
+                return require('./img/card_sun2.png');
+              case HDSegwitBech32Wallet.type:
+                return require('./img/card_sun3.png');
+              case LegacyWallet.type:
+                return require('./img/card_sun4.png');
+              case SegwitP2SHWallet.type:
+                return require('./img/card_sun5.png');
+              case SegwitBech32Wallet.type:
+                return require('./img/card_sun6.png');
+            }
+          })()}
+          style={{
+            position: 'absolute',
+            transform: [{ rotate: '90deg' }],
+            bottom: 0,
+            right: 0,
+            width: 113,
+            height: 113,
+          }}
+        />
+
+        <Image
+          source={(() => {
+            switch (this.state.wallet.type) {
               case LightningCustodianWallet.type:
                 return require('./img/lnd-shape.png');
               case MultisigHDWallet.type:
@@ -370,8 +405,8 @@ export class BlueWalletNavigationHeader extends Component {
             }
           })()}
           style={{
-            width: 99,
-            height: 94,
+            width: 120,
+            height: 115,
             position: 'absolute',
             bottom: 0,
             right: 0,
@@ -545,7 +580,7 @@ export const BluePrivateBalance = () => {
 export const BlueCopyToClipboardButton = ({ stringToCopy, displayText = false }) => {
   return (
     <TouchableOpacity onPress={() => Clipboard.setString(stringToCopy)}>
-      <Text style={{ fontSize: 13, fontWeight: '400', color: '#68bbe1' }}>{displayText || loc.transactions.details_copy}</Text>
+      <Text style={{ fontSize: 13, fontWeight: '400', color: '#c8a48b' }}>{displayText || loc.transactions.details_copy}</Text>
     </TouchableOpacity>
   );
 };
@@ -683,7 +718,7 @@ export const BlueListItem = React.memo(props => {
           {props.chevron && <ListItem.Chevron />}
           {props.rightIcon && <Avatar icon={props.rightIcon} />}
           {props.switch && <Switch {...props.switch} />}
-          {props.checkmark && <ListItem.CheckBox iconType="octaicon" checkedColor="#0070FF" checkedIcon="check" checked />}
+          {props.checkmark && <ListItem.CheckBox iconType="octaicon" checkedColor="#c8a48b" checkedIcon="check" checked />}
         </>
       )}
     </ListItem>
@@ -766,7 +801,7 @@ export const BlueHeaderDefaultSub = props => {
   return (
     <SafeAreaView>
       <Header
-        backgroundColor={colors.background}
+        backgroundColor='transparent'
         leftContainerStyle={{ minWidth: '100%' }}
         outerContainerStyles={{
           borderBottomColor: 'transparent',
@@ -883,7 +918,7 @@ export const BlueUseAllFundsButton = ({ balance, canUseAll, onUseAllPressed }) =
           <BlueButtonLink
             onPress={onUseAllPressed}
             style={{ marginLeft: 8, paddingRight: 0, paddingLeft: 0, paddingTop: 12, paddingBottom: 12 }}
-            title={`${balance} ${BitcoinUnit.BTC}`}
+            title={`${balance} ${BitcoinUnit.VLS}`}
           />
         ) : (
           <Text
@@ -898,7 +933,7 @@ export const BlueUseAllFundsButton = ({ balance, canUseAll, onUseAllPressed }) =
               paddingBottom: 12,
             }}
           >
-            {balance} {BitcoinUnit.BTC}
+            {balance} {BitcoinUnit.VLS}
           </Text>
         )}
       </View>
@@ -981,9 +1016,11 @@ export const BlueDoneAndDismissKeyboardInputAccessory = props => {
 
 export const BlueLoading = props => {
   return (
-    <View style={{ flex: 1, paddingTop: 200 }} {...props}>
-      <ActivityIndicator />
-    </View>
+    <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+      <View style={{ flex: 1, paddingTop: 200 }} {...props}>
+        <ActivityIndicator />
+      </View>
+    </LinearGradient>
   );
 };
 
@@ -1012,7 +1049,7 @@ const stylesBlueIcon = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 15,
-    transform: [{ rotate: '-45deg' }],
+    transform: [{ rotate: '7deg' }],
     justifyContent: 'center',
   },
   ballIncomingWithoutRotate: {
@@ -1030,9 +1067,28 @@ const stylesBlueIcon = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 15,
-    transform: [{ rotate: '225deg' }],
+    transform: [{ rotate: '-175deg' }],
     justifyContent: 'center',
   },
+  ballStatus: {
+    width: 50,
+    height: 50,
+    borderRadius: 30,
+  },
+  ballIncomingStatus: {
+    width: 50,
+    height: 50,
+    borderRadius: 30,
+    transform: [{ rotate: '7deg' }],
+    justifyContent: 'center',
+  },
+  ballOutgoingStatus: {
+    width: 50,
+    height: 50,
+    borderRadius: 30,
+    transform: [{ rotate: '-175deg' }],
+    justifyContent: 'center',
+  },  
   ballOutgoingWithoutRotate: {
     width: 30,
     height: 30,
@@ -1086,7 +1142,7 @@ export const BlueTransactionIncomingIcon = props => {
     <View {...props}>
       <View style={stylesBlueIcon.boxIncoming}>
         <View style={[stylesBlueIcon.ballIncoming, stylesBlueIconHooks.ballIncoming]}>
-          <Icon {...props} name="arrow-down" size={16} type="font-awesome" color={colors.incomingForegroundColor} />
+          <Icon {...props} name="location-arrow" size={16} type="font-awesome" color={colors.incomingForegroundColor} />
         </View>
       </View>
     </View>
@@ -1223,7 +1279,69 @@ export const BlueTransactionOutgoingIcon = props => {
     <View {...props}>
       <View style={stylesBlueIcon.boxIncoming}>
         <View style={[stylesBlueIcon.ballOutgoing, stylesBlueIconHooks.ballOutgoing]}>
-          <Icon {...props} name="arrow-down" size={16} type="font-awesome" color={colors.outgoingForegroundColor} />
+          <Icon {...props} name="location-arrow" size={16} type="font-awesome" color={colors.outgoingForegroundColor} />
+        </View>
+      </View>
+    </View>
+  );
+};
+
+export const BlueTransactionIncomingStatusIcon = props => {
+  const { colors } = useTheme();
+  const stylesBlueIconHooks = StyleSheet.create({
+    ballIncomingStatus: {
+      backgroundColor: colors.ballReceive,
+    },
+  });
+  return (
+    <View {...props}>
+      <View style={stylesBlueIcon.boxIncoming}>
+        <View style={[stylesBlueIcon.ballIncomingStatus, stylesBlueIconHooks.ballIncomingStatus]}>
+          <Icon {...props} name="location-arrow" size={25} iconStyle={{ right: 0, top: 2 }} type="font-awesome" color={colors.incomingForegroundColor} />
+        </View>
+      </View>
+    </View>
+  );
+};
+
+export const BlueTransactionPendingStatusIcon = props => {
+  const { colors } = useTheme();
+
+  const stylesBlueIconHooks = StyleSheet.create({
+    ballStatus: {
+      backgroundColor: colors.buttonBackgroundColor,
+    },
+  });
+  return (
+    <View {...props}>
+      <View style={stylesBlueIcon.boxIncoming}>
+        <View style={[stylesBlueIcon.ballStatus, stylesBlueIconHooks.ballStatus]}>
+          <Icon
+            {...props}
+            name="kebab-horizontal"
+            size={25}
+            type="octicon"
+            color={colors.foregroundColor}
+            iconStyle={{ right: 0, top: 7 }}
+          />
+        </View>
+      </View>
+    </View>
+  );
+};
+
+export const BlueTransactionOutgoingStatusIcon = props => {
+  const { colors } = useTheme();
+  const stylesBlueIconHooks = StyleSheet.create({
+    ballOutgoingStatus: {
+      backgroundColor: colors.ballOutgoing,
+    },
+  });
+  return (
+    <View {...props}>
+      <View style={stylesBlueIcon.boxIncoming}>
+        <View style={[stylesBlueIcon.ballOutgoingStatus, stylesBlueIconHooks.ballOutgoingStatus]}>
+          <Icon {...props} name="location-arrow" size={25} iconStyle={{ left: -2, bottom: 2 }} type="font-awesome" color={colors.outgoingForegroundColor} />
         </View>
       </View>
     </View>
@@ -1280,7 +1398,7 @@ export const BlueReceiveButtonIcon = props => {
   );
 };
 
-export const BlueTransactionListItem = React.memo(({ item, itemPriceUnit = BitcoinUnit.BTC, timeElapsed }) => {
+export const BlueTransactionListItem = React.memo(({ item, itemPriceUnit = BitcoinUnit.VLS, timeElapsed }) => {
   const [subtitleNumberOfLines, setSubtitleNumberOfLines] = useState(1);
   const { colors } = useTheme();
   const { navigate } = useNavigation();
@@ -1782,12 +1900,12 @@ export class BlueBitcoinAmount extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { unit: props.unit || BitcoinUnit.BTC, previousUnit: BitcoinUnit.SATS };
+    this.state = { unit: props.unit || BitcoinUnit.VLS, previousUnit: BitcoinUnit.SATS };
   }
 
   /**
    * here we must recalculate old amont value (which was denominated in `previousUnit`) to new denomination `newUnit`
-   * and fill this value in input box, so user can switch between, for example, 0.001 BTC <=> 100000 sats
+   * and fill this value in input box, so user can switch between, for example, 0.001 VLS <=> 100000 sats
    *
    * @param previousUnit {string} one of {BitcoinUnit.*}
    * @param newUnit {string} one of {BitcoinUnit.*}
@@ -1797,7 +1915,7 @@ export class BlueBitcoinAmount extends Component {
     console.log('was:', amount, previousUnit, '; converting to', newUnit);
     let sats = 0;
     switch (previousUnit) {
-      case BitcoinUnit.BTC:
+      case BitcoinUnit.VLS:
         sats = new BigNumber(amount).multipliedBy(100000000).toString();
         break;
       case BitcoinUnit.SATS:
@@ -1825,19 +1943,19 @@ export class BlueBitcoinAmount extends Component {
   }
 
   /**
-   * responsible for cycling currently selected denomination, BTC->SAT->LOCAL_CURRENCY->BTC
+   * responsible for cycling currently selected denomination, VLS->SAT->LOCAL_CURRENCY->VLS
    */
   changeAmountUnit = () => {
     let previousUnit = this.state.unit;
     let newUnit;
-    if (previousUnit === BitcoinUnit.BTC) {
+    if (previousUnit === BitcoinUnit.VLS) {
       newUnit = BitcoinUnit.SATS;
     } else if (previousUnit === BitcoinUnit.SATS) {
       newUnit = BitcoinUnit.LOCAL_CURRENCY;
     } else if (previousUnit === BitcoinUnit.LOCAL_CURRENCY) {
-      newUnit = BitcoinUnit.BTC;
+      newUnit = BitcoinUnit.VLS;
     } else {
-      newUnit = BitcoinUnit.BTC;
+      newUnit = BitcoinUnit.VLS;
       previousUnit = BitcoinUnit.SATS;
     }
     this.setState({ unit: newUnit, previousUnit }, () => this.onAmountUnitChange(previousUnit, newUnit));
@@ -1845,7 +1963,7 @@ export class BlueBitcoinAmount extends Component {
 
   maxLength = () => {
     switch (this.state.unit) {
-      case BitcoinUnit.BTC:
+      case BitcoinUnit.VLS:
         return 10;
       case BitcoinUnit.SATS:
         return 15;
@@ -1868,7 +1986,7 @@ export class BlueBitcoinAmount extends Component {
     // if main display is fiat - secondary dislay is btc
     let sat;
     switch (this.state.unit) {
-      case BitcoinUnit.BTC:
+      case BitcoinUnit.VLS:
         sat = new BigNumber(amount).multipliedBy(100000000).toString();
         secondaryDisplayCurrency = formatBalanceWithoutSuffix(sat, BitcoinUnit.LOCAL_CURRENCY, false);
         break;
@@ -1926,7 +2044,7 @@ export class BlueBitcoinAmount extends Component {
                       text = `${parseInt(split[0], 10)}`;
                     }
 
-                    text = this.state.unit === BitcoinUnit.BTC ? text.replace(/[^0-9.]/g, '') : text.replace(/[^0-9]/g, '');
+                    text = this.state.unit === BitcoinUnit.VLS ? text.replace(/[^0-9.]/g, '') : text.replace(/[^0-9]/g, '');
 
                     if (text.startsWith('.')) {
                       text = '0.';
@@ -1995,7 +2113,7 @@ export class BlueBitcoinAmount extends Component {
                 {this.state.unit === BitcoinUnit.LOCAL_CURRENCY && amount !== BitcoinUnit.MAX
                   ? removeTrailingZeros(secondaryDisplayCurrency)
                   : secondaryDisplayCurrency}
-                {this.state.unit === BitcoinUnit.LOCAL_CURRENCY && amount !== BitcoinUnit.MAX ? ` ${loc.units[BitcoinUnit.BTC]}` : null}
+                {this.state.unit === BitcoinUnit.LOCAL_CURRENCY && amount !== BitcoinUnit.MAX ? ` ${loc.units[BitcoinUnit.VLS]}` : null}
               </Text>
             </View>
           </View>

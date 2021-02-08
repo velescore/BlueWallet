@@ -3,6 +3,7 @@ import { ActivityIndicator, View, BackHandler, Text, ScrollView, StyleSheet, Sta
 import { useNavigation, useRoute, useTheme } from '@react-navigation/native';
 
 import { BlueSpacing20, SafeBlueArea, BlueText, BlueButton } from '../../BlueComponents';
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import Privacy from '../../Privacy';
 import loc from '../../loc';
@@ -17,7 +18,7 @@ const PleaseBackup = () => {
   const { colors } = useTheme();
   const stylesHook = StyleSheet.create({
     flex: {
-      backgroundColor: colors.elevated,
+      backgroundColor: 'transparent',
     },
     word: {
       backgroundColor: colors.inputBackgroundColor,
@@ -70,20 +71,25 @@ const PleaseBackup = () => {
       <ActivityIndicator />
     </View>
   ) : (
-    <SafeBlueArea style={[styles.flex, stylesHook.flex]}>
-      <StatusBar barStyle="default" />
-      <ScrollView testID="PleaseBackupScrollView">
-        <View style={styles.please}>
-          <BlueText style={[styles.successText, stylesHook.successText]}>{loc.pleasebackup.success}</BlueText>
-          <BlueText style={[styles.pleaseText, stylesHook.pleaseText]}>{loc.pleasebackup.text}</BlueText>
+    <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+      <SafeBlueArea style={[styles.flex, stylesHook.flex]}>
+        <StatusBar 
+          barStyle="default" 
+          backgroundColor="rgba(95, 88, 84, .18)"
+        />
+        <ScrollView testID="PleaseBackupScrollView">
+          <View style={styles.please}>
+            <BlueText style={[styles.successText, stylesHook.successText]}>{loc.pleasebackup.success}</BlueText>
+            <BlueText style={[styles.pleaseText, stylesHook.pleaseText]}>{loc.pleasebackup.text}</BlueText>
 
-          <View style={styles.secret}>{renderSecret()}</View>
+            <View style={styles.secret}>{renderSecret()}</View>
 
-          <BlueSpacing20 />
-          <BlueButton testID="PleasebackupOk" onPress={handleBackButton} title={loc.pleasebackup.ok} />
-        </View>
-      </ScrollView>
-    </SafeBlueArea>
+            <BlueSpacing20 />
+            <BlueButton testID="PleasebackupOk" onPress={handleBackButton} title={loc.pleasebackup.ok} />
+          </View>
+        </ScrollView>
+      </SafeBlueArea>
+    </LinearGradient>
   );
 };
 

@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackActions, useNavigation, useRoute } from '@react-navigation/native';
 import { BlueStorageContext } from './blue_modules/storage-context';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
+import LinearGradient from 'react-native-linear-gradient';
 /** @type {AppStorage} */
 
 const styles = StyleSheet.create({
@@ -108,7 +109,7 @@ const UnlockWith = () => {
     if (isAuthenticating) {
       return <ActivityIndicator />;
     } else {
-      const color = colorScheme === 'dark' ? '#FFFFFF' : '#000000';
+      const color = colorScheme === 'dark' ? 'transparent' : 'transparent';
       if ((biometricType === Biometric.TouchID || biometricType === Biometric.Biometrics) && !isStorageEncryptedEnabled) {
         return (
           <TouchableOpacity disabled={isAuthenticating} onPress={unlockWithBiometrics}>
@@ -119,7 +120,7 @@ const UnlockWith = () => {
         return (
           <TouchableOpacity disabled={isAuthenticating} onPress={unlockWithBiometrics}>
             <Image
-              source={colorScheme === 'dark' ? require('./img/faceid-default.png') : require('./img/faceid-dark.png')}
+              source={colorScheme === 'dark' ? require('./img/faceid-default.png') : require('./img/faceid-default.png')}
               style={styles.icon}
             />
           </TouchableOpacity>
@@ -138,17 +139,22 @@ const UnlockWith = () => {
     return <View />;
   } else {
     return (
-      <SafeAreaView style={styles.root}>
-        <StatusBar barStyle="default" />
-        <View style={styles.container}>
-          <View style={styles.qrCode}>
-            <Image source={require('./img/qr-code.png')} style={styles.qrCodeImage} />
+      <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+        <SafeAreaView style={styles.root}>
+          <StatusBar 
+            barStyle="light-content"
+            backgroundColor="#5F585400"
+          />
+          <View style={styles.container}>
+            <View style={styles.qrCode}>
+              <Image source={require('./img/logo_splash.png')} style={styles.qrCodeImage} />
+            </View>
+            <View style={styles.biometric}>
+              <View style={styles.biometricRow}>{renderUnlockOptions()}</View>
+            </View>
           </View>
-          <View style={styles.biometric}>
-            <View style={styles.biometricRow}>{renderUnlockOptions()}</View>
-          </View>
-        </View>
-      </SafeAreaView>
+        </SafeAreaView>
+      </LinearGradient>
     );
   }
 };

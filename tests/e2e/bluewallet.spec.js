@@ -354,7 +354,7 @@ describe('BlueWallet UI Tests', () => {
       return;
     }
 
-    await helperImportWallet(process.env.HD_MNEMONIC_BIP84, 'Imported HD SegWit (BIP84 Bech32 Native)', '0.00105526 BTC');
+    await helperImportWallet(process.env.HD_MNEMONIC_BIP84, 'Imported HD SegWit (BIP84 Bech32 Native)', '0.00105526 VLS');
 
     // lets create real transaction:
     await element(by.id('SendButton')).tap();
@@ -408,7 +408,7 @@ describe('BlueWallet UI Tests', () => {
       await sleep(1000);
     }
 
-    const bip21 = 'bitcoin:bc1qnapskphjnwzw2w3dk4anpxntunc77v6qrua0f7?amount=0.00015&pj=https://btc.donate.kukks.org/BTC/pj';
+    const bip21 = 'bitcoin:bc1qnapskphjnwzw2w3dk4anpxntunc77v6qrua0f7?amount=0.00015&pj=https://btc.donate.kukks.org/VLS/pj';
     await element(by.id('scanQrBackdoorInput')).replaceText(bip21);
     await element(by.id('scanQrBackdoorOkButton')).tap();
 
@@ -432,7 +432,7 @@ describe('BlueWallet UI Tests', () => {
     await element(by.id('changeAmountUnitButton')).tap(); // switched to sats
     assert.strictEqual(await extractTextFromElementById('BitcoinAmountInput'), '15000');
     await element(by.id('changeAmountUnitButton')).tap(); // switched to FIAT
-    await element(by.id('changeAmountUnitButton')).tap(); // switched to BTC
+    await element(by.id('changeAmountUnitButton')).tap(); // switched to VLS
     assert.strictEqual(await extractTextFromElementById('BitcoinAmountInput'), '0.00015');
     await element(by.id('changeAmountUnitButton')).tap(); // switched to sats
     await element(by.id('BitcoinAmountInput')).replaceText('50000');
@@ -489,7 +489,7 @@ describe('BlueWallet UI Tests', () => {
     await helperImportWallet(
       'zpub6rDWXE4wbwefeCrHWehXJheXnti5F9PbpamDUeB5eFbqaY89x3jq86JADBuXpnJnSvRVwqkaTnyMaZERUg4BpxD9V4tSZfKeYh1ozPdL1xK',
       'Imported Watch-only',
-      '0.00030666 BTC',
+      '0.00030666 VLS',
     );
 
     await element(by.id('SendButton')).tap();
@@ -542,7 +542,7 @@ describe('BlueWallet UI Tests', () => {
       return;
     }
 
-    await helperImportWallet(process.env.HD_MNEMONIC_BIP84, 'Imported HD SegWit (BIP84 Bech32 Native)', '0.00105526 BTC');
+    await helperImportWallet(process.env.HD_MNEMONIC_BIP84, 'Imported HD SegWit (BIP84 Bech32 Native)', '0.00105526 VLS');
 
     await device.launchApp({
       newInstance: true,
@@ -700,7 +700,7 @@ describe('BlueWallet UI Tests', () => {
     await helperImportWallet(
       'zpub6qoWjSiZRHzSYPGYJ6EzxEXJXP1b2Rj9syWwJZFNCmupMwkbSAWSBk3UvSkJyQLEhQpaBAwvhmNj3HPKpwCJiTBB9Tutt46FtEmjL2DoU3J',
       'Imported Watch-only',
-      '0.00105526 BTC',
+      '0.00105526 VLS',
     );
 
     // refresh transactions

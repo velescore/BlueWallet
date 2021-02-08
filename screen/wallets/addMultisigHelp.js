@@ -125,7 +125,7 @@ WalletsAddMultisigHelp.navigationOptions = navigationStyle({
   gestureEnabled: false,
   swipeEnabled: false,
   headerStyle: {
-    backgroundColor: '#0070FF',
+    backgroundColor: 'rgba(95, 88, 84, .18)',
     borderBottomWidth: 0,
     borderBottomColor: '#0070FF',
     elevation: 0,

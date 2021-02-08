@@ -11,11 +11,12 @@ import {
   BlueSpacing10,
   BlueSpacing20,
   BlueText,
-  BlueTransactionIncomingIcon,
-  BlueTransactionOutgoingIcon,
-  BlueTransactionPendingIcon,
+  BlueTransactionIncomingStatusIcon,
+  BlueTransactionOutgoingStatusIcon,
+  BlueTransactionPendingStatusIcon,
   SafeBlueArea,
 } from '../../BlueComponents';
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import { HDSegwitBech32Transaction } from '../../class';
 import { BitcoinUnit } from '../../models/bitcoinUnits';
@@ -72,7 +73,7 @@ const TransactionsStatus = () => {
         elevation: 0,
         shadowOpacity: 0,
         shadowOffset: { height: 0, width: 0 },
-        backgroundColor: colors.customHeader,
+        backgroundColor: 'rgba(95, 88, 84, .18)',
       },
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -283,79 +284,81 @@ const TransactionsStatus = () => {
   return (
     <SafeBlueArea forceInset={{ horizontal: 'always' }} style={[styles.root, stylesHook.root]}>
       {isHandOffUseEnabled && (
-        <Handoff title={`Bitcoin Transaction ${tx.hash}`} type="io.bluewallet.bluewallet" url={`https://blockstream.info/tx/${tx.hash}`} />
+        <Handoff title={`Bitcoin Transaction ${tx.hash}`} type="io.bluewallet.bluewallet" url={`https://explorer.veles.network/tx/${tx.hash}`} />
       )}
       <StatusBar barStyle="default" />
-      <View style={styles.container}>
-        <BlueCard>
-          <View style={styles.center}>
-            <Text style={[styles.value, stylesHook.value]}>
-              {formatBalanceWithoutSuffix(tx.value, wallet.current.preferredBalanceUnit, true)}{' '}
-              {wallet.current.preferredBalanceUnit !== BitcoinUnit.LOCAL_CURRENCY && (
-                <Text style={[styles.valueUnit, stylesHook.valueUnit]}>{loc.units[wallet.current.preferredBalanceUnit]}</Text>
-              )}
-            </Text>
-          </View>
-
-          {renderTXMetadata()}
-
-          <View style={[styles.iconRoot, stylesHook.iconRoot]}>
-            <View>
-              <Icon name="check" size={50} type="font-awesome" color={colors.successCheck} />
+      <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1,}}>
+        <View style={styles.container}>
+          <BlueCard>
+            <View style={styles.center}>
+              <Text style={[styles.value, stylesHook.value]}>
+                {formatBalanceWithoutSuffix(tx.value, wallet.current.preferredBalanceUnit, true)}{' '}
+                {wallet.current.preferredBalanceUnit !== BitcoinUnit.LOCAL_CURRENCY && (
+                  <Text style={[styles.valueUnit, stylesHook.valueUnit]}>{loc.units[wallet.current.preferredBalanceUnit]}</Text>
+                )}
+              </Text>
             </View>
-            <View style={[styles.iconWrap, styles.margin]}>
-              {(() => {
-                if (!tx.confirmations) {
-                  return (
-                    <View style={styles.icon}>
-                      <BlueTransactionPendingIcon />
-                    </View>
-                  );
-                } else if (tx.value < 0) {
-                  return (
-                    <View style={styles.icon}>
-                      <BlueTransactionOutgoingIcon />
-                    </View>
-                  );
-                } else {
-                  return (
-                    <View style={styles.icon}>
-                      <BlueTransactionIncomingIcon />
-                    </View>
-                  );
-                }
-              })()}
+
+            {renderTXMetadata()}
+
+            <View style={[styles.iconRoot, stylesHook.iconRoot]}>
+              <View>
+                <Icon name="check" size={90} type="font-awesome" color={colors.successCheck} />
+              </View>
+              <View style={[styles.iconWrap, styles.margin]}>
+                {(() => {
+                  if (!tx.confirmations) {
+                    return (
+                      <View style={styles.icon}>
+                        <BlueTransactionPendingStatusIcon />
+                      </View>
+                    );
+                  } else if (tx.value < 0) {
+                    return (
+                      <View style={styles.icon}>
+                        <BlueTransactionOutgoingStatusIcon />
+                      </View>
+                    );
+                  } else {
+                    return (
+                      <View style={styles.icon}>
+                        <BlueTransactionIncomingStatusIcon />
+                      </View>
+                    );
+                  }
+                })()}
+              </View>
             </View>
-          </View>
 
-          {tx.fee && (
-            <View style={styles.fee}>
-              <BlueText style={styles.feeText}>
-                {loc.send.create_fee.toLowerCase()} {formatBalanceWithoutSuffix(tx.fee, wallet.current.preferredBalanceUnit, true)}{' '}
-                {wallet.current.preferredBalanceUnit !== BitcoinUnit.LOCAL_CURRENCY && wallet.current.preferredBalanceUnit}
-              </BlueText>
+            {tx.fee && (
+              <View style={styles.fee}>
+                <BlueText style={styles.feeText}>
+                  {loc.send.create_fee.toLowerCase()} {formatBalanceWithoutSuffix(tx.fee, wallet.current.preferredBalanceUnit, true)}{' '}
+                  {wallet.current.preferredBalanceUnit !== BitcoinUnit.LOCAL_CURRENCY && wallet.current.preferredBalanceUnit}
+                </BlueText>
+              </View>
+            )}
+
+            <View style={[styles.confirmations, stylesHook.confirmations]}>
+              <Text style={styles.confirmationsText}>
+                {loc.formatString(loc.transactions.confirmations_lowercase, {
+                  confirmations: tx.confirmations > 6 ? '6+' : tx.confirmations,
+                })}
+              </Text>
             </View>
-          )}
+          </BlueCard>
 
-          <View style={[styles.confirmations, stylesHook.confirmations]}>
-            <Text style={styles.confirmationsText}>
-              {loc.formatString(loc.transactions.confirmations_lowercase, {
-                confirmations: tx.confirmations > 6 ? '6+' : tx.confirmations,
-              })}
-            </Text>
+          <View style={styles.actions}>
+            {renderCPFP()}
+            {renderRBFBumpFee()}
+            {renderRBFCancel()}
+            <TouchableOpacity style={styles.details} onPress={navigateToTransactionDetials}>
+              <Text style={styles.detailsText}>{loc.send.create_details.toLowerCase()}</Text>
+              <Icon name="angle-right" size={18} type="font-awesome" color="#9aa0aa" />
+            </TouchableOpacity>
           </View>
-        </BlueCard>
-
-        <View style={styles.actions}>
-          {renderCPFP()}
-          {renderRBFBumpFee()}
-          {renderRBFCancel()}
-          <TouchableOpacity style={styles.details} onPress={navigateToTransactionDetials}>
-            <Text style={styles.detailsText}>{loc.send.create_details.toLowerCase()}</Text>
-            <Icon name="angle-right" size={18} type="font-awesome" color="#9aa0aa" />
-          </TouchableOpacity>
         </View>
-      </View>
+      </LinearGradient>
     </SafeBlueArea>
   );
 };
@@ -389,9 +392,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   iconRoot: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
+    width: 200,
+    height: 200,
+    borderRadius: 100,
     alignSelf: 'center',
     justifyContent: 'center',
     marginTop: 43,
@@ -406,6 +409,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   margin: {
+    marginRight: 20,
     marginBottom: -40,
   },
   icon: {

@@ -3,6 +3,7 @@ import { InteractionManager, useWindowDimensions, ActivityIndicator, View, Statu
 import QRCode from 'react-native-qrcode-svg';
 import { useFocusEffect, useRoute, useNavigation, useTheme } from '@react-navigation/native';
 
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import { BlueSpacing20, SafeBlueArea, BlueText, BlueCopyTextToClipboard } from '../../BlueComponents';
 import Privacy from '../../Privacy';
@@ -13,7 +14,6 @@ import { BlueStorageContext } from '../../blue_modules/storage-context';
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    paddingTop: 20,
   },
   container: {
     alignItems: 'center',
@@ -73,7 +73,11 @@ const WalletXpub = () => {
     </View>
   ) : (
     <SafeBlueArea style={[styles.root, stylesHook.root]}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar 
+        barStyle="light-content"
+        backgroundColor="rgba(95, 88, 84, .18)"
+      />
+      <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1, paddingTop: 20}}>
       <View style={styles.container}>
         <View>
           <BlueText>{wallet.typeReadable}</BlueText>
@@ -95,6 +99,7 @@ const WalletXpub = () => {
         <BlueSpacing20 />
         <BlueCopyTextToClipboard text={xPubText} />
       </View>
+      </LinearGradient>
     </SafeBlueArea>
   );
 };

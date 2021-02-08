@@ -241,9 +241,9 @@ describe('unit - DeepLinkSchemaMatch', function () {
     });
 
     decoded = DeeplinkSchemaMatch.bip21decode(
-      'bitcoin:bc1qnapskphjnwzw2w3dk4anpxntunc77v6qrua0f7?amount=0.0001&pj=https://btc.donate.kukks.org/BTC/pj',
+      'bitcoin:bc1qnapskphjnwzw2w3dk4anpxntunc77v6qrua0f7?amount=0.0001&pj=https://btc.donate.kukks.org/VLS/pj',
     );
-    assert.strictEqual(decoded.options.pj, 'https://btc.donate.kukks.org/BTC/pj');
+    assert.strictEqual(decoded.options.pj, 'https://btc.donate.kukks.org/VLS/pj');
 
     decoded = DeeplinkSchemaMatch.bip21decode('BITCOIN:1BgGZ9tcN4rm9KBzDn7KprQz87SZ26SAMH?amount=20.3&label=Foobar');
     assert.deepStrictEqual(decoded, {
@@ -268,13 +268,13 @@ describe('unit - DeepLinkSchemaMatch', function () {
   it('can decodeBitcoinUri', () => {
     assert.deepStrictEqual(
       DeeplinkSchemaMatch.decodeBitcoinUri(
-        'bitcoin:bc1qnapskphjnwzw2w3dk4anpxntunc77v6qrua0f7?amount=0.0001&pj=https://btc.donate.kukks.org/BTC/pj',
+        'bitcoin:bc1qnapskphjnwzw2w3dk4anpxntunc77v6qrua0f7?amount=0.0001&pj=https://btc.donate.kukks.org/VLS/pj',
       ),
       {
         address: 'bc1qnapskphjnwzw2w3dk4anpxntunc77v6qrua0f7',
         amount: 0.0001,
         memo: '',
-        payjoinUrl: 'https://btc.donate.kukks.org/BTC/pj',
+        payjoinUrl: 'https://btc.donate.kukks.org/VLS/pj',
       },
     );
 

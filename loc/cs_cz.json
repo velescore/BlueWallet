@@ -444,7 +444,7 @@
     "vault_key": "Klíč úložiště {number}",
     "required_keys_out_of_total": "Požadované klíče z celkového počtu",
     "fee": "Poplatek: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_btc": "{number} VLS",
     "confirm": "Potvrdit",
     "header": "Odeslat",
     "share": "Sdílet",
@@ -527,7 +527,7 @@
     "tip": "Umožňuje zobrazit, označit, zmrazit nebo vybrat mince pro lepší správu peněženky."
   },
   "units": {
-    "BTC": "BTC",
+    "VLS": "VLS",
     "MAX": "MAX",
     "sat_byte": "sat/byte",
     "sats": "sats"

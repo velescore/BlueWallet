@@ -13,16 +13,16 @@ import { MultisigHDWallet } from './wallets/multisig-hd-wallet';
 import { useTheme } from '@react-navigation/native';
 
 export default class WalletGradient {
-  static hdSegwitP2SHWallet = ['#65ceef', '#68bbe1'];
-  static hdSegwitBech32Wallet = ['#68bbe1', '#3b73d4'];
-  static segwitBech32Wallet = ['#f8bbe1', '#945a90'];
-  static watchOnlyWallet = ['#7d7d7d', '#4a4a4a'];
-  static legacyWallet = ['#40fad1', '#15be98'];
-  static hdLegacyP2PKHWallet = ['#e36dfa', '#bd10e0'];
-  static hdLegacyBreadWallet = ['#fe6381', '#f99c42'];
-  static multisigHdWallet = ['#1ce6eb', '#296fc5', '#3500A2'];
-  static defaultGradients = ['#c65afb', '#9053fe'];
-  static lightningCustodianWallet = ['#f1be07', '#f79056'];
+  static hdSegwitP2SHWallet = ['#464646', '#464646'];
+  static hdSegwitBech32Wallet = ['#464646', '#464646'];
+  static segwitBech32Wallet = ['#464646', '#464646'];
+  static watchOnlyWallet = ['#464646', '#464646'];
+  static legacyWallet = ['#464646', '#464646'];
+  static hdLegacyP2PKHWallet = ['#464646', '#464646'];
+  static hdLegacyBreadWallet = ['#464646', '#464646'];
+  static multisigHdWallet = ['#464646', '#464646', '#464646'];
+  static defaultGradients = ['#464646', '#464646'];
+  static lightningCustodianWallet = ['#464646', '#464646'];
 
   static createWallet = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks

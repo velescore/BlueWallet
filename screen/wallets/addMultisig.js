@@ -185,7 +185,10 @@ const WalletsAddMultisig = () => {
 
   return (
     <SafeAreaView style={stylesHook.root}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar 
+        barStyle="light-content"
+        backgroundColor="rgba(95, 88, 84, .18)"
+      />
       <View style={styles.descriptionContainer}>
         <View style={styles.imageWrapper}>
           <LottieView source={require('../../img/msvault.json')} autoPlay ref={loadingAnimation} loop={false} />

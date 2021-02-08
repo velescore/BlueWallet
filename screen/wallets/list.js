@@ -17,6 +17,7 @@ import { BlueHeaderDefaultMain, BlueTransactionListItem, NavbarLogo } from '../.
 import WalletsCarousel from '../../components/WalletsCarousel';
 import { Icon } from 'react-native-elements';
 import DeeplinkSchemaMatch from '../../class/deeplink-schema-match';
+import LinearGradient from 'react-native-linear-gradient';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 import { PlaceholderWallet } from '../../class';
 import WalletImport from '../../class/wallet-import';
@@ -46,7 +47,7 @@ const WalletsList = () => {
     setSelectedWallet,
   } = useContext(BlueStorageContext);
   const { width } = useWindowDimensions();
-  const { colors, scanImage } = useTheme();
+  const { colors, scanImage, addImage } = useTheme();
   const { navigate, setOptions } = useNavigation();
   const routeName = useRoute().name;
   const [isLoading, setIsLoading] = useState(false);
@@ -58,9 +59,6 @@ const WalletsList = () => {
   const dataSource = getTransactions(null, 10);
 
   const stylesHook = StyleSheet.create({
-    walletsListWrapper: {
-      backgroundColor: colors.brandingColor,
-    },
     listHeaderBack: {
       backgroundColor: colors.background,
     },
@@ -68,7 +66,7 @@ const WalletsList = () => {
       color: colors.foregroundColor,
     },
     ltRoot: {
-      backgroundColor: colors.ballOutgoingExpired,
+      backgroundColor: 'rgba(95, 88, 84, .05)',
     },
 
     ltTextBig: {
@@ -115,8 +113,13 @@ const WalletsList = () => {
     setOptions({
       title: '',
       headerShown: !isCatalyst,
+      headerTitleStyle: { 
+        alignSelf: 'flex-start', 
+        color: 'black'
+      },
+      title: 'Dashboard',
       headerStyle: {
-        backgroundColor: colors.customHeader,
+        backgroundColor: 'rgba(95, 88, 84, .18)',
         borderBottomWidth: 0,
         elevation: 0,
         shadowOpacity: 0,
@@ -199,6 +202,52 @@ const WalletsList = () => {
       console.log(wallets[index].getLabel(), 'thinks its time to refresh either balance or transactions. refetching both');
       refreshAllWalletTransactions(index).finally(() => setIsLoading(false));
     }
+  };
+
+  const renderSectionHeader = section => {
+    if (carouselData.length > 0 && !carouselData.some(wallet => wallet.type === PlaceholderWallet.type)) {
+      return (
+        <FContainer>
+          <FButton
+            onPress={onScanButtonPressed}
+            onLongPress={isMacCatalina ? undefined : sendButtonLongPress}
+            icon={<Image resizeMode="stretch" source={scanImage} />}
+            text={loc.send.details_scan}
+          />
+          <FButton
+            onPress={!carouselData.some(wallet => wallet.type === PlaceholderWallet.type) ? () => navigate('AddWalletRoot') : null}
+            onLongPress={undefined}
+            icon={
+              <View style={styles.addIcon}>
+                <Image style={{height:25, width:20}} source={addImage} />
+              </View>
+            }
+            text={loc.wallets.add_create}
+          />
+        </FContainer>
+      );
+    } else {
+      return (
+        <FContainer>
+          <FButton
+            onPress={undefined}
+            onLongPress={undefined}
+            icon={<Image resizeMode="stretch" source={scanImage} />}
+            text={loc.send.details_scan}
+          />
+          <FButton
+            onPress={!carouselData.some(wallet => wallet.type === PlaceholderWallet.type) ? () => navigate('AddWalletRoot') : null}
+            onLongPress={undefined}
+            icon={
+              <View style={styles.addIcon}>
+                <Image style={{height:25, width:20}} source={addImage} />
+              </View>
+            }
+            text={loc.wallets.add_create}
+          />
+        </FContainer>
+      );
+    } 
   };
 
   const renderListHeaderComponent = () => {
@@ -288,22 +337,6 @@ const WalletsList = () => {
     }
   };
 
-  const renderSectionHeader = section => {
-    switch (section.section.key) {
-      case WalletsListSections.CAROUSEL:
-        return isLargeScreen ? null : (
-          <BlueHeaderDefaultMain
-            leftText={loc.wallets.list_title}
-            onNewWalletPress={!carouselData.some(wallet => wallet.type === PlaceholderWallet.type) ? () => navigate('AddWalletRoot') : null}
-          />
-        );
-      case WalletsListSections.TRANSACTIONS:
-        return renderListHeaderComponent();
-      default:
-        return null;
-    }
-  };
-
   const renderSectionFooter = section => {
     switch (section.section.key) {
       case WalletsListSections.TRANSACTIONS:
@@ -313,29 +346,13 @@ const WalletsList = () => {
               <Text style={styles.footerEmpty}>{loc.wallets.list_empty_txs1}</Text>
               <Text style={styles.footerStart}>{loc.wallets.list_empty_txs2}</Text>
             </View>
+            
           );
         } else {
           return null;
         }
       default:
         return null;
-    }
-  };
-
-  const renderScanButton = () => {
-    if (carouselData.length > 0 && !carouselData.some(wallet => wallet.type === PlaceholderWallet.type)) {
-      return (
-        <FContainer>
-          <FButton
-            onPress={onScanButtonPressed}
-            onLongPress={isMacCatalina ? undefined : sendButtonLongPress}
-            icon={<Image resizeMode="stretch" source={scanImage} />}
-            text={loc.send.details_scan}
-          />
-        </FContainer>
-      );
-    } else {
-      return null;
     }
   };
 
@@ -440,27 +457,32 @@ const WalletsList = () => {
   };
 
   return (
-    <View style={styles.root} onLayout={onLayout}>
-      <StatusBar barStyle="default" />
-      <View style={[styles.walletsListWrapper, stylesHook.walletsListWrapper]}>
-        <SectionList
-          onRefresh={refreshTransactions}
-          refreshing={isLoading}
-          renderItem={renderSectionItem}
-          keyExtractor={sectionListKeyExtractor}
-          renderSectionHeader={renderSectionHeader}
-          initialNumToRender={20}
-          contentInset={styles.scrollContent}
-          renderSectionFooter={renderSectionFooter}
-          sections={[
-            { key: WalletsListSections.CAROUSEL, data: [WalletsListSections.CAROUSEL] },
-            { key: WalletsListSections.LOCALTRADER, data: [WalletsListSections.LOCALTRADER] },
-            { key: WalletsListSections.TRANSACTIONS, data: dataSource },
-          ]}
+    <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+      <View style={styles.root} onLayout={onLayout}>
+        <StatusBar 
+          barStyle="default" 
+          backgroundColor="rgba(95, 88, 84, .18)"
         />
-        {renderScanButton()}
+        <View style={[styles.walletsListWrapper, stylesHook.walletsListWrapper]}>
+          <SectionList
+            onRefresh={refreshTransactions}
+            refreshing={isLoading}
+            renderItem={renderSectionItem}
+            keyExtractor={sectionListKeyExtractor}
+            initialNumToRender={20}
+            contentInset={styles.scrollContent}
+            renderSectionFooter={renderSectionFooter}
+            sections={[
+              { key: WalletsListSections.CAROUSEL, data: [WalletsListSections.CAROUSEL] },
+              { key: WalletsListSections.LOCALTRADER, data: [WalletsListSections.LOCALTRADER] },
+              { key: WalletsListSections.TRANSACTIONS, data: dataSource },
+            ]}
+          />
+          {renderSectionHeader()}
+        </View>
       </View>
-    </View>
+    </LinearGradient>
+
   );
 };
 
@@ -489,12 +511,14 @@ const styles = StyleSheet.create({
         height: 32,
         alignItems: 'flex-end',
         justifyContent: 'center',
+        backgroundColor: 'transparent'
       },
       android: {
         marginTop: 8,
         height: 44,
         alignItems: 'flex-end',
         justifyContent: 'center',
+        backgroundColor: 'transparent'
       },
     }),
   },
@@ -537,7 +561,7 @@ const styles = StyleSheet.create({
   },
   ltButtonWrap: {
     flexDirection: 'column',
-    backgroundColor: '#007AFF',
+    backgroundColor: '#b19683bb',
     borderRadius: 16,
   },
   ltButton: {

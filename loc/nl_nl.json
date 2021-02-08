@@ -421,7 +421,7 @@
     "vault_key": "Vault key {number}",
     "required_keys_out_of_total": "Vereiste keys uit het totaal",
     "fee": "Fee: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_btc": "{number} VLS",
     "confirm": "Bevestig",
     "header": "Verzenden",
     "share": "Delen",

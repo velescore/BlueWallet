@@ -489,12 +489,12 @@ export class LightningCustodianWallet extends LegacyWallet {
       throw new Error('API error: ' + json.message + ' (code ' + json.code + ')');
     }
 
-    if (!json.BTC || typeof json.BTC.AvailableBalance === 'undefined') {
+    if (!json.VLS || typeof json.VLS.AvailableBalance === 'undefined') {
       throw new Error('API unexpected response: ' + JSON.stringify(response.body));
     }
 
     this.balance_raw = json;
-    this.balance = json.BTC.AvailableBalance;
+    this.balance = json.VLS.AvailableBalance;
     this._lastBalanceFetch = +new Date();
   }
 

@@ -6,6 +6,7 @@ import { SafeBlueArea, BlueListItem, BlueLoading } from '../../BlueComponents';
 import { AvailableLanguages } from '../../loc/languages';
 import loc from '../../loc';
 
+import LinearGradient from 'react-native-linear-gradient';
 import { BlueStorageContext } from '../../blue_modules/storage-context';
 import { useNavigation, useTheme } from '@react-navigation/native';
 
@@ -23,7 +24,7 @@ const Language = () => {
   const { colors } = useTheme();
   const stylesHook = StyleSheet.create({
     flex: {
-      backgroundColor: colors.background,
+      backgroundColor: 'transparent',
     },
   });
   useEffect(() => {
@@ -52,15 +53,17 @@ const Language = () => {
   return isLoading ? (
     <BlueLoading />
   ) : (
-    <SafeBlueArea forceInset={{ horizontal: 'always' }} style={[styles.flex, stylesHook.flex]}>
-      <FlatList
-        style={[styles.flex, stylesHook.flex]}
-        keyExtractor={(_item, index) => `${index}`}
-        data={AvailableLanguages}
-        renderItem={renderItem}
-        initialNumToRender={25}
-      />
-    </SafeBlueArea>
+    <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+      <SafeBlueArea forceInset={{ horizontal: 'always' }} style={[styles.flex, stylesHook.flex]}>
+        <FlatList
+          style={[styles.flex, stylesHook.flex]}
+          keyExtractor={(_item, index) => `${index}`}
+          data={AvailableLanguages}
+          renderItem={renderItem}
+          initialNumToRender={25}
+        />
+      </SafeBlueArea>
+    </LinearGradient>
   );
 };
 

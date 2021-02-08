@@ -14,7 +14,7 @@ class NumericKeypadInterfaceController: WKInterfaceController {
   
   static let identifier = "NumericKeypadInterfaceController"
   private var amount: [String] = ["0"]
-  var keyPadType: NumericKeypadType = .BTC
+  var keyPadType: NumericKeypadType = .VLS
   struct NotificationName {
     static let keypadDataChanged = Notification.Name(rawValue: "Notification.NumericKeypadInterfaceController.keypadDataChanged")
   }
@@ -22,7 +22,7 @@ class NumericKeypadInterfaceController: WKInterfaceController {
     static let keypadDataChanged = Notification(name: NotificationName.keypadDataChanged)
   }
   enum NumericKeypadType: String {
-    case BTC = "BTC"
+    case VLS = "VLS"
     case SATS = "sats"
   }
   
@@ -72,7 +72,7 @@ class NumericKeypadInterfaceController: WKInterfaceController {
       } else {
         amount.append(value)
       }
-    case .BTC:
+    case .VLS:
       if amount.isEmpty {
         if (value == "0") {
           amount.append("0")
@@ -139,7 +139,7 @@ class NumericKeypadInterfaceController: WKInterfaceController {
   }
   
   @IBAction func keypadNumberDotTapped() {
-    guard !amount.contains("."), keyPadType == .BTC else { return }
+    guard !amount.contains("."), keyPadType == .VLS else { return }
     append(value: ".")
   }
   

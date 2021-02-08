@@ -455,7 +455,7 @@
     "vault_key": "Vault key {number}",
     "required_keys_out_of_total": "Required keys out of the total",
     "fee": "Fee: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_btc": "{number} VLS",
     "confirm": "Confirm",
     "header": "Send",
     "share": "Share",
@@ -543,7 +543,7 @@
     "tip": "Allows you to see, label, freeze or select coins for improved wallet management."
   },
   "units": {
-    "BTC": "BTC",
+    "VLS": "VLS",
     "MAX": "MAX",
     "sat_byte": "sat/byte",
     "sats": "sats"

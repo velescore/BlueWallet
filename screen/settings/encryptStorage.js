@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 import { colors } from 'react-native-elements';
 
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import { BlueLoading, SafeBlueArea, BlueSpacing20, BlueCard, BlueListItem, BlueHeaderDefaultSub, BlueText } from '../../BlueComponents';
 import Biometric from '../../class/biometrics';
@@ -146,52 +147,54 @@ const EncryptStorage = () => {
       <BlueLoading />
     </SafeBlueArea>
   ) : (
-    <SafeBlueArea forceInset={{ horizontal: 'always' }} style={styles.root}>
-      <ScrollView contentContainerStyle={styles.root}>
-        {biometrics.isDeviceBiometricCapable && (
-          <>
-            <BlueHeaderDefaultSub leftText={loc.settings.biometrics} rightComponent={null} />
-            <BlueListItem
-              title={loc.formatString(loc.settings.encrypt_use, { type: biometrics.biometricsType })}
-              Component={TouchableWithoutFeedback}
-              switch={{ value: biometrics.isBiometricsEnabled, onValueChange: onUseBiometricSwitch }}
-            />
-            <BlueCard>
-              <BlueText>{loc.formatString(loc.settings.encrypt_use_expl, { type: biometrics.biometricsType })}</BlueText>
-            </BlueCard>
-            <BlueSpacing20 />
-          </>
-        )}
-        <BlueHeaderDefaultSub leftText={loc.settings.encrypt_tstorage} rightComponent={null} />
-        <BlueListItem
-          testID="EncyptedAndPasswordProtected"
-          hideChevron
-          title={loc.settings.encrypt_enc_and_pass}
-          Component={TouchableWithoutFeedback}
-          switch={{ onValueChange: onEncryptStorageSwitch, value: storageIsEncryptedSwitchEnabled }}
-        />
-        {Platform.OS === 'ios' && !isCatalyst && (
+    <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+      <SafeBlueArea forceInset={{ horizontal: 'always' }} style={styles.root}>
+        <ScrollView contentContainerStyle={styles.root}>
+          {biometrics.isDeviceBiometricCapable && (
+            <>
+              <BlueHeaderDefaultSub leftText={loc.settings.biometrics} rightComponent={null} />
+              <BlueListItem
+                title={loc.formatString(loc.settings.encrypt_use, { type: biometrics.biometricsType })}
+                Component={TouchableWithoutFeedback}
+                switch={{ value: biometrics.isBiometricsEnabled, onValueChange: onUseBiometricSwitch }}
+              />
+              <BlueCard>
+                <BlueText>{loc.formatString(loc.settings.encrypt_use_expl, { type: biometrics.biometricsType })}</BlueText>
+              </BlueCard>
+              <BlueSpacing20 />
+            </>
+          )}
+          <BlueHeaderDefaultSub leftText={loc.settings.encrypt_tstorage} rightComponent={null} />
           <BlueListItem
+            testID="EncyptedAndPasswordProtected"
             hideChevron
-            title={loc.settings.encrypt_del_uninstall}
+            title={loc.settings.encrypt_enc_and_pass}
             Component={TouchableWithoutFeedback}
-            switch={{
-              onValueChange: onDeleteWalletsAfterUninstallSwitch,
-              value: deleteWalletsAfterUninstall,
-            }}
+            switch={{ onValueChange: onEncryptStorageSwitch, value: storageIsEncryptedSwitchEnabled }}
           />
-        )}
-        {storageIsEncryptedSwitchEnabled && (
-          <BlueListItem
-            onPress={navigateToPlausibleDeniability}
-            title={loc.settings.plausible_deniability}
-            chevron
-            testID="PlausibleDeniabilityButton"
-            Component={TouchableOpacity}
-          />
-        )}
-      </ScrollView>
-    </SafeBlueArea>
+          {Platform.OS === 'ios' && !isCatalyst && (
+            <BlueListItem
+              hideChevron
+              title={loc.settings.encrypt_del_uninstall}
+              Component={TouchableWithoutFeedback}
+              switch={{
+                onValueChange: onDeleteWalletsAfterUninstallSwitch,
+                value: deleteWalletsAfterUninstall,
+              }}
+            />
+          )}
+          {storageIsEncryptedSwitchEnabled && (
+            <BlueListItem
+              onPress={navigateToPlausibleDeniability}
+              title={loc.settings.plausible_deniability}
+              chevron
+              testID="PlausibleDeniabilityButton"
+              Component={TouchableOpacity}
+            />
+          )}
+        </ScrollView>
+      </SafeBlueArea>
+    </LinearGradient>
   );
 };
 

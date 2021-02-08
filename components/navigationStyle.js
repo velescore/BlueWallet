@@ -31,6 +31,7 @@ const navigationStyle = ({ closeButton = false, closeButtonFunc, ...opts }, form
       headerStyle: {
         borderBottomWidth: 0,
         elevation: 0,
+        backgroundColor: 'rgba(95, 88, 84, .18)',
         shadowOpacity: 0,
         shadowOffset: { height: 0, width: 0 },
       },
@@ -40,7 +41,7 @@ const navigationStyle = ({ closeButton = false, closeButtonFunc, ...opts }, form
       },
       headerRight,
       headerBackTitleVisible: false,
-      headerTintColor: theme.colors.foregroundColor,
+      headerTintColor: '#1f1d1c',
       ...opts,
     };
 
@@ -58,6 +59,7 @@ export const navigationStyleTx = (opts, formatter) => {
   return theme => ({ navigation, route }) => {
     let options = {
       headerStyle: {
+        backgroundColor: 'rgba(95, 88, 84, .18)',
         borderBottomWidth: 0,
         elevation: 0,
         shadowOffset: { height: 0, width: 0 },
@@ -68,7 +70,7 @@ export const navigationStyleTx = (opts, formatter) => {
       },
       // headerBackTitle: null,
       headerBackTitleVisible: false,
-      headerTintColor: theme.colors.foregroundColor,
+      headerTintColor: '#1f1d1c',
       headerLeft: () => (
         <TouchableOpacity
           style={styles.button}

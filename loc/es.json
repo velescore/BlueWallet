@@ -454,7 +454,7 @@
     "vault_key": "Clave del Vault {number}",
     "required_keys_out_of_total": "Las llaves que se necesitarán del total de llaves creadas",
     "fee": "Tarifa: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_btc": "{number} VLS",
     "confirm": "Confirmar",
     "header": "Enviar",
     "share": "Compartir",
@@ -542,7 +542,7 @@
     "tip": "Te permite ver, etiquetar, congelar o seleccionar monedas para mejorar la organización de las carteras."
   },
   "units": {
-    "BTC": "BTC",
+    "VLS": "VLS",
     "MAX": "MÁX",
     "sat_byte": "sat/byte",
     "sats": "sats"

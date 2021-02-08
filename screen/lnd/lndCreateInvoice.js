@@ -43,7 +43,7 @@ const LNDCreateInvoice = () => {
   const { name } = useRoute();
   const { colors } = useTheme();
   const { navigate, dangerouslyGetParent, goBack, pop, setParams } = useNavigation();
-  const [unit, setUnit] = useState(wallet.current?.getPreferredBalanceUnit() || BitcoinUnit.BTC);
+  const [unit, setUnit] = useState(wallet.current?.getPreferredBalanceUnit() || BitcoinUnit.VLS);
   const [amount, setAmount] = useState();
   const [renderWalletSelectionButtonHidden, setRenderWalletSelectionButtonHidden] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -158,7 +158,7 @@ const LNDCreateInvoice = () => {
         case BitcoinUnit.SATS:
           invoiceAmount = parseInt(invoiceAmount); // basically nop
           break;
-        case BitcoinUnit.BTC:
+        case BitcoinUnit.VLS:
           invoiceAmount = currency.btcToSatoshi(invoiceAmount);
           break;
         case BitcoinUnit.LOCAL_CURRENCY:
@@ -255,7 +255,7 @@ const LNDCreateInvoice = () => {
         case BitcoinUnit.SATS:
           // nop
           break;
-        case BitcoinUnit.BTC:
+        case BitcoinUnit.VLS:
           amount = currency.satoshiToBTC(amount);
           break;
         case BitcoinUnit.LOCAL_CURRENCY:
@@ -350,7 +350,10 @@ const LNDCreateInvoice = () => {
   if (!wallet.current) {
     return (
       <View style={[styles.root, styleHooks.root]}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar 
+  barStyle="light-content"
+  backgroundColor="rgba(95, 88, 84, .18)"
+/>
         <BlueLoading />
       </View>
     );
@@ -359,7 +362,10 @@ const LNDCreateInvoice = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={[styles.root, styleHooks.root]}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar 
+  barStyle="light-content"
+  backgroundColor="rgba(95, 88, 84, .18)"
+/>
         <View style={[styles.amount, styleHooks.amount]}>
           <KeyboardAvoidingView behavior="position">
             <BlueBitcoinAmount

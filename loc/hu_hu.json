@@ -128,7 +128,7 @@
     "create_new_key": "Készíts újat",
     "export_coordination_setup": "koordinációs beállítások exportálása",
     "fee": "Tranzakciós díj: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_btc": "{number} VLS",
     "header": "Küldés",
     "how_many_signatures_can_bluewallet_make": "BlueWallet aláírás kapacitása",
     "i_have_mnemonics": "Megvan a jelszó sorozatom ehhez a kulcshoz...",

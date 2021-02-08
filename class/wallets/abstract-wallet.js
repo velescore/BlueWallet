@@ -27,7 +27,7 @@ export class AbstractWallet {
     this.utxo = [];
     this._lastTxFetch = 0;
     this._lastBalanceFetch = 0;
-    this.preferredBalanceUnit = BitcoinUnit.BTC;
+    this.preferredBalanceUnit = BitcoinUnit.VLS;
     this.chain = Chain.ONCHAIN;
     this.hideBalance = false;
     this.userHasSavedExport = false;
@@ -88,7 +88,7 @@ export class AbstractWallet {
         return this.preferredBalanceUnit;
       }
     }
-    return BitcoinUnit.BTC;
+    return BitcoinUnit.VLS;
   }
 
   allowReceive() {

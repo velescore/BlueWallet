@@ -8,6 +8,7 @@ import { useNavigation, useRoute, useTheme } from '@react-navigation/native';
 import { BlueCurrentTheme } from '../../components/themes';
 import { FContainer, FButton } from '../../components/FloatButtons';
 import { BlueSpacing20, SafeBlueArea, BlueTabs } from '../../BlueComponents';
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import loc from '../../loc';
 
@@ -128,7 +129,7 @@ const Dice = ({ push, sides }) => {
       color: colors.foregroundColor,
     },
     diceContainer: {
-      backgroundColor: colors.elevated,
+      backgroundColor: 'transparent',
     },
   });
   const diceIcon = i => {
@@ -239,34 +240,36 @@ const Entropy = () => {
 
   return (
     <SafeBlueArea>
-      <BlueSpacing20 />
-      <TouchableOpacity onPress={() => setShow(!show)}>
-        <View style={[styles.entropy, stylesHook.entropy]}>
-          <Text style={[styles.entropyText, stylesHook.entropyText]}>{show ? hex : `${bits} of 256 bits`}</Text>
-        </View>
-      </TouchableOpacity>
+      <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+        <BlueSpacing20 />
+        <TouchableOpacity onPress={() => setShow(!show)}>
+          <View style={[styles.entropy, stylesHook.entropy]}>
+            <Text style={[styles.entropyText, stylesHook.entropyText]}>{show ? hex : `${bits} of 256 bits`}</Text>
+          </View>
+        </TouchableOpacity>
 
-      <BlueTabs
-        active={tab}
-        onSwitch={setTab}
-        tabs={[
-          ({ active }) => (
-            <Icon name="toll" type="material" color={active ? colors.buttonAlternativeTextColor : colors.buttonBackgroundColor} />
-          ),
-          ({ active }) => (
-            <Icon name="dice" type="font-awesome-5" color={active ? colors.buttonAlternativeTextColor : colors.buttonBackgroundColor} />
-          ),
-          ({ active }) => (
-            <Icon name="dice-d20" type="font-awesome-5" color={active ? colors.buttonAlternativeTextColor : colors.buttonBackgroundColor} />
-          ),
-        ]}
-      />
+        <BlueTabs
+          active={tab}
+          onSwitch={setTab}
+          tabs={[
+            ({ active }) => (
+              <Icon name="toll" type="material" color={active ? colors.buttonAlternativeTextColor : colors.buttonBackgroundColor} />
+            ),
+            ({ active }) => (
+              <Icon name="dice" type="font-awesome-5" color={active ? colors.buttonAlternativeTextColor : colors.buttonBackgroundColor} />
+            ),
+            ({ active }) => (
+              <Icon name="dice-d20" type="font-awesome-5" color={active ? colors.buttonAlternativeTextColor : colors.buttonBackgroundColor} />
+            ),
+          ]}
+        />
 
-      {tab === 0 && <Coin push={push} />}
-      {tab === 1 && <Dice sides={6} push={push} />}
-      {tab === 2 && <Dice sides={20} push={push} />}
+        {tab === 0 && <Coin push={push} />}
+        {tab === 1 && <Dice sides={6} push={push} />}
+        {tab === 2 && <Dice sides={20} push={push} />}
 
-      <Buttons pop={pop} save={save} colors={colors} />
+        <Buttons pop={pop} save={save} colors={colors} />
+      </LinearGradient>
     </SafeBlueArea>
   );
 };

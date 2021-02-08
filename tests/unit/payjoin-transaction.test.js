@@ -76,7 +76,7 @@ describe('PayjoinTransaction', () => {
     }
     const w = new HDSegwitBech32Wallet();
     w.setSecret(process.env.MNEMONICS_COLDCARD);
-    // bitcoin:bc1qy0ydthpa35m37pvwl5tu76j0srcmcwtmaur3aw?amount=0.0001&pj=https://btc.donate.kukks.org/BTC/pj
+    // bitcoin:bc1qy0ydthpa35m37pvwl5tu76j0srcmcwtmaur3aw?amount=0.0001&pj=https://btc.donate.kukks.org/VLS/pj
     const { tx: txOrigin, psbt: psbtOrigin } = w.createTransaction(
       utxos,
       [{ address: 'bc1qy0ydthpa35m37pvwl5tu76j0srcmcwtmaur3aw', value: 10000 }],

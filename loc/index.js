@@ -236,11 +236,11 @@ export const removeTrailingZeros = value => {
  */
 export function formatBalance(balance, toUnit, withFormatting = false) {
   if (toUnit === undefined) {
-    return balance + ' ' + strings.units[BitcoinUnit.BTC];
+    return balance + ' ' + strings.units[BitcoinUnit.VLS];
   }
-  if (toUnit === BitcoinUnit.BTC) {
+  if (toUnit === BitcoinUnit.VLS) {
     const value = new BigNumber(balance).dividedBy(100000000).toFixed(8);
-    return removeTrailingZeros(value) + ' ' + strings.units[BitcoinUnit.BTC];
+    return removeTrailingZeros(value) + ' ' + strings.units[BitcoinUnit.VLS];
   } else if (toUnit === BitcoinUnit.SATS) {
     return (
       (balance < 0 ? '-' : '') +
@@ -265,7 +265,7 @@ export function formatBalanceWithoutSuffix(balance = 0, toUnit, withFormatting =
     return balance;
   }
   if (balance !== 0) {
-    if (toUnit === BitcoinUnit.BTC) {
+    if (toUnit === BitcoinUnit.VLS) {
       const value = new BigNumber(balance).dividedBy(100000000).toFixed(8);
       return removeTrailingZeros(value);
     } else if (toUnit === BitcoinUnit.SATS) {

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { FlatList, ActivityIndicator, View, StyleSheet } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import { SafeBlueArea, BlueListItem, BlueText, BlueCard } from '../../BlueComponents';
 import { FiatUnit, FiatUnitSource } from '../../models/fiatUnit';
@@ -19,7 +20,7 @@ const Currency = () => {
   const styles = StyleSheet.create({
     flex: {
       flex: 1,
-      backgroundColor: colors.background,
+      backgroundColor: 'transparent',
     },
     activity: {
       flex: 1,
@@ -46,37 +47,39 @@ const Currency = () => {
 
   if (selectedCurrency !== null && selectedCurrency !== undefined) {
     return (
-      <SafeBlueArea forceInset={{ horizontal: 'always' }} style={styles.flex}>
-        <FlatList
-          style={styles.flex}
-          keyExtractor={(_item, index) => `${index}`}
-          data={data}
-          initialNumToRender={25}
-          extraData={data}
-          renderItem={({ item }) => {
-            return (
-              <BlueListItem
-                disabled={isSavingNewPreferredCurrency}
-                title={`${item.endPointKey} (${item.symbol})`}
-                checkmark={selectedCurrency.endPointKey === item.endPointKey}
-                onPress={async () => {
-                  setIsSavingNewPreferredCurrency(true);
-                  setSelectedCurrency(item);
-                  await currency.setPrefferedCurrency(item);
-                  await currency.startUpdater();
-                  setIsSavingNewPreferredCurrency(false);
-                  setPreferredFiatCurrency();
-                }}
-              />
-            );
-          }}
-        />
-        <BlueCard>
-          <BlueText>
-            {loc.settings.currency_source} {selectedCurrency.source ?? FiatUnitSource.CoinDesk}
-          </BlueText>
-        </BlueCard>
-      </SafeBlueArea>
+      <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+        <SafeBlueArea forceInset={{ horizontal: 'always' }} style={styles.flex}>
+          <FlatList
+            style={styles.flex}
+            keyExtractor={(_item, index) => `${index}`}
+            data={data}
+            initialNumToRender={25}
+            extraData={data}
+            renderItem={({ item }) => {
+              return (
+                <BlueListItem
+                  disabled={isSavingNewPreferredCurrency}
+                  title={`${item.endPointKey} (${item.symbol})`}
+                  checkmark={selectedCurrency.endPointKey === item.endPointKey}
+                  onPress={async () => {
+                    setIsSavingNewPreferredCurrency(true);
+                    setSelectedCurrency(item);
+                    await currency.setPrefferedCurrency(item);
+                    await currency.startUpdater();
+                    setIsSavingNewPreferredCurrency(false);
+                    setPreferredFiatCurrency();
+                  }}
+                />
+              );
+            }}
+          />
+          <BlueCard>
+            <BlueText>
+              {loc.settings.currency_source} {selectedCurrency.source ?? FiatUnitSource.CoinDesk}
+            </BlueText>
+          </BlueCard>
+        </SafeBlueArea>
+      </LinearGradient>
     );
   }
   return (

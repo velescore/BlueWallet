@@ -82,7 +82,7 @@ export default class LnurlPay extends Component {
       case BitcoinUnit.SATS:
         amountSats = parseInt(amountSats); // nop
         break;
-      case BitcoinUnit.BTC:
+      case BitcoinUnit.VLS:
         amountSats = currency.btcToSatoshi(amountSats);
         break;
       case BitcoinUnit.LOCAL_CURRENCY:

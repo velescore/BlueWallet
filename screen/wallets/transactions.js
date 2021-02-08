@@ -5,6 +5,7 @@ import {
   Alert,
   Dimensions,
   FlatList,
+  Image,
   InteractionManager,
   Keyboard,
   KeyboardAvoidingView,
@@ -26,7 +27,14 @@ import { useRoute, useNavigation, useTheme, useFocusEffect } from '@react-naviga
 import isCatalyst from 'react-native-is-catalyst';
 
 import { Chain } from '../../models/bitcoinUnits';
-import { BlueTransactionListItem, BlueWalletNavigationHeader, BlueAlertWalletExportReminder, BlueListItem } from '../../BlueComponents';
+import { 
+  BlueTransactionListItem,
+  BlueWalletNavigationHeader,
+  BlueAlertWalletExportReminder,
+  BlueListItem,
+  BlueSpacing10 
+} from '../../BlueComponents';
+import LinearGradient from 'react-native-linear-gradient';
 import WalletGradient from '../../class/wallet-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import { LightningCustodianWallet, MultisigHDWallet, WatchOnlyWallet } from '../../class';
@@ -84,7 +92,7 @@ const WalletTransactions = () => {
       color: colors.cta2,
     },
     list: {
-      backgroundColor: colors.background,
+      backgroundColor: 'transparent',
     },
   });
 
@@ -237,25 +245,7 @@ const WalletTransactions = () => {
 
     return (
       <View style={styles.flex}>
-        <View style={styles.listHeader}>
-          {/*
-            Current logic - Onchain:
-            - Shows buy button on middle when empty
-            - Show buy button on top when not empty
-            - Shows Marketplace button on details screen, open in browser (iOS)
-            - Shows Marketplace button on details screen, open in in-app (android)
-            Current logic - Offchain:
-            - Shows Lapp Browser empty (iOS)
-            - Shows Lapp Browser with marketplace (android)
-            - Shows Marketplace button to open in browser (iOS)
-
-            The idea is to avoid showing on iOS an appstore/market style app that goes against the TOS.
-
-           */}
-          {wallet.current.getTransactions().length > 0 && wallet.current.type !== LightningCustodianWallet.type && renderSellFiat()}
-          {wallet.current.type === LightningCustodianWallet.type && renderMarketplaceButton()}
-          {wallet.current.type === LightningCustodianWallet.type && Platform.OS === 'ios' && renderLappBrowserButton()}
-        </View>
+        <BlueSpacing10 />
         <View style={[styles.listHeaderTextRow, stylesHook.listHeaderTextRow]}>
           <Text style={[styles.listHeaderText, stylesHook.listHeaderText]}>{loc.transactions.list_title}</Text>
           <TouchableOpacity testID="refreshTransactions" style={style} onPress={refreshTransactions} disabled={isLoading}>
@@ -358,7 +348,7 @@ const WalletTransactions = () => {
         wallet.current.getBalance() > 0 ? (
           <TouchableOpacity
             onPress={async () => {
-              Linking.openURL('https://www.veles.network/Exchanges.wiki.en.html/');
+              Linking.openURL('https://bluewallet.io/marketplace/');
             }}
             style={[styles.marketplaceButton1, stylesHook.marketplaceButton1]}
           >
@@ -630,50 +620,37 @@ const WalletTransactions = () => {
           }
         }}
       />
-      <View style={[styles.list, stylesHook.list]}>
-        <FlatList
-          ListHeaderComponent={renderListHeaderComponent}
-          onEndReachedThreshold={0.3}
-          onEndReached={async () => {
-            // pagination in works. in this block we will add more txs to FlatList
-            // so as user scrolls closer to bottom it will render mode transactions
+      <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+        <View style={[styles.list, stylesHook.list]}>
+          <BlueSpacing10 />
+          <FlatList
+            ListHeaderComponent={renderListHeaderComponent}
+            onEndReachedThreshold={0.3}
+            onEndReached={async () => {
+              // pagination in works. in this block we will add more txs to FlatList
+              // so as user scrolls closer to bottom it will render mode transactions
 
-            if (getTransactionsSliced(Infinity).length < limit) {
-              // all list rendered. nop
-              return;
-            }
+              if (getTransactionsSliced(Infinity).length < limit) {
+                // all list rendered. nop
+                return;
+              }
 
-            setDataSource(getTransactionsSliced(limit + pageSize));
-            setLimit(prev => prev + pageSize);
-            setPageSize(prev => prev * 2);
-          }}
-          ListFooterComponent={renderListFooterComponent}
-          ListEmptyComponent={
-            <ScrollView style={styles.flex} contentContainerStyle={styles.scrollViewContent}>
-              <Text numberOfLines={0} style={styles.emptyTxs}>
-                {(isLightning() && loc.wallets.list_empty_txs1_lightning) || loc.wallets.list_empty_txs1}
-              </Text>
-              {isLightning() && <Text style={styles.emptyTxsLightning}>{loc.wallets.list_empty_txs2_lightning}</Text>}
-
-              {!isLightning() && (
-                <TouchableOpacity onPress={navigateToBuyBitcoin} style={styles.buyBitcoin}>
-                  <Text testID="NoTxBuyBitcoin" style={styles.buyBitcoinText}>
-                    {loc.wallets.list_tap_here_to_buy}
-                  </Text>
-                </TouchableOpacity>
-              )}
-            </ScrollView>
-          }
-          onRefresh={refreshTransactions}
-          refreshing={isLoading}
-          data={dataSource}
-          extraData={[timeElapsed, dataSource]}
-          keyExtractor={_keyExtractor}
-          renderItem={renderItem}
-          contentInset={{ top: 0, left: 0, bottom: 90, right: 0 }}
-        />
-        {renderManageFundsModal()}
-      </View>
+              setDataSource(getTransactionsSliced(limit + pageSize));
+              setLimit(prev => prev + pageSize);
+              setPageSize(prev => prev * 2);
+            }}
+            ListFooterComponent={renderListFooterComponent}
+            onRefresh={refreshTransactions}
+            refreshing={isLoading}
+            data={dataSource}
+            extraData={[timeElapsed, dataSource]}
+            keyExtractor={_keyExtractor}
+            renderItem={renderItem}
+            contentInset={{ top: 0, left: 0, bottom: 90, right: 0 }}
+          />
+          {renderManageFundsModal()}
+        </View>
+      </LinearGradient>
 
       <FContainer>
         {wallet.current.allowReceive() && (
@@ -688,7 +665,7 @@ const WalletTransactions = () => {
             }}
             icon={
               <View style={styles.receiveIcon}>
-                <Icon name="arrow-down" size={buttonFontSize} type="font-awesome" color={colors.buttonAlternativeTextColor} />
+                <Icon name="location-arrow" size={buttonFontSize} type="font-awesome" color={colors.incomingForegroundColor} />
               </View>
             }
           />
@@ -702,7 +679,7 @@ const WalletTransactions = () => {
             testID="SendButton"
             icon={
               <View style={styles.sendIcon}>
-                <Icon name="arrow-down" size={buttonFontSize} type="font-awesome" color={colors.buttonAlternativeTextColor} />
+                <Icon name="location-arrow" size={buttonFontSize} type="font-awesome" color={colors.outgoingForegroundColor} />
               </View>
             }
           />
@@ -858,9 +835,9 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   sendIcon: {
-    transform: [{ rotate: '225deg' }],
+    transform: [{ rotate: '-175deg' }],
   },
   receiveIcon: {
-    transform: [{ rotate: '-45deg' }],
+    transform: [{ rotate: '7deg' }],
   },
 });

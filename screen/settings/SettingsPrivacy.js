@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ScrollView, TouchableWithoutFeedback, StyleSheet, Linking, Platform } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import { BlueText, BlueSpacing20, BlueListItem, BlueCard, BlueHeaderDefaultSub } from '../../BlueComponents';
 import loc from '../../loc';
@@ -81,51 +82,53 @@ const SettingsPrivacy = () => {
 
   return (
     <ScrollView style={[styles.root, stylesWithThemeHook.root]}>
-      <BlueHeaderDefaultSub leftText={loc.settings.general} rightComponent={null} />
-      <BlueListItem
-        hideChevron
-        title={loc.settings.privacy_read_clipboard}
-        Component={TouchableWithoutFeedback}
-        switch={{ onValueChange, value: isReadClipboardAllowed, disabled: isLoading === sections.ALL }}
-      />
-      <BlueCard>
-        <BlueText>{loc.settings.privacy_clipboard_explanation}</BlueText>
-      </BlueCard>
-      <BlueSpacing20 />
-      {!storageIsEncrypted && (
-        <>
-          <BlueListItem
-            hideChevron
-            title={loc.settings.privacy_quickactions}
-            Component={TouchableWithoutFeedback}
-            switch={{ onValueChange: onQuickActionsValueChange, value: isQuickActionsEnabled, disabled: isLoading === sections.ALL }}
-          />
-          <BlueCard>
-            <BlueText>{loc.settings.privacy_quickactions_explanation}</BlueText>
-          </BlueCard>
-        </>
-      )}
-      {Platform.OS === 'ios' && !storageIsEncrypted && (
-        <>
-          <BlueHeaderDefaultSub leftText={loc.settings.widgets} rightComponent={null} />
-          <BlueListItem
-            hideChevron
-            title={loc.settings.total_balance}
-            Component={TouchableWithoutFeedback}
-            switch={{
-              onValueChange: onWidgetsTotalBalanceValueChange,
-              value: isDisplayWidgetBalanceAllowed,
-              disabled: isLoading === sections.ALL,
-            }}
-          />
-          <BlueCard>
-            <BlueText>{loc.settings.total_balance_explanation}</BlueText>
-          </BlueCard>
-        </>
-      )}
-      <BlueSpacing20 />
-      <BlueListItem title={loc.settings.privacy_system_settings} chevron onPress={openApplicationSettings} />
-      <BlueSpacing20 />
+      <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+        <BlueHeaderDefaultSub leftText={loc.settings.general} rightComponent={null} />
+        <BlueListItem
+          hideChevron
+          title={loc.settings.privacy_read_clipboard}
+          Component={TouchableWithoutFeedback}
+          switch={{ onValueChange, value: isReadClipboardAllowed, disabled: isLoading === sections.ALL }}
+        />
+        <BlueCard>
+          <BlueText>{loc.settings.privacy_clipboard_explanation}</BlueText>
+        </BlueCard>
+        <BlueSpacing20 />
+        {!storageIsEncrypted && (
+          <>
+            <BlueListItem
+              hideChevron
+              title={loc.settings.privacy_quickactions}
+              Component={TouchableWithoutFeedback}
+              switch={{ onValueChange: onQuickActionsValueChange, value: isQuickActionsEnabled, disabled: isLoading === sections.ALL }}
+            />
+            <BlueCard>
+              <BlueText>{loc.settings.privacy_quickactions_explanation}</BlueText>
+            </BlueCard>
+          </>
+        )}
+        {Platform.OS === 'ios' && !storageIsEncrypted && (
+          <>
+            <BlueHeaderDefaultSub leftText={loc.settings.widgets} rightComponent={null} />
+            <BlueListItem
+              hideChevron
+              title={loc.settings.total_balance}
+              Component={TouchableWithoutFeedback}
+              switch={{
+                onValueChange: onWidgetsTotalBalanceValueChange,
+                value: isDisplayWidgetBalanceAllowed,
+                disabled: isLoading === sections.ALL,
+              }}
+            />
+            <BlueCard>
+              <BlueText>{loc.settings.total_balance_explanation}</BlueText>
+            </BlueCard>
+          </>
+        )}
+        <BlueSpacing20 />
+        <BlueListItem title={loc.settings.privacy_system_settings} chevron onPress={openApplicationSettings} />
+        <BlueSpacing20 />
+      </LinearGradient>
     </ScrollView>
   );
 };

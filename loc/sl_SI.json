@@ -455,7 +455,7 @@
     "vault_key": "Ključ trezorja {number}",
     "required_keys_out_of_total": "Zahtevani ključi od vseh",
     "fee": "Omrežnina: {number}",
-    "fee_btc": "{number} BTC",
+    "fee_btc": "{number} VLS",
     "confirm": "Potrditev",
     "header": "Pošlji",
     "share": "Deli",
@@ -543,7 +543,7 @@
     "tip": "Omogoča ogled, označevanje, zamrznitev ali izbiro kovancev za boljše upravljanje denarnice."
   },
   "units": {
-    "BTC": "BTC",
+    "VLS": "VLS",
     "MAX": "MAX",
     "sat_byte": "sat/bajt",
     "sats": "sats"

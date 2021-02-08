@@ -4,6 +4,7 @@ import { StyleSheet, View, KeyboardAvoidingView, Platform, TextInput, Keyboard }
 
 import loc from '../../loc';
 import { BlueButton, BlueButtonLink, BlueCard, BlueSpacing10, BlueSpacing20, BlueText, SafeBlueArea } from '../../BlueComponents';
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import { BlueStorageContext } from '../../blue_modules/storage-context';
 import { isMacCatalina } from '../../blue_modules/environment';
@@ -21,7 +22,7 @@ const IsItMyAddress = () => {
 
   const stylesHooks = StyleSheet.create({
     blueArea: {
-      backgroundColor: colors.background,
+      backgroundColor: 'transparent',
     },
     text: {
       color: colors.foregroundColor,
@@ -77,38 +78,40 @@ const IsItMyAddress = () => {
   };
 
   return (
-    <SafeBlueArea style={[styles.blueArea, stylesHooks.blueArea]}>
-      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : null} keyboardShouldPersistTaps="handled">
-        <View style={styles.wrapper}>
-          <BlueCard style={styles.mainCard}>
-            <View style={[styles.input, stylesHooks.input]}>
-              <TextInput
-                style={styles.text}
-                maxHeight={100}
-                minHeight={100}
-                maxWidth="100%"
-                minWidth="100%"
-                multiline
-                editable
-                placeholder={loc.is_it_my_address.enter_address}
-                placeholderTextColor="#81868e"
-                value={address}
-                onChangeText={handleUpdateAddress}
-              />
-            </View>
+    <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+      <SafeBlueArea style={[styles.blueArea, stylesHooks.blueArea]}>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : null} keyboardShouldPersistTaps="handled">
+          <View style={styles.wrapper}>
+            <BlueCard style={styles.mainCard}>
+              <View style={[styles.input, stylesHooks.input]}>
+                <TextInput
+                  style={styles.text}
+                  maxHeight={100}
+                  minHeight={100}
+                  maxWidth="100%"
+                  minWidth="100%"
+                  multiline
+                  editable
+                  placeholder={loc.is_it_my_address.enter_address}
+                  placeholderTextColor="#81868e"
+                  value={address}
+                  onChangeText={handleUpdateAddress}
+                />
+              </View>
 
-            <BlueSpacing10 />
-            <BlueButtonLink title={loc.wallets.import_scan_qr} onPress={importScan} />
-            <BlueSpacing10 />
-            <BlueButton title={loc.send.input_clear} onPress={clearAddressInput} />
-            <BlueSpacing20 />
-            <BlueButton disabled={address.trim().length === 0} title={loc.is_it_my_address.check_address} onPress={checkAddress} />
-            <BlueSpacing20 />
-            <BlueText>{result}</BlueText>
-          </BlueCard>
-        </View>
-      </KeyboardAvoidingView>
-    </SafeBlueArea>
+              <BlueSpacing10 />
+              <BlueButtonLink title={loc.wallets.import_scan_qr} onPress={importScan} />
+              <BlueSpacing10 />
+              <BlueButton title={loc.send.input_clear} onPress={clearAddressInput} />
+              <BlueSpacing20 />
+              <BlueButton disabled={address.trim().length === 0} title={loc.is_it_my_address.check_address} onPress={checkAddress} />
+              <BlueSpacing20 />
+              <BlueText>{result}</BlueText>
+            </BlueCard>
+          </View>
+        </KeyboardAvoidingView>
+      </SafeBlueArea>
+    </LinearGradient>
   );
 };
 
