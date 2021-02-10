@@ -31,6 +31,7 @@ import {
   BlueCopyToClipboardButton,
   DynamicQRCode,
 } from '../../BlueComponents';
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import loc from '../../loc';
 import { BlueStorageContext } from '../../blue_modules/storage-context';
@@ -54,7 +55,7 @@ const PsbtWithHardwareWallet = () => {
 
   const stylesHook = StyleSheet.create({
     root: {
-      backgroundColor: colors.elevated,
+      backgroundColor: 'transparent',
     },
     rootPadding: {
       backgroundColor: colors.elevated,
@@ -263,58 +264,60 @@ const PsbtWithHardwareWallet = () => {
       <ActivityIndicator />
     </View>
   ) : (
-    <SafeBlueArea style={[styles.root, stylesHook.root]}>
-      <ScrollView centerContent contentContainerStyle={styles.scrollViewContent} testID="PsbtWithHardwareScrollView">
-        <View style={styles.container}>
-          <BlueCard>
-            <BlueText testID="TextHelperForPSBT">{loc.send.psbt_this_is_psbt}</BlueText>
-            <BlueSpacing20 />
-            <Text testID="PSBTHex" style={styles.hidden}>
-              {psbt.toHex()}
-            </Text>
-            <DynamicQRCode value={psbt.toHex()} capacity={200} />
-            <BlueSpacing20 />
-            <SecondButton
-              testID="PsbtTxScanButton"
-              icon={{
-                name: 'qrcode',
-                type: 'font-awesome',
-                color: colors.buttonTextColor,
-              }}
-              onPress={openScanner}
-              title={loc.send.psbt_tx_scan}
-            />
-            <BlueSpacing20 />
-            <SecondButton
-              icon={{
-                name: 'file-import',
-                type: 'material-community',
-                color: colors.buttonTextColor,
-              }}
-              onPress={openSignedTransaction}
-              title={loc.send.psbt_tx_open}
-            />
-            <BlueSpacing20 />
-            <SecondButton
-              icon={{
-                name: 'share-alternative',
-                type: 'entypo',
-                color: colors.buttonTextColor,
-              }}
-              onPress={exportPSBT}
-              title={loc.send.psbt_tx_export}
-            />
-            <BlueSpacing20 />
-            <View style={styles.copyToClipboard}>
-              <BlueCopyToClipboardButton
-                stringToCopy={typeof psbt === 'string' ? psbt : psbt.toBase64()}
-                displayText={loc.send.psbt_clipboard}
+    <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+      <SafeBlueArea style={[styles.root, stylesHook.root]}>
+        <ScrollView centerContent contentContainerStyle={styles.scrollViewContent} testID="PsbtWithHardwareScrollView">
+          <View style={styles.container}>
+            <BlueCard>
+              <BlueText testID="TextHelperForPSBT">{loc.send.psbt_this_is_psbt}</BlueText>
+              <BlueSpacing20 />
+              <Text testID="PSBTHex" style={styles.hidden}>
+                {psbt.toHex()}
+              </Text>
+              <DynamicQRCode value={psbt.toHex()} capacity={200} />
+              <BlueSpacing20 />
+              <SecondButton
+                testID="PsbtTxScanButton"
+                icon={{
+                  name: 'qrcode',
+                  type: 'font-awesome',
+                  color: colors.buttonTextColor,
+                }}
+                onPress={openScanner}
+                title={loc.send.psbt_tx_scan}
               />
-            </View>
-          </BlueCard>
-        </View>
-      </ScrollView>
-    </SafeBlueArea>
+              <BlueSpacing20 />
+              <SecondButton
+                icon={{
+                  name: 'file-import',
+                  type: 'material-community',
+                  color: colors.buttonTextColor,
+                }}
+                onPress={openSignedTransaction}
+                title={loc.send.psbt_tx_open}
+              />
+              <BlueSpacing20 />
+              <SecondButton
+                icon={{
+                  name: 'share-alternative',
+                  type: 'entypo',
+                  color: colors.buttonTextColor,
+                }}
+                onPress={exportPSBT}
+                title={loc.send.psbt_tx_export}
+              />
+              <BlueSpacing20 />
+              <View style={styles.copyToClipboard}>
+                <BlueCopyToClipboardButton
+                  stringToCopy={typeof psbt === 'string' ? psbt : psbt.toBase64()}
+                  displayText={loc.send.psbt_clipboard}
+                />
+              </View>
+            </BlueCard>
+          </View>
+        </ScrollView>
+      </SafeBlueArea>
+    </LinearGradient>
   );
 };
 

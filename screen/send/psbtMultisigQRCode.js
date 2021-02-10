@@ -5,6 +5,7 @@ import { getSystemName } from 'react-native-device-info';
 import { useNavigation, useRoute, useTheme } from '@react-navigation/native';
 
 import { BlueSpacing20, SafeBlueArea } from '../../BlueComponents';
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import { DynamicQRCode } from '../../components/DynamicQRCode';
 import { SquareButton } from '../../components/SquareButton';
@@ -23,7 +24,7 @@ const PsbtMultisigQRCode = () => {
   const psbt = bitcoin.Psbt.fromBase64(psbtBase64);
   const stylesHook = StyleSheet.create({
     root: {
-      backgroundColor: colors.elevated,
+      backgroundColor: 'transparent',
     },
     modalContentShort: {
       backgroundColor: colors.elevated,
@@ -68,30 +69,32 @@ const PsbtMultisigQRCode = () => {
   };
 
   return (
-    <SafeBlueArea style={[styles.root, stylesHook.root]}>
-      <ScrollView centerContent contentContainerStyle={styles.scrollViewContent}>
-        <View style={[styles.modalContentShort, stylesHook.modalContentShort]}>
-          <DynamicQRCode value={psbt.toHex()} capacity={666} />
-          {!isShowOpenScanner && (
-            <>
-              <BlueSpacing20 />
-              <SquareButton
-                testID="CosignedScanOrImportFile"
-                style={[styles.exportButton, stylesHook.exportButton]}
-                onPress={openScanner}
-                title={loc.multisig.scan_or_import_file}
-              />
-            </>
-          )}
-          <BlueSpacing20 />
-          {isLoading ? (
-            <ActivityIndicator />
-          ) : (
-            <SquareButton style={[styles.exportButton, stylesHook.exportButton]} onPress={exportPSBT} title={loc.multisig.share} />
-          )}
-        </View>
-      </ScrollView>
-    </SafeBlueArea>
+    <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+      <SafeBlueArea style={[styles.root, stylesHook.root]}>
+        <ScrollView centerContent contentContainerStyle={styles.scrollViewContent}>
+          <View style={[styles.modalContentShort, stylesHook.modalContentShort]}>
+            <DynamicQRCode value={psbt.toHex()} capacity={666} />
+            {!isShowOpenScanner && (
+              <>
+                <BlueSpacing20 />
+                <SquareButton
+                  testID="CosignedScanOrImportFile"
+                  style={[styles.exportButton, stylesHook.exportButton]}
+                  onPress={openScanner}
+                  title={loc.multisig.scan_or_import_file}
+                />
+              </>
+            )}
+            <BlueSpacing20 />
+            {isLoading ? (
+              <ActivityIndicator />
+            ) : (
+              <SquareButton style={[styles.exportButton, stylesHook.exportButton]} onPress={exportPSBT} title={loc.multisig.share} />
+            )}
+          </View>
+        </ScrollView>
+      </SafeBlueArea>
+    </LinearGradient>
   );
 };
 

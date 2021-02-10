@@ -141,8 +141,8 @@ const TransactionsDetails = () => {
         <Handoff title={`Bitcoin Transaction ${tx.hash}`} type="io.bluewallet.bluewallet" url={`https://explorer.veles.network/tx/${tx.hash}`} />
       )}
       <StatusBar barStyle="default" />
-      <ScrollView style={styles.scroll}>
-        <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+      <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+        <ScrollView style={styles.scroll}>
           <BlueCard>
             <View>
               <TextInput
@@ -223,8 +223,8 @@ const TransactionsDetails = () => {
               </>
             )}
           </BlueCard>
-        </LinearGradient>
-      </ScrollView>
+        </ScrollView>
+      </LinearGradient>
     </SafeBlueArea>
   );
 };

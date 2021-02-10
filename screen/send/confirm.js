@@ -8,6 +8,7 @@ import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 
 import PayjoinTransaction from '../../class/payjoin-transaction';
 import { BlueButton, BlueText, SafeBlueArea, BlueCard, BlueSpacing40 } from '../../BlueComponents';
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import { BitcoinUnit } from '../../models/bitcoinUnits';
 import Biometric from '../../class/biometrics';
@@ -161,63 +162,65 @@ export default class Confirm extends Component {
 
   render() {
     return (
-      <SafeBlueArea style={styles.root}>
-        <View style={styles.rootWrap}>
-          <FlatList
-            scrollEnabled={this.state.recipients.length > 1}
-            extraData={this.state.recipients}
-            data={this.state.recipients}
-            renderItem={this._renderItem}
-            keyExtractor={(_item, index) => `${index}`}
-            ItemSeparatorComponent={this.renderSeparator}
-            style={styles.flat}
-          />
-          <View style={styles.cardContainer}>
-            <BlueCard>
-              <Text style={styles.cardText}>
-                {loc.send.create_fee}: {formatBalance(this.state.feeSatoshi, BitcoinUnit.VLS)} (
-                {currency.satoshiToLocalCurrency(this.state.feeSatoshi)})
-              </Text>
-              <BlueSpacing40 />
-              {!!this.state.payjoinUrl && (
-                <View style={styles.payjoinWrapper}>
-                  <Text style={styles.payjoinText}>Payjoin</Text>
-                  <Switch
-                    testID="PayjoinSwitch"
-                    value={this.state.isPayjoinEnabled}
-                    onValueChange={isPayjoinEnabled => this.setState({ isPayjoinEnabled })}
-                  />
-                </View>
-              )}
-              {this.state.isLoading ? <ActivityIndicator /> : <BlueButton onPress={() => this.send()} title={loc.send.confirm_sendNow} />}
+      <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+        <SafeBlueArea style={styles.root}>
+          <View style={styles.rootWrap}>
+            <FlatList
+              scrollEnabled={this.state.recipients.length > 1}
+              extraData={this.state.recipients}
+              data={this.state.recipients}
+              renderItem={this._renderItem}
+              keyExtractor={(_item, index) => `${index}`}
+              ItemSeparatorComponent={this.renderSeparator}
+              style={styles.flat}
+            />
+            <View style={styles.cardContainer}>
+              <BlueCard>
+                <Text style={styles.cardText}>
+                  {loc.send.create_fee}: {formatBalance(this.state.feeSatoshi, BitcoinUnit.VLS)} (
+                  {currency.satoshiToLocalCurrency(this.state.feeSatoshi)})
+                </Text>
+                <BlueSpacing40 />
+                {!!this.state.payjoinUrl && (
+                  <View style={styles.payjoinWrapper}>
+                    <Text style={styles.payjoinText}>Payjoin</Text>
+                    <Switch
+                      testID="PayjoinSwitch"
+                      value={this.state.isPayjoinEnabled}
+                      onValueChange={isPayjoinEnabled => this.setState({ isPayjoinEnabled })}
+                    />
+                  </View>
+                )}
+                {this.state.isLoading ? <ActivityIndicator /> : <BlueButton onPress={() => this.send()} title={loc.send.confirm_sendNow} />}
 
-              <TouchableOpacity
-                testID="TransactionDetailsButton"
-                style={styles.txDetails}
-                onPress={async () => {
-                  if (this.isBiometricUseCapableAndEnabled) {
-                    if (!(await Biometric.unlockWithBiometrics())) {
-                      return;
+                <TouchableOpacity
+                  testID="TransactionDetailsButton"
+                  style={styles.txDetails}
+                  onPress={async () => {
+                    if (this.isBiometricUseCapableAndEnabled) {
+                      if (!(await Biometric.unlockWithBiometrics())) {
+                        return;
+                      }
                     }
-                  }
 
-                  this.props.navigation.navigate('CreateTransaction', {
-                    fee: this.state.fee,
-                    recipients: this.state.recipients,
-                    memo: this.state.memo,
-                    tx: this.state.tx,
-                    satoshiPerByte: this.state.satoshiPerByte,
-                    wallet: this.state.fromWallet,
-                    feeSatoshi: this.state.feeSatoshi,
-                  });
-                }}
-              >
-                <Text style={styles.txText}>{loc.transactions.details_transaction_details}</Text>
-              </TouchableOpacity>
-            </BlueCard>
+                    this.props.navigation.navigate('CreateTransaction', {
+                      fee: this.state.fee,
+                      recipients: this.state.recipients,
+                      memo: this.state.memo,
+                      tx: this.state.tx,
+                      satoshiPerByte: this.state.satoshiPerByte,
+                      wallet: this.state.fromWallet,
+                      feeSatoshi: this.state.feeSatoshi,
+                    });
+                  }}
+                >
+                  <Text style={styles.txText}>{loc.transactions.details_transaction_details}</Text>
+                </TouchableOpacity>
+              </BlueCard>
+            </View>
           </View>
-        </View>
-      </SafeBlueArea>
+        </SafeBlueArea>
+      </LinearGradient>
     );
   }
 }
@@ -271,7 +274,7 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     paddingTop: 19,
-    backgroundColor: BlueCurrentTheme.colors.elevated,
+    backgroundColor: 'transparent',
   },
   rootWrap: {
     marginTop: 16,

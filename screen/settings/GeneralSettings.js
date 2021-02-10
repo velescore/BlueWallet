@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ScrollView, Platform, TouchableWithoutFeedback, TouchableOpacity, StyleSheet } from 'react-native';
 
 import navigationStyle from '../../components/navigationStyle';
+import LinearGradient from 'react-native-linear-gradient';
 import { BlueLoading, BlueText, BlueSpacing20, BlueListItem, BlueCard } from '../../BlueComponents';
 import { useNavigation, useTheme } from '@react-navigation/native';
 import HandoffSettings from '../../class/handoff';
@@ -42,46 +43,48 @@ const GeneralSettings = () => {
   const stylesWithThemeHook = {
     root: {
       ...styles.root,
-      backgroundColor: colors.background,
+      backgroundColor: 'transparent',
     },
     scroll: {
       ...styles.scroll,
-      backgroundColor: colors.background,
+      backgroundColor: 'transparent',
     },
     scrollBody: {
       ...styles.scrollBody,
-      backgroundColor: colors.background,
+      backgroundColor: 'transparent',
     },
   };
 
   return isLoading ? (
     <BlueLoading />
   ) : (
-    <ScrollView style={stylesWithThemeHook.scroll}>
-      {wallets.length > 1 && (
-        <>
-          <BlueListItem component={TouchableOpacity} onPress={() => navigate('DefaultView')} title={loc.settings.default_title} chevron />
-        </>
-      )}
-      {Platform.OS === 'ios' ? (
-        <>
-          <BlueListItem
-            hideChevron
-            title={loc.settings.general_continuity}
-            Component={TouchableWithoutFeedback}
-            switch={{ onValueChange: onHandOffEnabledSwitch, value: isHandoffUseEnabled }}
-          />
-          <BlueCard>
-            <BlueText>{loc.settings.general_continuity_e}</BlueText>
-          </BlueCard>
-          <BlueSpacing20 />
-        </>
-      ) : null}
-      <BlueCard>
-        <BlueText>{loc.settings.general_adv_mode_e}</BlueText>
-      </BlueCard>
-      <BlueSpacing20 />
-    </ScrollView>
+    <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+      <ScrollView style={stylesWithThemeHook.scroll}>
+        {wallets.length > 1 && (
+          <>
+            <BlueListItem component={TouchableOpacity} onPress={() => navigate('DefaultView')} title={loc.settings.default_title} chevron />
+          </>
+        )}
+        {Platform.OS === 'ios' ? (
+          <>
+            <BlueListItem
+              hideChevron
+              title={loc.settings.general_continuity}
+              Component={TouchableWithoutFeedback}
+              switch={{ onValueChange: onHandOffEnabledSwitch, value: isHandoffUseEnabled }}
+            />
+            <BlueCard>
+              <BlueText>{loc.settings.general_continuity_e}</BlueText>
+            </BlueCard>
+            <BlueSpacing20 />
+          </>
+        ) : null}
+        <BlueCard>
+          <BlueText>{loc.settings.general_adv_mode_e}</BlueText>
+        </BlueCard>
+        <BlueSpacing20 />
+      </ScrollView>
+    </LinearGradient>
   );
 };
 

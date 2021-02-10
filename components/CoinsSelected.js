@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   root: {
     height: 48,
     borderRadius: 8,
-    backgroundColor: '#3477F6',
+    backgroundColor: '#c8a48b',
     flexDirection: 'row',
   },
   labelContainer: {

@@ -66,7 +66,12 @@ const WalletsList = () => {
       color: colors.foregroundColor,
     },
     ltRoot: {
-      backgroundColor: 'rgba(95, 88, 84, .05)',
+      backgroundColor: colors.lightButton,
+      shadowOffset: {
+        height: 0,
+        width: 0
+      },
+      elevation: 0.5,
     },
 
     ltTextBig: {

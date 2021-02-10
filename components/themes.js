@@ -20,7 +20,7 @@ export const BlueDefaultTheme = {
     inputBackgroundColor: '#f5f5f5',
     alternativeTextColor: '#1f1d1c',
     alternativeTextColor2: '#1f1d1c',
-    buttonBlueBackgroundColor: '#1f1d1c',
+    buttonBlueBackgroundColor: '#1f1d1cbd',
     incomingBackgroundColor: '#1f1d1c',
     incomingForegroundColor: '#37c0a1',
     outgoingBackgroundColor: '#1f1d1c',

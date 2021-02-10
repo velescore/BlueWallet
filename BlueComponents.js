@@ -1154,7 +1154,7 @@ export const BlueTransactionPendingIcon = props => {
 
   const stylesBlueIconHooks = StyleSheet.create({
     ball: {
-      backgroundColor: colors.buttonBackgroundColor,
+      backgroundColor: colors.ballReceive,
     },
   });
   return (
@@ -1166,7 +1166,7 @@ export const BlueTransactionPendingIcon = props => {
             name="kebab-horizontal"
             size={16}
             type="octicon"
-            color={colors.foregroundColor}
+            color={colors.buttonTextColor}
             iconStyle={{ left: 0, top: 7 }}
           />
         </View>
@@ -1309,20 +1309,20 @@ export const BlueTransactionPendingStatusIcon = props => {
 
   const stylesBlueIconHooks = StyleSheet.create({
     ballStatus: {
-      backgroundColor: colors.buttonBackgroundColor,
+      backgroundColor: colors.ballReceive,
     },
   });
   return (
     <View {...props}>
-      <View style={stylesBlueIcon.boxIncoming}>
+      <View style={stylesBlueIcon.blueTex}>
         <View style={[stylesBlueIcon.ballStatus, stylesBlueIconHooks.ballStatus]}>
           <Icon
             {...props}
             name="kebab-horizontal"
             size={25}
             type="octicon"
-            color={colors.foregroundColor}
-            iconStyle={{ right: 0, top: 7 }}
+            color={colors.buttonTextColor}
+            iconStyle={{ left: 2, top: 11 }}
           />
         </View>
       </View>

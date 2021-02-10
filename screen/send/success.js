@@ -7,6 +7,7 @@ import { BlueButton, BlueCard } from '../../BlueComponents';
 import { BitcoinUnit } from '../../models/bitcoinUnits';
 import loc from '../../loc';
 import PropTypes from 'prop-types';
+import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation, useRoute, useTheme } from '@react-navigation/native';
 
 const Success = () => {
@@ -18,7 +19,7 @@ const Success = () => {
   const { amount, fee, amountUnit = BitcoinUnit.VLS, invoiceDescription = '', onDonePressed = pop } = useRoute().params;
   const stylesHook = StyleSheet.create({
     root: {
-      backgroundColor: colors.elevated,
+      backgroundColor: 'transparent',
     },
     amountValue: {
       color: colors.alternativeTextColor2,
@@ -34,18 +35,20 @@ const Success = () => {
   }, []);
 
   return (
-    <SafeAreaView style={[styles.root, stylesHook.root]}>
-      <SuccessView
-        amount={amount}
-        amountUnit={amountUnit}
-        fee={fee}
-        invoiceDescription={invoiceDescription}
-        onDonePressed={onDonePressed}
-      />
-      <View style={styles.buttonContainer}>
-        <BlueButton onPress={onDonePressed} title={loc.send.success_done} />
-      </View>
-    </SafeAreaView>
+    <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+      <SafeAreaView style={[styles.root, stylesHook.root]}>
+        <SuccessView
+          amount={amount}
+          amountUnit={amountUnit}
+          fee={fee}
+          invoiceDescription={invoiceDescription}
+          onDonePressed={onDonePressed}
+        />
+        <View style={styles.buttonContainer}>
+          <BlueButton onPress={onDonePressed} title={loc.send.success_done} />
+        </View>
+      </SafeAreaView>
+    </LinearGradient>
   );
 };
 

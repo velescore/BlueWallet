@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { View, TouchableWithoutFeedback, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import { SafeBlueArea, BlueCard, BlueListItem, BlueText } from '../../BlueComponents';
 import OnAppLaunch from '../../class/on-app-launch';
@@ -58,25 +59,27 @@ const DefaultView = () => {
   };
 
   return (
-    <SafeBlueArea forceInset={{ horizontal: 'always' }} style={styles.flex}>
-      <View>
-        <BlueListItem
-          title={loc.settings.default_wallets}
-          Component={TouchableWithoutFeedback}
-          switch={{
-            onValueChange: onViewAllWalletsSwitchValueChanged,
-            value: viewAllWalletsEnabled,
-            disabled: wallets.length <= 0,
-          }}
-        />
-        <BlueCard>
-          <BlueText>{loc.settings.default_desc}</BlueText>
-        </BlueCard>
-        {!viewAllWalletsEnabled && (
-          <BlueListItem title={loc.settings.default_info} onPress={selectWallet} rightTitle={defaultWalletLabel} chevron />
-        )}
-      </View>
-    </SafeBlueArea>
+    <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+      <SafeBlueArea forceInset={{ horizontal: 'always' }} style={styles.flex}>
+        <View>
+          <BlueListItem
+            title={loc.settings.default_wallets}
+            Component={TouchableWithoutFeedback}
+            switch={{
+              onValueChange: onViewAllWalletsSwitchValueChanged,
+              value: viewAllWalletsEnabled,
+              disabled: wallets.length <= 0,
+            }}
+          />
+          <BlueCard>
+            <BlueText>{loc.settings.default_desc}</BlueText>
+          </BlueCard>
+          {!viewAllWalletsEnabled && (
+            <BlueListItem title={loc.settings.default_info} onPress={selectWallet} rightTitle={defaultWalletLabel} chevron />
+          )}
+        </View>
+      </SafeBlueArea>
+    </LinearGradient>
   );
 };
 

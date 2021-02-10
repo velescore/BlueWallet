@@ -5,6 +5,7 @@ import { Icon } from 'react-native-elements';
 import { useNavigation, useRoute, useTheme } from '@react-navigation/native';
 
 import { BlueButton, BlueCard, BlueText, SafeBlueArea } from '../../BlueComponents';
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import loc from '../../loc';
 import { BitcoinUnit } from '../../models/bitcoinUnits';
@@ -29,7 +30,7 @@ const PsbtMultisig = () => {
   const data = new Array(wallet.getM());
   const stylesHook = StyleSheet.create({
     root: {
-      backgroundColor: colors.elevated,
+      backgroundColor: 'transparent',
     },
     whitespace: {
       color: colors.elevated,
@@ -264,41 +265,43 @@ const PsbtMultisig = () => {
   };
 
   return (
-    <SafeBlueArea style={[styles.root, stylesHook.root]}>
-      <View style={styles.container}>
-        <View style={styles.mstopcontainer}>
-          <View style={styles.mscontainer}>
-            <View style={[styles.msleft, { height: flatListHeight - 200 }]} />
+    <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+      <SafeBlueArea style={[styles.root, stylesHook.root]}>
+        <View style={styles.container}>
+          <View style={styles.mstopcontainer}>
+            <View style={styles.mscontainer}>
+              <View style={[styles.msleft, { height: flatListHeight - 200 }]} />
+            </View>
+            <View style={styles.msright}>
+              <BlueCard>
+                <FlatList
+                  data={data}
+                  onLayout={onLayout}
+                  renderItem={_renderItem}
+                  keyExtractor={(_item, index) => `${index}`}
+                  ListHeaderComponent={header}
+                  scrollEnabled={false}
+                />
+                {isConfirmEnabled() && (
+                  <View style={styles.height80}>
+                    <TouchableOpacity
+                      testID="ExportSignedPsbt"
+                      style={[styles.provideSignatureButton, stylesHook.provideSignatureButton]}
+                      onPress={navigateToPSBTMultisigQRCode}
+                    >
+                      <Text style={[styles.provideSignatureButtonText, stylesHook.provideSignatureButtonText]}>
+                        {loc.multisig.export_signed_psbt}
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              </BlueCard>
+            </View>
           </View>
-          <View style={styles.msright}>
-            <BlueCard>
-              <FlatList
-                data={data}
-                onLayout={onLayout}
-                renderItem={_renderItem}
-                keyExtractor={(_item, index) => `${index}`}
-                ListHeaderComponent={header}
-                scrollEnabled={false}
-              />
-              {isConfirmEnabled() && (
-                <View style={styles.height80}>
-                  <TouchableOpacity
-                    testID="ExportSignedPsbt"
-                    style={[styles.provideSignatureButton, stylesHook.provideSignatureButton]}
-                    onPress={navigateToPSBTMultisigQRCode}
-                  >
-                    <Text style={[styles.provideSignatureButtonText, stylesHook.provideSignatureButtonText]}>
-                      {loc.multisig.export_signed_psbt}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              )}
-            </BlueCard>
-          </View>
+          {footer}
         </View>
-        {footer}
-      </View>
-    </SafeBlueArea>
+      </SafeBlueArea>
+    </LinearGradient>
   );
 };
 
