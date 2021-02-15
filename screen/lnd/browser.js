@@ -476,7 +476,7 @@ export default class Browser extends Component {
               <TouchableOpacity
                 onPress={() => {
                   processedInvoices = {};
-                  this.setState({ url: 'https://bluewallet.io/marketplace/' });
+                  this.setState({ url: 'https://veles.network/marketplace/' });
                 }}
               >
                 <Ionicons

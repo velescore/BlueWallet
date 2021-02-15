@@ -3,13 +3,13 @@
 //  MarketWidgetExtension
 //
 //  Created by Marcos Rodriguez on 10/31/20.
-//  Copyright © 2020 BlueWallet. All rights reserved.
+//  Copyright © 2020 VelesWallet. All rights reserved.
 //
 
 import Foundation
 
 enum UserDefaultsGroupKey: String {
-  case GroupName = "group.io.bluewallet.bluewallet"
+  case GroupName = "group.network.veles.wallet"
   case PreferredCurrency = "preferredCurrency"
   case ElectrumSettingsHost = "electrum_host"
   case ElectrumSettingsTCPPort = "electrum_tcp_port"
@@ -24,16 +24,16 @@ struct UserDefaultsElectrumSettings {
   let sslPort: Int32?
 }
 
-let DefaultElectrumPeers = [UserDefaultsElectrumSettings(host: "electrum1.bluewallet.io", port: 50001, sslPort: 443),
-                              UserDefaultsElectrumSettings(host: "electrum2.bluewallet.io", port: 50001, sslPort: 443),
-                              UserDefaultsElectrumSettings(host: "electrum3.bluewallet.io", port: 50001, sslPort: 443)]
+let DefaultElectrumPeers = [UserDefaultsElectrumSettings(host: "electrum1.veles.network", port: 50001, sslPort: 443),
+                              UserDefaultsElectrumSettings(host: "electrum2.veles.network", port: 50001, sslPort: 443),
+                              UserDefaultsElectrumSettings(host: "electrum3.veles.network", port: 50001, sslPort: 443)]
 
 class UserDefaultsGroup {
   static private let suite = UserDefaults(suiteName: UserDefaultsGroupKey.GroupName.rawValue)
 
   static func getElectrumSettings() -> UserDefaultsElectrumSettings {
     guard let electrumSettingsHost = suite?.string(forKey: UserDefaultsGroupKey.ElectrumSettingsHost.rawValue) else {
-      return UserDefaultsElectrumSettings(host: "electrum1.bluewallet.io", port: 50001, sslPort: 443)
+      return UserDefaultsElectrumSettings(host: "electrum1.veles.network", port: 50001, sslPort: 443)
     }
     
     let electrumSettingsTCPPort = suite?.string(forKey: UserDefaultsGroupKey.ElectrumSettingsTCPPort.rawValue) ?? "50001"

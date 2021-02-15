@@ -134,7 +134,7 @@ export default class ElectrumSettings extends Component {
           await AsyncStorage.setItem(AppStorage.ELECTRUM_TCP_PORT, '');
           await AsyncStorage.setItem(AppStorage.ELECTRUM_SSL_PORT, '');
           try {
-            await DefaultPreference.setName('group.io.bluewallet.bluewallet');
+            await DefaultPreference.setName('group.network.veles.wallet');
             await DefaultPreference.clear(AppStorage.ELECTRUM_HOST);
             await DefaultPreference.clear(AppStorage.ELECTRUM_SSL_PORT);
             await DefaultPreference.clear(AppStorage.ELECTRUM_TCP_PORT);
@@ -161,7 +161,7 @@ export default class ElectrumSettings extends Component {
           }
 
           try {
-            await DefaultPreference.setName('group.io.bluewallet.bluewallet');
+            await DefaultPreference.setName('group.network.veles.wallet');
             await DefaultPreference.set(AppStorage.ELECTRUM_HOST, host);
             await DefaultPreference.set(AppStorage.ELECTRUM_TCP_PORT, port);
             await DefaultPreference.set(AppStorage.ELECTRUM_SSL_PORT, sslPort);
@@ -182,7 +182,7 @@ export default class ElectrumSettings extends Component {
 
   onBarScanned = value => {
     if (DeeplinkSchemaMatch.getServerFromSetElectrumServerAction(value)) {
-      // in case user scans a QR with a deeplink like `bluewallet:setelectrumserver?server=electrum1.bluewallet.io%3A443%3As`
+      // in case user scans a QR with a deeplink like `veleswallet:setelectrumserver?server=electrum1.veles.network%3A443%3As`
       value = DeeplinkSchemaMatch.getServerFromSetElectrumServerAction(value);
     }
     var [host, port, type] = value.split(':');

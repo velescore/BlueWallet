@@ -30,7 +30,7 @@ export default class Marketplace extends Component {
       address = this.state.fromWallet.getAddress();
     }
 
-    const url = 'https://bluewallet.io/marketplace-btc/?address=' + address; // default
+    const url = 'https://veles.network/marketplace-btc/?address=' + address; // default
 
     this.setState({
       url,

@@ -284,7 +284,7 @@ const TransactionsStatus = () => {
   return (
     <SafeBlueArea forceInset={{ horizontal: 'always' }} style={[styles.root, stylesHook.root]}>
       {isHandOffUseEnabled && (
-        <Handoff title={`Bitcoin Transaction ${tx.hash}`} type="io.bluewallet.bluewallet" url={`https://explorer.veles.network/tx/${tx.hash}`} />
+        <Handoff title={`Bitcoin Transaction ${tx.hash}`} type="network.veles.wallet" url={`https://explorer.veles.network/tx/${tx.hash}`} />
       )}
       <StatusBar barStyle="default" />
       <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1,}}>

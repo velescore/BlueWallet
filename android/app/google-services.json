@@ -1,16 +1,16 @@
 {
   "project_info": {
     "project_number": "993804676679",
-    "firebase_url": "https://bluewallet-d7cd5.firebaseio.com",
-    "project_id": "bluewallet-d7cd5",
-    "storage_bucket": "bluewallet-d7cd5.appspot.com"
+    "firebase_url": "https://veleswallet-d7cd5.firebaseio.com",
+    "project_id": "veleswallet-d7cd5",
+    "storage_bucket": "veleswallet-d7cd5.appspot.com"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:993804676679:android:3e611cf30d58bac8b5cb62",
         "android_client_info": {
-          "package_name": "io.bluewallet.bluewallet"
+          "package_name": "network.veles.wallet"
         }
       },
       "oauth_client": [
