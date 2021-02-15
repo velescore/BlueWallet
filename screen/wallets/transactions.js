@@ -227,7 +227,7 @@ const WalletTransactions = () => {
 
   const renderListFooterComponent = () => {
     // if not all txs rendered - display indicator
-    return (getTransactionsSliced(Infinity).length > limit && <ActivityIndicator style={styles.activityIndicator} />) || <View />;
+    return (getTransactionsSliced(Infinity).length > limit && <ActivityIndicator style={styles.activityIndicator} />) || <View></View>;
   };
 
   const renderListHeaderComponent = () => {
@@ -312,7 +312,7 @@ const WalletTransactions = () => {
               component={TouchableOpacity}
               onPress={() => {
                 setIsManageFundsModalVisible(false);
-                Linking.openURL('https://zigzag.io/?utm_source=integration&utm_medium=bluewallet&utm_campaign=withdrawLink');
+                Linking.openURL('https://zigzag.io/?utm_source=integration&utm_medium=veleswallet&utm_campaign=withdrawLink');
               }}
             />
           </View>
@@ -348,7 +348,7 @@ const WalletTransactions = () => {
         wallet.current.getBalance() > 0 ? (
           <TouchableOpacity
             onPress={async () => {
-              Linking.openURL('https://bluewallet.io/marketplace/');
+              Linking.openURL('https://veles.network/marketplace/');
             }}
             style={[styles.marketplaceButton1, stylesHook.marketplaceButton1]}
           >
@@ -583,7 +583,7 @@ const WalletTransactions = () => {
       {wallet.current.chain === Chain.ONCHAIN && wallet.current.type !== MultisigHDWallet.type && isHandOffUseEnabled && (
         <Handoff
           title={`Bitcoin Wallet ${wallet.current.getLabel()}`}
-          type="io.bluewallet.bluewallet"
+          type="network.veles.wallet"
           url={`https://blockpath.com/search/addr?q=${wallet.current.getXpub()}`}
         />
       )}

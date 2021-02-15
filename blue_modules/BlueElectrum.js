@@ -20,10 +20,10 @@ const hardcodedPeers = [
   // { host: 'fullnode.coinkite.com', tcp: '50001' },
   // { host: 'preperfect.eleCTruMioUS.com', tcp: '50001' }, // down
    { host: 'electrum.veles.network', tcp: '50001' },
-  // { host: 'electrum1.bluewallet.io', ssl: '443' }, // 2x weight
-  // { host: 'electrum2.bluewallet.io', ssl: '443' },
-  // { host: 'electrum3.bluewallet.io', ssl: '443' },
-  // { host: 'electrum3.bluewallet.io', ssl: '443' }, // 2x weight
+  // { host: 'electrum1.veles.network', ssl: '443' }, // 2x weight
+  // { host: 'electrum2.veles.network', ssl: '443' },
+  // { host: 'electrum3.veles.network', ssl: '443' },
+  // { host: 'electrum3.veles.network', ssl: '443' }, // 2x weight
 ];
 
 let mainClient: ElectrumClient = false;
@@ -45,7 +45,7 @@ async function connectMain() {
   }
 
   try {
-    await DefaultPreference.setName('group.io.bluewallet.bluewallet');
+    await DefaultPreference.setName('group.network.veles.wallet');
     await DefaultPreference.set(AppStorage.ELECTRUM_HOST, usingPeer.host);
     await DefaultPreference.set(AppStorage.ELECTRUM_TCP_PORT, usingPeer.tcp);
     await DefaultPreference.set(AppStorage.ELECTRUM_SSL_PORT, usingPeer.ssl);
@@ -71,7 +71,7 @@ async function connectMain() {
       }
       mainConnected = false;
     };
-    const ver = await mainClient.initElectrum({ client: 'bluewallet', version: '1.4' });
+    const ver = await mainClient.initElectrum({ client: 'veleswallet', version: '1.4' });
     if (ver && ver[0]) {
       console.log('connected to ', ver);
       serverName = ver[0];

@@ -1,4 +1,4 @@
-package io.bluewallet.bluewallet;
+package network.veles.wallet;
 
 import com.wix.detox.Detox;
 

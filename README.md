@@ -1,26 +1,26 @@
-# BlueWallet - A Bitcoin & Lightning Wallet
+# VelesWallet - A Bitcoin & Lightning Wallet
 
-[![GitHub tag](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/BlueWallet/BlueWallet/master/package.json&query=$.version&label=Version)](https://github.com/BlueWallet/BlueWallet)
-[![CircleCI](https://circleci.com/gh/BlueWallet/BlueWallet.svg?style=svg)](https://circleci.com/gh/BlueWallet/BlueWallet)
-[![e2e on master](https://travis-ci.com/BlueWallet/BlueWallet.svg?branch=master)](https://travis-ci.com/BlueWallet/BlueWallet)
+[![GitHub tag](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/VelesWallet/VelesWallet/master/package.json&query=$.version&label=Version)](https://github.com/VelesWallet/VelesWallet)
+[![CircleCI](https://circleci.com/gh/VelesWallet/VelesWallet.svg?style=svg)](https://circleci.com/gh/VelesWallet/VelesWallet)
+[![e2e on master](https://travis-ci.com/VelesWallet/VelesWallet.svg?branch=master)](https://travis-ci.com/VelesWallet/VelesWallet)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-![](https://img.shields.io/github/license/BlueWallet/BlueWallet.svg)
+![](https://img.shields.io/github/license/VelesWallet/VelesWallet.svg)
 
 Thin Bitcoin Wallet.
 Built with React Native and Electrum.
 
-[![Appstore](https://bluewallet.io/img/app-store-badge.svg)](https://itunes.apple.com/us/app/bluewallet-bitcoin-wallet/id1376878040?l=ru&ls=1&mt=8)
-[![Playstore](https://bluewallet.io/img/play-store-badge.svg)](https://play.google.com/store/apps/details?id=io.bluewallet.bluewallet)
+[![Appstore](https://veles.network/img/app-store-badge.svg)](https://itunes.apple.com/us/app/veleswallet-bitcoin-wallet/id1376878040?l=ru&ls=1&mt=8)
+[![Playstore](https://veles.network/img/play-store-badge.svg)](https://play.google.com/store/apps/details?id=network.veles.wallet)
 
-Website: [bluewallet.io](http://bluewallet.io)
+Website: [veles.network](http://veles.network)
 
-Community: [telegram group](https://t.me/bluewallet)
+Community: [telegram group](https://t.me/veleswallet)
 
 * Private keys never leave your device
 * Lightning Network supported
 * SegWit-first. Replace-By-Fee support
 * Encryption. Plausible deniability
-* And many more [features...](https://bluewallet.io/features)
+* And many more [features...](https://veles.network/features)
 
 
 <img src="https://i.imgur.com/hHYJnMj.png" width="100%">
@@ -39,8 +39,8 @@ node --version && npm --version
 * In your console:
 
 ```
-git clone https://github.com/BlueWallet/BlueWallet.git
-cd BlueWallet
+git clone https://github.com/VelesWallet/VelesWallet.git
+cd VelesWallet
 npm install
 ```
 
@@ -52,7 +52,7 @@ You will now need to either connect an Android device to your computer or run an
 
 1. Download and run Android Studio
 2. Click on "Open an existing Android Studio Project"
-3. Open `build.gradle` file under `BlueWallet/android/` folder
+3. Open `build.gradle` file under `VelesWallet/android/` folder
 4. Android Studio will take some time to set things up. Once everything is set up, go to `Tools` -> `AVD Manager`.
     * 📝 This option [may take some time to appear in the menu](https://stackoverflow.com/questions/47173708/why-avd-manager-options-are-not-showing-in-android-studio) if you're opening the project in a freshly-installed version of Android Studio.
 5. Click on "Create Virtual Device..." and go through the steps to create a virtual device
@@ -73,7 +73,7 @@ npx pod-install
 npm start
 ```
 
-In another terminal window within the BlueWallet folder:
+In another terminal window within the VelesWallet folder:
 ```
 npx react-native run-ios
 ```
@@ -107,15 +107,15 @@ MIT
 
 ## WANT TO CONTRIBUTE?
 
-Grab an issue from [the backlog](https://github.com/BlueWallet/BlueWallet/projects/1), try to start or submit a PR, any doubts we will try to guide you. Contributors have a private telegram group, request access by email bluewallet@bluewallet.io
+Grab an issue from [the backlog](https://github.com/VelesWallet/VelesWallet/projects/1), try to start or submit a PR, any doubts we will try to guide you. Contributors have a private telegram group, request access by email veleswallet@veles.network
 
 ## Translations
 
-We accepts translations via [Transifex](https://www.transifex.com/bluewallet/bluewallet/)
+We accepts translations via [Transifex](https://www.transifex.com/veleswallet/veleswallet/)
 
 To participate you need to:
 1. Sign up to Transifex
-2. Find BlueWallet project
+2. Find VelesWallet project
 3. Send join request
 4. After we accept your request you will be able to start translating! That's it!
 
@@ -125,5 +125,5 @@ Transifex automatically creates Pull Request when language reaches 100% translat
 
 ## RESPONSIBLE DISCLOSURE
 
-Found critical bugs/vulnerabilities? Please email them bluewallet@bluewallet.io
+Found critical bugs/vulnerabilities? Please email them veleswallet@veles.network
 Thanks!

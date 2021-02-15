@@ -26,7 +26,7 @@
     "placeholder": "Anfoneb",
     "refill": "Ail-lenwi",
     "refill_card": "Ail-lenwi efo cerdyn banc",
-    "refill_create": "Er mwyn parhau, ffurfia waled Bitcoin i'w ail-lenwi. ",
+    "refill_create": "Er mwyn parhau, ffurfia waled Veles i'w ail-lenwi. ",
     "refill_external": "Ail-lenwi efo Waled Allanol",
     "refill_lnd_balance": "Ail-lenwi balans waled Mellten",
     "sameWalletAsInvoiceError": "Does dim modd talu anfoneb efo'r un waled ddefnyddwyd i'w greu.",

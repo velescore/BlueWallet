@@ -1,9 +1,9 @@
 //
 //  EventEmitter.m
-//  BlueWallet
+//  VelesWallet
 //
 //  Created by Marcos Rodriguez on 12/25/20.
-//  Copyright © 2020 BlueWallet. All rights reserved.
+//  Copyright © 2020 VelesWallet. All rights reserved.
 //
 
 #import "EventEmitter.h"

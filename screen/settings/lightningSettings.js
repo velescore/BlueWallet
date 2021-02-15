@@ -76,7 +76,7 @@ const LightningSettings = () => {
 
   const setLndhubURI = value => {
     if (DeeplinkSchemaMatch.getUrlFromSetLndhubUrlAction(value)) {
-      // in case user scans a QR with a deeplink like `bluewallet:setlndhuburl?url=https%3A%2F%2Flndhub.herokuapp.com`
+      // in case user scans a QR with a deeplink like `veleswallet:setlndhuburl?url=https%3A%2F%2Flndhub.herokuapp.com`
       value = DeeplinkSchemaMatch.getUrlFromSetLndhubUrlAction(value);
     }
     setURI(value.trim());
@@ -121,9 +121,9 @@ const LightningSettings = () => {
           type: 'font-awesome',
           color: colors.foregroundColor,
         }}
-        onPress={() => Linking.openURL('https://github.com/BlueWallet/LndHub')}
+        onPress={() => Linking.openURL('https://github.com/VelesWallet/LndHub')}
         titleStyle={{ color: colors.buttonAlternativeTextColor }}
-        title="github.com/BlueWallet/LndHub"
+        title="github.com/VelesWallet/LndHub"
         color={colors.buttonTextColor}
         buttonStyle={styles.buttonStyle}
       />

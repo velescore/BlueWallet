@@ -347,7 +347,7 @@ const ReceiveDetails = () => {
       {isHandOffUseEnabled && address !== undefined && showAddress && (
         <Handoff
           title={`Bitcoin Transaction ${address}`}
-          type="io.bluewallet.bluewallet"
+          type="network.veles.wallet"
           url={`https://explorer.veles.network/address/${address}`}
         />
       )}

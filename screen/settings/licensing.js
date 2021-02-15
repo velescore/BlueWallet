@@ -26,7 +26,7 @@ const Licensing = () => {
           <BlueCard>
             <BlueText>MIT License</BlueText>
             <BlueSpacing20 />
-            <BlueText>Copyright (c) 2018-2020 BlueWallet Services</BlueText>
+            <BlueText>Copyright (c) 2018-2020 VelesWallet Services</BlueText>
             <BlueSpacing20 />
             <BlueText>
               Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files

@@ -906,7 +906,7 @@ export default class SendDetails extends Component {
       const res = await DocumentPicker.pick({
         type:
           Platform.OS === 'ios'
-            ? ['io.bluewallet.psbt', 'io.bluewallet.psbt.txn', DocumentPicker.types.plainText, 'public.json']
+            ? ['io.veleswallet.psbt', 'io.veleswallet.psbt.txn', DocumentPicker.types.plainText, 'public.json']
             : [DocumentPicker.types.allFiles],
       });
 

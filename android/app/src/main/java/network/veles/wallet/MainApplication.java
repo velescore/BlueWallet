@@ -1,4 +1,4 @@
-package io.bluewallet.bluewallet;
+package network.veles.wallet;
 
 import android.app.Application;
 import android.content.Context;

@@ -20,7 +20,7 @@
   },
   "azteco": {
     "codeIs": "El codi del teu val és",
-    "errorBeforeRefeem": "Abans de canviar, primer heu d’afegir un moneder de Bitcoin.",
+    "errorBeforeRefeem": "Abans de canviar, primer heu d’afegir un moneder de Veles.",
     "errorSomething": "Quelcom ha anat malament. Aquest val continua sent vàlid? ",
     "redeem": "Canviar al moneder",
     "redeemButton": "Canviar",
@@ -130,7 +130,7 @@
     "create_fake_storage": "Crear informació xifrada falsa",
     "create_password": "Crear una contrasenya",
     "create_password_explanation": "La contrasenya no pot ser la mateixa que la del seu moneder principal.",
-    "help": "Sota certes circumstàncies, vostè podria ser obligat a revelar la contrasenya del seu moneder. Per a mantenir les seves monedes segures, BlueWallet pot crear un altre moneder xifrat, amb una altra contrasenya. Si es veu obligat, pot revelar la contrasenya per al fals moneder a un tercer de manera que ells creuran que és el seu moneder principal",
+    "help": "Sota certes circumstàncies, vostè podria ser obligat a revelar la contrasenya del seu moneder. Per a mantenir les seves monedes segures, VelesWallet pot crear un altre moneder xifrat, amb una altra contrasenya. Si es veu obligat, pot revelar la contrasenya per al fals moneder a un tercer de manera que ells creuran que és el seu moneder principal",
     "help2": "El moneder \"false\" és completament funcional. Pot dipositar una quantitat mínima perquè sigui més creïble.",
     "password_should_not_match": "La contrasenya no pot ser la mateixa que la del seu moneder principal.",
     "passwords_do_not_match": "Les contrasenyes no coincideixin. Torni-ho a intentar",
@@ -209,7 +209,7 @@
     "open_settings": "Obre configuració",
     "permission_camera_message": "Necessitem el vostre permís per usar la vostra càmera.",
     "permission_camera_title": "Permís per usar la càmera",
-    "permission_storage_message": "BlueWallet necessita el vostre permís per accedir al vostre emmagatzematge per desar aquest fitxer.",
+    "permission_storage_message": "VelesWallet necessita el vostre permís per accedir al vostre emmagatzematge per desar aquest fitxer.",
     "psbt_tx_export": "Exportar a arxiu",
     "success_done": "Fet"
   },
@@ -262,7 +262,7 @@
     "pending": "Pendent"
   },
   "wallets": {
-    "add_bitcoin": "Bitcoin",
+    "add_bitcoin": "Veles",
     "add_create": "Crear",
     "add_import_wallet": "Importar moneder",
     "add_lightning": "Lightning",
@@ -289,7 +289,7 @@
     "export_title": "Exportació de moneder",
     "import_do_import": "Importar",
     "import_error": "No s'ha pogut importar. ¿És vàlid?",
-    "import_explanation": "Escrigui aquí el mnemotècnic, clau privada, WIF, o quelcom que tingui. BlueWallet fara tot el posible per encertar el formato correcte e importar el moneder.",
+    "import_explanation": "Escrigui aquí el mnemotècnic, clau privada, WIF, o quelcom que tingui. VelesWallet fara tot el posible per encertar el formato correcte e importar el moneder.",
     "import_file": "Importar arxiu",
     "import_imported": "Importat",
     "import_scan_qr": "o escanejar codi QR?",
@@ -303,7 +303,7 @@
     "list_latest_transaction": "última transacció",
     "list_long_choose": "Tria la foto",
     "list_long_scan": "Escaneja el codi QR",
-    "list_tap_here_to_buy": "Prem aquí per comprar Bitcoin",
+    "list_tap_here_to_buy": "Prem aquí per comprar Veles",
     "list_title": "moneders",
     "list_tryagain": "Torna-ho a provar",
     "reorder_title": "Reorganitzar moneder",

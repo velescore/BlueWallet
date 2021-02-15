@@ -1,10 +1,10 @@
 Una Billetera de Bitcoin que te permite guardar, enviar Bitcoin, recibir Bitcoin y comprar Bitcoin, centrada en la seguridad y la simplicidad.
 
-Con BlueWallet, una billetera Bitcoin donde controlas las claves privadas. Una billetera Bitcoin creada por usuarios de Bitcoin para la comunidad.
+Con VelesWallet, una billetera Bitcoin donde controlas las claves privadas. Una billetera Bitcoin creada por usuarios de Bitcoin para la comunidad.
 
 Puede realizar transacciones con cualquier persona en el mundo y transformar el sistema financiero directamente desde su bolsillo.
 
-Puede crear una cantidad ilimitada de billeteras Bitcoin de forma gratuita o importar las billeteras que ya tiene en su aplicación BlueWallet. ¡Es fácil y rápido!
+Puede crear una cantidad ilimitada de billeteras Bitcoin de forma gratuita o importar las billeteras que ya tiene en su aplicación VelesWallet. ¡Es fácil y rápido!
 
 ---
 
@@ -19,7 +19,7 @@ Negación Plausible
 Contraseña que descifra billeteras falsas. Para casos especiales en los que se le puede solicitar que revele su contraseña, puede revelar la contraseña falsa. Mantenga su bitcoin seguro.
 
 Cifrado Completo
-Construido sobre el cifrado multicapa de iOS, BlueWallet cifra todo con una contraseña adicional.
+Construido sobre el cifrado multicapa de iOS, VelesWallet cifra todo con una contraseña adicional.
 
 Billetera SegWit e HD
 Compatible con SegWit (ayuda a reducir las tarifas) y billeteras HD activadas.

@@ -1,6 +1,6 @@
 Eine Bitcoin-Wallet, die das Speichern, Überweisen, Empfangen und Kaufen von Bitcoin erlaubt und dabei den Fokus auf Sicherheit und Einfachheit legt.
 
-Auf BlueWallet bist Du im Besitz der privaten Schlüssel. Eine Bitcoin-Wallet, die von Bitcoin-Benutzern für die Gemeinschaft erstellt wurde.
+Auf VelesWallet bist Du im Besitz der privaten Schlüssel. Eine Bitcoin-Wallet, die von Bitcoin-Benutzern für die Gemeinschaft erstellt wurde.
 
 Du kannst sofort mit jedem in der Welt Geschäfte machen und das Finanzsystem direkt aus der Tasche heraus reformieren.
 
