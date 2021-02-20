@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
     marginVertical: 24,
   },
   txText: {
-    color: BlueCurrentTheme.colors.buttonTextColor,
+    color: BlueCurrentTheme.colors.hdborderColor,
     fontSize: 15,
     fontWeight: '500',
     alignSelf: 'center',

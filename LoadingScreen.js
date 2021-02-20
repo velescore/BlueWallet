@@ -9,6 +9,7 @@ import { ImageBackground, StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+    backgroundColor: 'rgba(95, 88, 84, .18)',
   },
   splash: {
     flex: 1,

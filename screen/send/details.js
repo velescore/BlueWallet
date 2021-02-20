@@ -58,7 +58,6 @@ const btcAddressRx = /^[a-zA-Z0-9]{26,35}$/;
 const styles = StyleSheet.create({
   loading: {
     flex: 1,
-    paddingTop: 20,
     backgroundColor: 'transparent',
   },
   root: {

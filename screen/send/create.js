@@ -23,6 +23,7 @@ import RNFS from 'react-native-fs';
 import isCatalyst from 'react-native-is-catalyst';
 
 import { SafeBlueArea, BlueCard, BlueText } from '../../BlueComponents';
+import LinearGradient from 'react-native-linear-gradient';
 import navigationStyle from '../../components/navigationStyle';
 import Privacy from '../../Privacy';
 import { BitcoinUnit } from '../../models/bitcoinUnits';
@@ -133,49 +134,51 @@ export default class SendCreate extends Component {
 
   render() {
     return (
-      <SafeBlueArea style={styles.root}>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-          <ScrollView>
-            <BlueCard style={styles.card}>
-              <BlueText style={styles.cardText}>{loc.send.create_this_is_hex}</BlueText>
-              <TextInput testID="TxhexInput" style={styles.cardTx} height={72} multiline editable value={this.state.tx} />
+      <LinearGradient colors={['rgba(95, 88, 84, .18)', '#ffffff']} style={{flex:1}}>
+        <SafeBlueArea style={styles.root}>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+            <ScrollView>
+              <BlueCard style={styles.card}>
+                <BlueText style={styles.cardText}>{loc.send.create_this_is_hex}</BlueText>
+                <TextInput testID="TxhexInput" style={styles.cardTx} height={72} multiline editable value={this.state.tx} />
 
-              <TouchableOpacity style={styles.actionTouch} onPress={() => Clipboard.setString(this.state.tx)}>
-                <Text style={styles.actionText}>{loc.send.create_copy}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.actionTouch} onPress={() => Linking.openURL('https://wallet.veles.network/?verify=' + this.state.tx)}>
-                <Text style={styles.actionText}>{loc.send.create_verify}</Text>
-              </TouchableOpacity>
-            </BlueCard>
-            <BlueCard>
-              <FlatList
-                scrollEnabled={this.state.recipients.length > 1}
-                extraData={this.state.recipients}
-                data={this.state.recipients}
-                renderItem={this._renderItem}
-                keyExtractor={(_item, index) => `${index}`}
-                ItemSeparatorComponent={this.renderSeparator}
-              />
-              <Text style={styles.transactionDetailsTitle}>{loc.send.create_fee}</Text>
-              <Text style={styles.transactionDetailsSubtitle}>
-                {this.state.fee} {BitcoinUnit.VLS}
-              </Text>
+                <TouchableOpacity style={styles.actionTouch} onPress={() => Clipboard.setString(this.state.tx)}>
+                  <Text style={styles.actionText}>{loc.send.create_copy}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.actionTouch} onPress={() => Linking.openURL('https://wallet.veles.network/?verify=' + this.state.tx)}>
+                  <Text style={styles.actionText}>{loc.send.create_verify}</Text>
+                </TouchableOpacity>
+              </BlueCard>
+              <BlueCard>
+                <FlatList
+                  scrollEnabled={this.state.recipients.length > 1}
+                  extraData={this.state.recipients}
+                  data={this.state.recipients}
+                  renderItem={this._renderItem}
+                  keyExtractor={(_item, index) => `${index}`}
+                  ItemSeparatorComponent={this.renderSeparator}
+                />
+                <Text style={styles.transactionDetailsTitle}>{loc.send.create_fee}</Text>
+                <Text style={styles.transactionDetailsSubtitle}>
+                  {this.state.fee} {BitcoinUnit.VLS}
+                </Text>
 
-              <Text style={styles.transactionDetailsTitle}>{loc.send.create_tx_size}</Text>
-              <Text style={styles.transactionDetailsSubtitle}>{this.state.size} bytes</Text>
+                <Text style={styles.transactionDetailsTitle}>{loc.send.create_tx_size}</Text>
+                <Text style={styles.transactionDetailsSubtitle}>{this.state.size} bytes</Text>
 
-              <Text style={styles.transactionDetailsTitle}>{loc.send.create_satoshi_per_byte}</Text>
-              <Text style={styles.transactionDetailsSubtitle}>{this.state.satoshiPerByte} Sat/B</Text>
-              {this.state.memo.length > 0 && (
-                <>
-                  <Text style={styles.transactionDetailsTitle}>{loc.send.create_memo}</Text>
-                  <Text style={styles.transactionDetailsSubtitle}>{this.state.memo}</Text>
-                </>
-              )}
-            </BlueCard>
-          </ScrollView>
-        </TouchableWithoutFeedback>
-      </SafeBlueArea>
+                <Text style={styles.transactionDetailsTitle}>{loc.send.create_satoshi_per_byte}</Text>
+                <Text style={styles.transactionDetailsSubtitle}>{this.state.satoshiPerByte} Sat/B</Text>
+                {this.state.memo.length > 0 && (
+                  <>
+                    <Text style={styles.transactionDetailsTitle}>{loc.send.create_memo}</Text>
+                    <Text style={styles.transactionDetailsSubtitle}>{this.state.memo}</Text>
+                  </>
+                )}
+              </BlueCard>
+            </ScrollView>
+          </TouchableWithoutFeedback>
+        </SafeBlueArea>
+      </LinearGradient>
     );
   }
 }
@@ -207,7 +210,7 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     paddingTop: 19,
-    backgroundColor: BlueCurrentTheme.colors.elevated,
+    backgroundColor: 'transparent',
   },
   card: {
     alignItems: 'center',
@@ -233,7 +236,7 @@ const styles = StyleSheet.create({
     marginVertical: 24,
   },
   actionText: {
-    color: '#9aa0aa',
+    color: BlueCurrentTheme.colors.hdborderColor,
     fontSize: 15,
     fontWeight: '500',
     alignSelf: 'center',
