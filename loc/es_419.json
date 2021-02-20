@@ -167,7 +167,7 @@
     "create_this_is_hex": "Este es representacion hex de transacción, firmado y listo para ser transmitido a la red. ¿Continuar?",
     "create_to": "A",
     "create_tx_size": "tamaño de TX",
-    "create_verify": "Verificar en coinb.in",
+    "create_verify": "Verificar en Veles Webwallet",
     "details_add_rec_add": "Añadir Recipiente",
     "details_add_rec_rem": "Quitar Recipiente",
     "details_address": "Direccion",
