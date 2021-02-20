@@ -1,10 +1,10 @@
 import Frisbee from 'frisbee';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppStorage } from '../class';
-import { FiatServerResponse, FiatUnit } from '../models/fiatUnit';
+import { FiatUnit } from '../models/fiatUnit';
 import DefaultPreference from 'react-native-default-preference';
-import RNWidgetCenter from 'react-native-widget-center';
 import * as RNLocalize from 'react-native-localize';
+import RNWidgetCenter from 'react-native-widget-center';
 const BigNumber = require('bignumber.js');
 let preferredFiatCurrency = FiatUnit.USD;
 const exchangeRates = {};
@@ -13,13 +13,7 @@ const STRUCT = {
   LAST_UPDATED: 'LAST_UPDATED',
 };
 
-/**
- * Saves to storage preferred currency, whole object
- * from `./models/fiatUnit`
- *
- * @param item {Object} one of the values in `./models/fiatUnit`
- * @returns {Promise<void>}
- */
+
 async function setPrefferedCurrency(item) {
   await AsyncStorage.setItem(AppStorage.PREFERRED_CURRENCY, JSON.stringify(item));
   await DefaultPreference.setName('group.network.veles.wallet');
@@ -55,14 +49,16 @@ async function updateExchangeRate() {
     }
   }
 
-  let response;
-  const fiatServerResponse = new FiatServerResponse(preferredFiatCurrency);
+  let json;
   try {
     const api = new Frisbee({
-      baseURI: fiatServerResponse.baseURI(),
+      baseURI: 'https://api.coingecko.com',
     });
-    response = await api.get(fiatServerResponse.endPoint());
-    fiatServerResponse.isErrorFound(response);
+    const response = await api.get('/api/v3/simple/price?ids=veles&vs_currencies=' + preferredFiatCurrency.endPointKey);
+    json = response.body;
+    if (!json || !json.veles || !json.veles[preferredFiatCurrency.endPointKey.toLowerCase()]) {
+      throw new Error('Could not update currency rate: ' + response.err);
+    }
   } catch (Err) {
     console.warn(Err);
     const lastSavedExchangeRate = JSON.parse(await AsyncStorage.getItem(AppStorage.EXCHANGE_RATES));
@@ -71,7 +67,7 @@ async function updateExchangeRate() {
   }
 
   exchangeRates[STRUCT.LAST_UPDATED] = +new Date();
-  exchangeRates['BTC_' + preferredFiatCurrency.endPointKey] = fiatServerResponse.rate(response);
+  exchangeRates['BTC_' + preferredFiatCurrency.endPointKey] = json.veles[preferredFiatCurrency.endPointKey.toLowerCase()] * 1;
   await AsyncStorage.setItem(AppStorage.EXCHANGE_RATES, JSON.stringify(exchangeRates));
   await AsyncStorage.setItem(AppStorage.PREFERRED_CURRENCY, JSON.stringify(preferredFiatCurrency));
   await setPrefferedCurrency(preferredFiatCurrency);

@@ -75,7 +75,7 @@ const Currency = () => {
           />
           <BlueCard>
             <BlueText>
-              {loc.settings.currency_source} {selectedCurrency.source ?? FiatUnitSource.CoinDesk}
+              {loc.settings.currency_source}
             </BlueText>
           </BlueCard>
         </SafeBlueArea>
