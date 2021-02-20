@@ -290,7 +290,7 @@ export default class SendDetails extends Component {
         });
         return alert(loc.send.details_address_field_is_not_valid);
       }
-      const dataWithoutSchema = data.replace('bitcoin:', '').replace('BITCOIN:', '');
+      const dataWithoutSchema = data.replace('veles:', '').replace('VELES:', '');
       if (this.state.fromWallet.isAddressValid(dataWithoutSchema)) {
         recipients[[this.state.recipientsScrollIndex]].address = dataWithoutSchema;
         const units = this.state.units;
@@ -304,8 +304,8 @@ export default class SendDetails extends Component {
         let address = '';
         let options;
         try {
-          if (!data.toLowerCase().startsWith('bitcoin:')) {
-            data = `bitcoin:${data}`;
+          if (!data.toLowerCase().startsWith('veles:')) {
+            data = `veles:${data}`;
           }
           const decoded = DeeplinkSchemaMatch.bip21decode(data);
           address = decoded.address;
