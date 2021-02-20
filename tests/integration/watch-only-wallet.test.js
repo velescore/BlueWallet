@@ -55,10 +55,10 @@ describe('Watch only wallet', () => {
     for (const sec of [
       'bc1quhnve8q4tk3unhmjts7ymxv8cd6w9xv8wy29uv',
       'BC1QUHNVE8Q4TK3UNHMJTS7YMXV8CD6W9XV8WY29UV',
-      'bitcoin:bc1quhnve8q4tk3unhmjts7ymxv8cd6w9xv8wy29uv',
-      'BITCOIN:BC1QUHNVE8Q4TK3UNHMJTS7YMXV8CD6W9XV8WY29UV',
-      'bitcoin:BC1QUHNVE8Q4TK3UNHMJTS7YMXV8CD6W9XV8WY29UV',
-      'BITCOIN:bc1quhnve8q4tk3unhmjts7ymxv8cd6w9xv8wy29uv',
+      'veles:bc1quhnve8q4tk3unhmjts7ymxv8cd6w9xv8wy29uv',
+      'VELES:BC1QUHNVE8Q4TK3UNHMJTS7YMXV8CD6W9XV8WY29UV',
+      'veles:BC1QUHNVE8Q4TK3UNHMJTS7YMXV8CD6W9XV8WY29UV',
+      'VELES:bc1quhnve8q4tk3unhmjts7ymxv8cd6w9xv8wy29uv',
     ]) {
       w.setSecret(sec);
       assert.strictEqual(w.getAddress(), 'bc1quhnve8q4tk3unhmjts7ymxv8cd6w9xv8wy29uv');
@@ -94,6 +94,6 @@ describe('Watch only wallet', () => {
     assert.strictEqual(w.getBalance(), 200000);
     await w.fetchTransactions();
     assert.strictEqual(w.getTransactions().length, 4);
-    assert.ok((await w.getAddressAsync()).startsWith('bc1'));
+    assert.ok((await w.getAddressAsync()).startsWith('veles1'));
   });
 });

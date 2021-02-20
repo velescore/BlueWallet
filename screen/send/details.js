@@ -318,7 +318,7 @@ export default class SendDetails extends Component {
           this.setState({ isLoading: false });
         }
         console.log(options);
-        if (btcAddressRx.test(address) || address.indexOf('bc1') === 0 || address.indexOf('BC1') === 0) {
+        if (btcAddressRx.test(address) || address.indexOf('veles1') === 0 || address.indexOf('VELES1') === 0) {
           const units = this.state.units;
           units[this.state.recipientsScrollIndex] = BitcoinUnit.VLS; // also resetting current unit to VLS
           recipients[[this.state.recipientsScrollIndex]].address = address;
